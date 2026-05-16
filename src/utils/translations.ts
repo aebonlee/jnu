@@ -163,7 +163,20 @@ export const translations: Record<string, Record<string, unknown>> = {
       loginRequired: '댓글을 작성하려면 로그인이 필요합니다.'
     },
     community: {
+      title: '커뮤니티',
+      subtitle: '교육 과정에 대한 질문과 자료를 공유하는 공간입니다.',
+      writePost: '글쓰기',
+      search: '제목 또는 작성자 검색...',
+      noPost: '게시물이 없습니다.',
+      comments: '댓글',
+      commentPlaceholder: '댓글을 입력하세요...',
+      submit: '등록',
       cancel: '취소',
+      deleteConfirm: '정말 삭제하시겠습니까?',
+      loginRequired: '로그인이 필요합니다.',
+      categoryLabel: '카테고리',
+      titleLabel: '제목',
+      contentLabel: '내용',
       loading: '로딩 중...'
     },
     common: {
@@ -391,7 +404,20 @@ export const translations: Record<string, Record<string, unknown>> = {
       loginRequired: 'Please log in to leave a comment.'
     },
     community: {
+      title: 'Community',
+      subtitle: 'A space to share questions and resources about the courses.',
+      writePost: 'Write Post',
+      search: 'Search by title or author...',
+      noPost: 'No posts yet.',
+      comments: 'Comments',
+      commentPlaceholder: 'Write a comment...',
+      submit: 'Submit',
       cancel: 'Cancel',
+      deleteConfirm: 'Are you sure you want to delete this?',
+      loginRequired: 'Please log in.',
+      categoryLabel: 'Category',
+      titleLabel: 'Title',
+      contentLabel: 'Content',
       loading: 'Loading...'
     },
     common: {
