@@ -10,7 +10,7 @@ import type { MenuItem } from '../../types';
 
 interface ResolvedMenuItem extends MenuItem {
   label: string;
-  dropdown?: (MenuItem & { label: string })[];
+  dropdown?: (MenuItem & { label: string; href?: string })[];
 }
 
 const Navbar = (): ReactElement => {
@@ -112,7 +112,14 @@ const Navbar = (): ReactElement => {
                     <ul className={`dropdown-menu ${activeDropdown === index ? 'active' : ''}`}>
                       {item.dropdown.map((subItem, subIndex) => (
                         <li key={subIndex}>
-                          <Link to={subItem.path}>{subItem.label}</Link>
+                          {subItem.href ? (
+                            <a href={subItem.href} target="_blank" rel="noopener noreferrer">
+                              {subItem.label}
+                              <i className="fa-solid fa-arrow-up-right-from-square external-link-icon" />
+                            </a>
+                          ) : (
+                            <Link to={subItem.path}>{subItem.label}</Link>
+                          )}
                         </li>
                       ))}
                     </ul>

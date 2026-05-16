@@ -25,6 +25,17 @@ html[data-color="orange"] {
   --primary-light: rgba(200, 114, 0, 0.08);
 }
 
+/* ─── External Link Icon in Dropdown ─── */
+.dropdown-menu a .external-link-icon {
+  font-size: 0.65em;
+  margin-left: 6px;
+  opacity: 0.5;
+  vertical-align: middle;
+}
+.dropdown-menu a:hover .external-link-icon {
+  opacity: 0.8;
+}
+
 /* ─── Course Category Grid (Home) ─── */
 .course-category-grid {
   display: grid;

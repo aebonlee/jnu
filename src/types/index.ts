@@ -175,6 +175,7 @@ export interface MenuItem {
 export interface SubMenuItem {
   path: string;
   labelKey: string;
+  href?: string;
 }
 
 export interface FamilySite {

@@ -93,6 +93,21 @@ const site: SiteConfig = {
       ]
     },
     { path: '/prompt-eval/practice', labelKey: 'site.nav.promptPractice' },
+    {
+      labelKey: 'site.nav.recommended',
+      path: '/recommended',
+      activePath: '/recommended',
+      dropdown: [
+        { path: '/recommended', labelKey: 'site.nav.recChatGPT', href: 'https://chat.openai.com' },
+        { path: '/recommended', labelKey: 'site.nav.recClaude', href: 'https://claude.ai' },
+        { path: '/recommended', labelKey: 'site.nav.recGemini', href: 'https://gemini.google.com' },
+        { path: '/recommended', labelKey: 'site.nav.recCopilot', href: 'https://copilot.microsoft.com' },
+        { path: '/recommended', labelKey: 'site.nav.recPerplexity', href: 'https://www.perplexity.ai' },
+        { path: '/recommended', labelKey: 'site.nav.recNotebookLM', href: 'https://notebooklm.google.com' },
+        { path: '/recommended', labelKey: 'site.nav.recDreamIT', href: 'https://www.dreamitbiz.com' },
+        { path: '/recommended', labelKey: 'site.nav.recTeaching', href: 'https://teaching.dreamitbiz.com' },
+      ]
+    },
     { path: '/pricing', labelKey: 'pricing.title' },
     { path: '/community', labelKey: 'nav.community' },
   ],
