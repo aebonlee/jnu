@@ -485,6 +485,85 @@
   justify-content: center;
 }
 
+/* ─── MyPage Token Section ─── */
+.mypage-token-section {
+  margin-bottom: 24px;
+  padding: 20px;
+  background: var(--bg-light-gray);
+  border-radius: var(--radius-md);
+}
+
+[data-theme="dark"] .mypage-token-section {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.mypage-section-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-primary);
+}
+
+.mypage-section-title i {
+  color: var(--primary-blue);
+}
+
+.mypage-token-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.mypage-token-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  padding: 14px 12px;
+  text-align: center;
+}
+
+.mypage-token-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.mypage-token-value.has-balance {
+  color: var(--primary-blue);
+}
+
+.mypage-token-label {
+  font-size: 11px;
+  color: var(--text-light);
+  margin-top: 4px;
+}
+
+.mypage-token-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.mypage-token-actions .board-btn {
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+@media (max-width: 480px) {
+  .mypage-token-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+  }
+  .mypage-token-value {
+    font-size: 16px;
+  }
+}
+
 .mypage-sections {
   display: flex;
   flex-direction: column;

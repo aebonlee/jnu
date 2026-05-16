@@ -2,14 +2,19 @@ import { useState, useEffect, type ReactElement } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useAuth } from '../contexts/AuthContext';
+import { useSubscriptionContext } from '../contexts/SubscriptionContext';
+import { useUsageLog } from '../hooks/useUsageLog';
 import { updateProfile } from '../utils/auth';
 import SEOHead from '../components/SEOHead';
 import '../styles/auth.css';
 
 const MyPage = (): ReactElement => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { user, profile, signOut, refreshProfile } = useAuth();
+  const { tokenBalance, hasTokens } = useSubscriptionContext();
+  const { monthlyUsage } = useUsageLog();
   const navigate = useNavigate();
+  const isKo = language === 'ko';
 
   const [editing, setEditing] = useState(false);
   const [form, setForm] = useState({ displayName: '', avatarUrl: '' });
@@ -109,6 +114,38 @@ const MyPage = (): ReactElement => {
               {message && <div className="auth-message">{message}</div>}
             </div>
 
+            {/* 토큰 잔액 & 사용량 */}
+            <div className="mypage-token-section">
+              <h3 className="mypage-section-title">
+                <i className="fa-solid fa-coins" />
+                {isKo ? '토큰 현황' : 'Token Status'}
+              </h3>
+              <div className="mypage-token-grid">
+                <div className="mypage-token-card">
+                  <div className={`mypage-token-value ${hasTokens ? 'has-balance' : ''}`}>
+                    {tokenBalance.toLocaleString()}
+                  </div>
+                  <div className="mypage-token-label">{isKo ? '잔여 토큰' : 'Remaining'}</div>
+                </div>
+                <div className="mypage-token-card">
+                  <div className="mypage-token-value">{monthlyUsage.tokens.toLocaleString()}</div>
+                  <div className="mypage-token-label">{isKo ? '이번 달 사용' : 'Used This Month'}</div>
+                </div>
+                <div className="mypage-token-card">
+                  <div className="mypage-token-value">{monthlyUsage.requests}</div>
+                  <div className="mypage-token-label">{isKo ? '이번 달 요청' : 'Requests'}</div>
+                </div>
+              </div>
+              <div className="mypage-token-actions">
+                <Link to="/pricing" className="board-btn primary">
+                  <i className="fa-solid fa-plus" /> {isKo ? '토큰 충전' : 'Recharge'}
+                </Link>
+                <Link to="/settings" className="board-btn">
+                  <i className="fa-solid fa-chart-simple" /> {isKo ? '상세 이력' : 'Details'}
+                </Link>
+              </div>
+            </div>
+
             <div className="mypage-sections">
               <Link to="/mypage/orders" className="mypage-link-card">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="24" height="24">
@@ -117,6 +154,13 @@ const MyPage = (): ReactElement => {
                   <path d="M16 10a4 4 0 0 1-8 0" />
                 </svg>
                 <span>{t('auth.orderHistory')}</span>
+              </Link>
+              <Link to="/settings" className="mypage-link-card">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="24" height="24">
+                  <circle cx="12" cy="12" r="3" />
+                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                </svg>
+                <span>{isKo ? '설정 (API 키 / 사용 이력)' : 'Settings (API Keys / Usage)'}</span>
               </Link>
             </div>
 
