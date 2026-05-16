@@ -59,13 +59,27 @@ CREATE TABLE IF NOT EXISTS cnu_usage_log (
 CREATE INDEX IF NOT EXISTS idx_cnu_usage_user ON cnu_usage_log(user_id, created_at);
 
 -- ============================================================
--- RLS 정책
+-- RLS 정책 (기존 정책 삭제 후 재생성)
 -- ============================================================
 
 ALTER TABLE cnu_plans ENABLE ROW LEVEL SECURITY;
 ALTER TABLE cnu_subscriptions ENABLE ROW LEVEL SECURITY;
 ALTER TABLE cnu_shared_keys ENABLE ROW LEVEL SECURITY;
 ALTER TABLE cnu_usage_log ENABLE ROW LEVEL SECURITY;
+
+-- 기존 정책 모두 삭제
+DROP POLICY IF EXISTS "Plans are viewable by everyone" ON cnu_plans;
+DROP POLICY IF EXISTS "Users can view own subscriptions" ON cnu_subscriptions;
+DROP POLICY IF EXISTS "Users can insert own subscriptions" ON cnu_subscriptions;
+DROP POLICY IF EXISTS "Users can update own subscriptions" ON cnu_subscriptions;
+DROP POLICY IF EXISTS "Users can view own purchases" ON cnu_subscriptions;
+DROP POLICY IF EXISTS "Users can insert own purchases" ON cnu_subscriptions;
+DROP POLICY IF EXISTS "Active subscribers can view shared keys" ON cnu_shared_keys;
+DROP POLICY IF EXISTS "Users with token balance can view shared keys" ON cnu_shared_keys;
+DROP POLICY IF EXISTS "Admins can manage shared keys" ON cnu_shared_keys;
+DROP POLICY IF EXISTS "Users can view own usage" ON cnu_usage_log;
+DROP POLICY IF EXISTS "Users can insert own usage" ON cnu_usage_log;
+DROP POLICY IF EXISTS "Admins can view all usage" ON cnu_usage_log;
 
 -- cnu_plans: 모든 사용자 읽기 가능
 CREATE POLICY "Plans are viewable by everyone"
