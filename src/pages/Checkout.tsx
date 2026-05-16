@@ -6,7 +6,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { useToast } from '../contexts/ToastContext';
 import { useSubscriptionContext } from '../contexts/SubscriptionContext';
 import { createOrder, verifyPayment, updateOrderStatus } from '../utils/supabase';
-import { createSubscriptionBySlug } from '../utils/subscription';
+import { purchaseTokensBySlug } from '../utils/subscription';
 import { requestPayment } from '../utils/portone';
 import useAOS from '../hooks/useAOS';
 import SEOHead from '../components/SEOHead';
@@ -164,15 +164,15 @@ const Checkout = (): ReactElement | null => {
         }
       }
 
-      // 4. Handle subscription items
-      const subscriptionItem = cartItems.find(item => item.category === 'subscription');
-      if (subscriptionItem && user) {
+      // 4. Handle token purchase items
+      const tokenItem = cartItems.find(item => item.category === 'subscription');
+      if (tokenItem && user) {
         try {
-          const slug = subscriptionItem.slug.replace('subscription-', '');
-          await createSubscriptionBySlug(user.id, slug, orderNumber);
+          const slug = tokenItem.slug.replace('token-', '');
+          await purchaseTokensBySlug(user.id, slug, orderNumber);
           await refreshSubscription();
-        } catch (subErr) {
-          console.warn('Subscription creation failed (payment was successful):', subErr);
+        } catch (tokenErr) {
+          console.warn('Token purchase record failed (payment was successful):', tokenErr);
         }
       }
 

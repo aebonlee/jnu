@@ -18,8 +18,8 @@ export default function SubscribePrompt() {
         </p>
         <p className="subscribe-prompt-desc">
           {isKo
-            ? 'AI 도구를 사용하려면 개인 API 키를 입력하거나 요금제를 구독하세요.'
-            : 'Enter your own API key or subscribe to a plan to use AI tools.'}
+            ? 'AI 도구를 사용하려면 개인 API 키를 입력하거나 토큰을 충전하세요.'
+            : 'Enter your own API key or recharge tokens to use AI tools.'}
         </p>
         <div className="subscribe-prompt-actions">
           {isLoggedIn ? (
@@ -28,7 +28,7 @@ export default function SubscribePrompt() {
                 <i className="fa-solid fa-key" /> {isKo ? 'API 키 입력' : 'Enter API Key'}
               </Link>
               <Link to="/pricing" className="btn btn-sm btn-primary">
-                <i className="fa-solid fa-crown" /> {isKo ? '요금제 보기' : 'View Plans'}
+                <i className="fa-solid fa-coins" /> {isKo ? '토큰 충전' : 'Recharge'}
               </Link>
             </>
           ) : (

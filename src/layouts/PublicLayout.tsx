@@ -51,6 +51,7 @@ const BoardWrite = lazy(() => import('../pages/community/BoardWrite'));
 const Dashboard = lazy(() => import('../pages/Dashboard'));
 const Settings = lazy(() => import('../pages/Settings'));
 const Pricing = lazy(() => import('../pages/Pricing'));
+const RecommendedSites = lazy(() => import('../pages/RecommendedSites'));
 
 // 관리자
 const AdminDashboard = lazy(() => import('../pages/admin/AdminDashboard'));
@@ -104,8 +105,9 @@ const PublicLayout = (): ReactElement => {
               </>
             )}
 
-            {/* 요금제 */}
+            {/* 요금제 & 추천사이트 */}
             <Route path="/pricing" element={<Pricing />} />
+            <Route path="/recommended" element={<RecommendedSites />} />
 
             {/* 대시보드 & 설정 */}
             <Route path="/dashboard" element={<AuthGuard><Dashboard /></AuthGuard>} />

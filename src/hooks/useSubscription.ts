@@ -1,30 +1,24 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import { getActiveSubscription } from '../utils/subscription';
-import type { Subscription } from '../types';
+import { getTokenBalance } from '../utils/subscription';
 
 export function useSubscription() {
   const { user } = useAuth();
-  const [subscription, setSubscription] = useState<Subscription | null>(null);
+  const [tokenBalance, setTokenBalance] = useState<number>(0);
   const [loading, setLoading] = useState(true);
 
   const refresh = useCallback(async () => {
     if (!user) {
-      setSubscription(null);
+      setTokenBalance(0);
       setLoading(false);
       return;
     }
     setLoading(true);
     try {
-      const sub = await getActiveSubscription(user.id);
-      // Check if expired
-      if (sub && sub.expires_at && new Date(sub.expires_at) < new Date()) {
-        setSubscription(null);
-      } else {
-        setSubscription(sub);
-      }
+      const balance = await getTokenBalance(user.id);
+      setTokenBalance(balance);
     } catch {
-      setSubscription(null);
+      setTokenBalance(0);
     }
     setLoading(false);
   }, [user]);
@@ -33,8 +27,7 @@ export function useSubscription() {
     refresh();
   }, [refresh]);
 
-  const isSubscribed = !!subscription;
-  const planSlug = subscription?.plan?.slug || null;
+  const hasTokens = tokenBalance > 0;
 
-  return { subscription, isSubscribed, planSlug, loading, refresh };
+  return { tokenBalance, hasTokens, loading, refresh };
 }

@@ -277,23 +277,19 @@ export interface Plan {
   description_ko: string | null;
   description_en: string | null;
   price: number;
-  duration_days: number | null;
-  monthly_token_limit: number | null;
-  daily_request_limit: number | null;
+  token_amount: number;
+  bonus_label_ko: string | null;
+  bonus_label_en: string | null;
   is_active: boolean;
   sort_order: number;
   created_at: string;
 }
 
-export type SubscriptionStatus = 'active' | 'expired' | 'cancelled';
-
-export interface Subscription {
+export interface TokenPurchase {
   id: string;
   user_id: string;
   plan_id: string;
-  status: SubscriptionStatus;
-  started_at: string;
-  expires_at: string | null;
+  token_amount: number;
   order_number: string | null;
   created_at: string;
   plan?: Plan;

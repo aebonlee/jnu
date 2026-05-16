@@ -14,7 +14,7 @@ export default function Settings() {
   const { user, profile, updateProfile } = useAuth();
   const { language, t } = useLanguage();
   const { getApiKey, setApiKey, hasApiKey } = useApiKeys();
-  const { subscription, isSubscribed } = useSubscriptionContext();
+  const { tokenBalance, hasTokens } = useSubscriptionContext();
   const { logs, monthlyUsage, loading: usageLoading } = useUsageLog();
   const toast = useToast();
 
@@ -118,46 +118,34 @@ export default function Settings() {
 
             {activeTab === 'subscription' && (
               <div className="settings-card">
-                <h2>{t('settings.subscription')}</h2>
-                <p className="settings-card-desc">{t('settings.subscriptionDesc')}</p>
-                {isSubscribed && subscription ? (
-                  <div style={{ marginTop: '16px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
-                      <span className="api-key-status valid">{t('subscription.active')}</span>
-                      <span style={{ fontWeight: 600, fontSize: '16px' }}>
-                        {language === 'ko' ? subscription.plan?.name_ko : subscription.plan?.name_en}
-                      </span>
+                <h2>{language === 'ko' ? '토큰 잔액' : 'Token Balance'}</h2>
+                <p className="settings-card-desc">{language === 'ko' ? '충전된 토큰 잔액과 사용 현황입니다.' : 'Your token balance and usage overview.'}</p>
+                <div style={{ marginTop: '16px' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '12px', marginBottom: '20px' }}>
+                    <div style={{ background: 'var(--card-bg)', border: '1px solid var(--border-color)', borderRadius: '10px', padding: '16px', textAlign: 'center' }}>
+                      <div style={{ fontSize: '24px', fontWeight: 700, color: hasTokens ? 'var(--primary-blue)' : 'var(--text-light)' }}>{tokenBalance.toLocaleString()}</div>
+                      <div style={{ fontSize: '12px', color: 'var(--text-light)', marginTop: '4px' }}>{language === 'ko' ? '잔여 토큰' : 'Remaining'}</div>
                     </div>
-                    {subscription.expires_at && (
-                      <p style={{ fontSize: '14px', color: 'var(--text-light)' }}>
-                        {t('subscription.expiresAt')}: {new Date(subscription.expires_at).toLocaleDateString()}
+                    <div style={{ background: 'var(--card-bg)', border: '1px solid var(--border-color)', borderRadius: '10px', padding: '16px', textAlign: 'center' }}>
+                      <div style={{ fontSize: '24px', fontWeight: 700, color: 'var(--primary-blue)' }}>{monthlyUsage.tokens.toLocaleString()}</div>
+                      <div style={{ fontSize: '12px', color: 'var(--text-light)', marginTop: '4px' }}>{language === 'ko' ? '이번 달 사용' : 'Used This Month'}</div>
+                    </div>
+                    <div style={{ background: 'var(--card-bg)', border: '1px solid var(--border-color)', borderRadius: '10px', padding: '16px', textAlign: 'center' }}>
+                      <div style={{ fontSize: '24px', fontWeight: 700, color: 'var(--primary-blue)' }}>{monthlyUsage.requests}</div>
+                      <div style={{ fontSize: '12px', color: 'var(--text-light)', marginTop: '4px' }}>{language === 'ko' ? '이번 달 요청' : 'Requests'}</div>
+                    </div>
+                  </div>
+                  {!hasTokens && (
+                    <div style={{ textAlign: 'center', padding: '20px', background: 'var(--bg-alt)', borderRadius: '10px', marginBottom: '16px' }}>
+                      <p style={{ color: 'var(--text-light)', marginBottom: '12px', fontSize: '14px' }}>
+                        {language === 'ko' ? '토큰을 충전하면 개인 API 키 없이도 AI 도구를 사용할 수 있습니다.' : 'Recharge tokens to use AI tools without your own API keys.'}
                       </p>
-                    )}
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginTop: '16px' }}>
-                      <div style={{ background: 'var(--card-bg)', border: '1px solid var(--border-color)', borderRadius: '10px', padding: '16px', textAlign: 'center' }}>
-                        <div style={{ fontSize: '24px', fontWeight: 700, color: 'var(--primary-blue)' }}>{monthlyUsage.tokens.toLocaleString()}</div>
-                        <div style={{ fontSize: '12px', color: 'var(--text-light)', marginTop: '4px' }}>{t('subscription.monthlyTokens')}</div>
-                      </div>
-                      <div style={{ background: 'var(--card-bg)', border: '1px solid var(--border-color)', borderRadius: '10px', padding: '16px', textAlign: 'center' }}>
-                        <div style={{ fontSize: '24px', fontWeight: 700, color: 'var(--primary-blue)' }}>{monthlyUsage.requests}</div>
-                        <div style={{ fontSize: '12px', color: 'var(--text-light)', marginTop: '4px' }}>{t('subscription.monthlyRequests')}</div>
-                      </div>
                     </div>
-                    <div style={{ marginTop: '20px' }}>
-                      <Link to="/pricing" className="btn btn-outline btn-sm">
-                        {t('subscription.managePlan')}
-                      </Link>
-                    </div>
-                  </div>
-                ) : (
-                  <div style={{ textAlign: 'center', padding: '40px 20px' }}>
-                    <p style={{ fontSize: '40px', marginBottom: '12px', opacity: 0.15 }}><i className="fa-solid fa-crown" /></p>
-                    <p style={{ color: 'var(--text-light)', marginBottom: '16px' }}>{t('subscription.noSubscription')}</p>
-                    <Link to="/pricing" className="btn btn-primary btn-sm">
-                      {t('pricing.viewPlans')}
-                    </Link>
-                  </div>
-                )}
+                  )}
+                  <Link to="/pricing" className="btn btn-primary btn-sm">
+                    {language === 'ko' ? '토큰 충전하기' : 'Recharge Tokens'}
+                  </Link>
+                </div>
               </div>
             )}
 

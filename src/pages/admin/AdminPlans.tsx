@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useLanguage } from '../../contexts/LanguageContext';
-import { getAllSharedKeys, getAllSubscriptions, upsertSharedKey, deleteSharedKey, grantSubscription } from '../../utils/subscription';
+import { getAllSharedKeys, getAllPurchases, upsertSharedKey, deleteSharedKey, grantTokens } from '../../utils/subscription';
 import { useToast } from '../../contexts/ToastContext';
 import SEOHead from '../../components/SEOHead';
-import type { SharedKey, Subscription } from '../../types';
+import type { SharedKey, TokenPurchase } from '../../types';
 
 export default function AdminPlans() {
   const { language } = useLanguage();
@@ -11,16 +11,16 @@ export default function AdminPlans() {
   const isKo = language === 'ko';
 
   const [sharedKeys, setSharedKeys] = useState<SharedKey[]>([]);
-  const [subscriptions, setSubscriptions] = useState<Subscription[]>([]);
+  const [purchases, setPurchases] = useState<TokenPurchase[]>([]);
   const [loading, setLoading] = useState(true);
-  const [tab, setTab] = useState<'keys' | 'subscriptions' | 'grant'>('keys');
+  const [tab, setTab] = useState<'keys' | 'purchases' | 'grant'>('keys');
 
   // Shared key form
   const [keyForm, setKeyForm] = useState({ provider: 'openai', apiKey: '', label: '' });
   const [saving, setSaving] = useState(false);
 
   // Grant form
-  const [grantForm, setGrantForm] = useState({ userId: '', planSlug: 'basic', days: '30' });
+  const [grantForm, setGrantForm] = useState({ userId: '', planSlug: 'starter' });
 
   useEffect(() => {
     loadData();
@@ -29,12 +29,12 @@ export default function AdminPlans() {
   async function loadData() {
     setLoading(true);
     try {
-      const [keys, subs] = await Promise.all([
+      const [keys, purch] = await Promise.all([
         getAllSharedKeys(),
-        getAllSubscriptions(),
+        getAllPurchases(),
       ]);
       setSharedKeys(keys);
-      setSubscriptions(subs);
+      setPurchases(purch);
     } catch (err) {
       toast.error((err as Error).message);
     }
@@ -75,9 +75,9 @@ export default function AdminPlans() {
       return;
     }
     try {
-      await grantSubscription(grantForm.userId, grantForm.planSlug, parseInt(grantForm.days));
-      toast.success(isKo ? '구독이 부여되었습니다.' : 'Subscription granted.');
-      setGrantForm({ userId: '', planSlug: 'basic', days: '30' });
+      await grantTokens(grantForm.userId, grantForm.planSlug);
+      toast.success(isKo ? '토큰이 부여되었습니다.' : 'Tokens granted.');
+      setGrantForm({ userId: '', planSlug: 'starter' });
       await loadData();
     } catch (err) {
       toast.error((err as Error).message);
@@ -89,20 +89,20 @@ export default function AdminPlans() {
       <SEOHead title="Admin - Plans" />
       <div className="container">
         <div className="page-header">
-          <h1>{isKo ? '요금제 & 공유 키 관리' : 'Plans & Shared Keys'}</h1>
-          <p className="page-desc">{isKo ? '공유 API 키와 구독을 관리합니다.' : 'Manage shared API keys and subscriptions.'}</p>
+          <h1>{isKo ? '토큰 & 공유 키 관리' : 'Tokens & Shared Keys'}</h1>
+          <p className="page-desc">{isKo ? '공유 API 키와 토큰 충전 내역을 관리합니다.' : 'Manage shared API keys and token purchases.'}</p>
         </div>
 
         <div style={{ display: 'flex', gap: '8px', marginBottom: '24px' }}>
-          {(['keys', 'subscriptions', 'grant'] as const).map(t => (
+          {(['keys', 'purchases', 'grant'] as const).map(t => (
             <button
               key={t}
               className={`btn btn-sm ${tab === t ? 'btn-primary' : 'btn-outline'}`}
               onClick={() => setTab(t)}
             >
               {t === 'keys' ? (isKo ? '공유 키' : 'Shared Keys')
-                : t === 'subscriptions' ? (isKo ? '구독 목록' : 'Subscriptions')
-                : (isKo ? '구독 부여' : 'Grant')}
+                : t === 'purchases' ? (isKo ? '충전 내역' : 'Purchases')
+                : (isKo ? '토큰 부여' : 'Grant')}
             </button>
           ))}
         </div>
@@ -113,7 +113,6 @@ export default function AdminPlans() {
           <>
             {tab === 'keys' && (
               <div>
-                {/* Add Key Form */}
                 <div className="settings-card" style={{ marginBottom: '24px' }}>
                   <h3>{isKo ? '공유 키 추가/수정' : 'Add/Update Shared Key'}</h3>
                   <div style={{ display: 'grid', gridTemplateColumns: '150px 1fr 150px', gap: '12px', marginTop: '12px' }}>
@@ -130,7 +129,6 @@ export default function AdminPlans() {
                   </button>
                 </div>
 
-                {/* Existing Keys */}
                 <div className="settings-card">
                   <h3>{isKo ? '등록된 공유 키' : 'Registered Shared Keys'}</h3>
                   {sharedKeys.length === 0 ? (
@@ -169,32 +167,30 @@ export default function AdminPlans() {
               </div>
             )}
 
-            {tab === 'subscriptions' && (
+            {tab === 'purchases' && (
               <div className="settings-card">
-                <h3>{isKo ? '구독 목록' : 'Subscriptions'} ({subscriptions.length})</h3>
-                {subscriptions.length === 0 ? (
-                  <p style={{ color: 'var(--text-light)', marginTop: '12px' }}>{isKo ? '구독이 없습니다.' : 'No subscriptions.'}</p>
+                <h3>{isKo ? '충전 내역' : 'Purchase History'} ({purchases.length})</h3>
+                {purchases.length === 0 ? (
+                  <p style={{ color: 'var(--text-light)', marginTop: '12px' }}>{isKo ? '충전 내역이 없습니다.' : 'No purchases.'}</p>
                 ) : (
                   <table style={{ width: '100%', fontSize: '13px', borderCollapse: 'collapse', marginTop: '12px' }}>
                     <thead>
                       <tr style={{ borderBottom: '1px solid var(--border-color)' }}>
                         <th style={{ padding: '8px', textAlign: 'left' }}>User ID</th>
-                        <th style={{ padding: '8px', textAlign: 'left' }}>{isKo ? '플랜' : 'Plan'}</th>
-                        <th style={{ padding: '8px', textAlign: 'center' }}>{isKo ? '상태' : 'Status'}</th>
-                        <th style={{ padding: '8px', textAlign: 'left' }}>{isKo ? '만료일' : 'Expires'}</th>
+                        <th style={{ padding: '8px', textAlign: 'left' }}>{isKo ? '패키지' : 'Package'}</th>
+                        <th style={{ padding: '8px', textAlign: 'right' }}>{isKo ? '토큰' : 'Tokens'}</th>
+                        <th style={{ padding: '8px', textAlign: 'left' }}>{isKo ? '날짜' : 'Date'}</th>
                         <th style={{ padding: '8px', textAlign: 'left' }}>{isKo ? '주문번호' : 'Order'}</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {subscriptions.map(sub => (
-                        <tr key={sub.id} style={{ borderBottom: '1px solid var(--border-color)' }}>
-                          <td style={{ padding: '8px', fontFamily: 'monospace', fontSize: '11px' }}>{sub.user_id.slice(0, 8)}...</td>
-                          <td style={{ padding: '8px' }}>{isKo ? sub.plan?.name_ko : sub.plan?.name_en}</td>
-                          <td style={{ padding: '8px', textAlign: 'center' }}>
-                            <span className={`api-key-status ${sub.status === 'active' ? 'valid' : 'empty'}`}>{sub.status}</span>
-                          </td>
-                          <td style={{ padding: '8px' }}>{sub.expires_at ? new Date(sub.expires_at).toLocaleDateString() : '-'}</td>
-                          <td style={{ padding: '8px', fontSize: '11px' }}>{sub.order_number || '-'}</td>
+                      {purchases.map(p => (
+                        <tr key={p.id} style={{ borderBottom: '1px solid var(--border-color)' }}>
+                          <td style={{ padding: '8px', fontFamily: 'monospace', fontSize: '11px' }}>{p.user_id.slice(0, 8)}...</td>
+                          <td style={{ padding: '8px' }}>{isKo ? p.plan?.name_ko : p.plan?.name_en}</td>
+                          <td style={{ padding: '8px', textAlign: 'right' }}>{(p.token_amount || 0).toLocaleString()}</td>
+                          <td style={{ padding: '8px' }}>{new Date(p.created_at).toLocaleDateString()}</td>
+                          <td style={{ padding: '8px', fontSize: '11px' }}>{p.order_number || '-'}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -205,30 +201,25 @@ export default function AdminPlans() {
 
             {tab === 'grant' && (
               <div className="settings-card">
-                <h3>{isKo ? '구독 수동 부여' : 'Grant Subscription'}</h3>
+                <h3>{isKo ? '토큰 수동 부여' : 'Grant Tokens'}</h3>
                 <p style={{ fontSize: '13px', color: 'var(--text-light)', marginBottom: '16px' }}>
-                  {isKo ? '특정 사용자에게 구독을 직접 부여합니다.' : 'Manually grant a subscription to a user.'}
+                  {isKo ? '특정 사용자에게 토큰을 직접 부여합니다.' : 'Manually grant tokens to a user.'}
                 </p>
                 <div style={{ display: 'grid', gap: '12px', maxWidth: '500px' }}>
                   <div className="form-group">
                     <label className="form-label">User ID (UUID)</label>
                     <input className="form-input" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" value={grantForm.userId} onChange={e => setGrantForm(f => ({ ...f, userId: e.target.value }))} />
                   </div>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
-                    <div className="form-group">
-                      <label className="form-label">{isKo ? '플랜' : 'Plan'}</label>
-                      <select className="form-select" value={grantForm.planSlug} onChange={e => setGrantForm(f => ({ ...f, planSlug: e.target.value }))}>
-                        <option value="basic">Basic</option>
-                        <option value="premium">Premium</option>
-                      </select>
-                    </div>
-                    <div className="form-group">
-                      <label className="form-label">{isKo ? '기간 (일)' : 'Duration (days)'}</label>
-                      <input className="form-input" type="number" value={grantForm.days} onChange={e => setGrantForm(f => ({ ...f, days: e.target.value }))} />
-                    </div>
+                  <div className="form-group">
+                    <label className="form-label">{isKo ? '패키지' : 'Package'}</label>
+                    <select className="form-select" value={grantForm.planSlug} onChange={e => setGrantForm(f => ({ ...f, planSlug: e.target.value }))}>
+                      <option value="starter">Starter (100,000)</option>
+                      <option value="standard">Standard (180,000)</option>
+                      <option value="pro">Pro (400,000)</option>
+                    </select>
                   </div>
                   <button className="btn btn-primary btn-sm" onClick={handleGrant}>
-                    {isKo ? '구독 부여' : 'Grant Subscription'}
+                    {isKo ? '토큰 부여' : 'Grant Tokens'}
                   </button>
                 </div>
               </div>

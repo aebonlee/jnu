@@ -1,12 +1,12 @@
 import { createContext, useContext, type ReactElement, type ReactNode } from 'react';
 import { useSubscription } from '../hooks/useSubscription';
 import { useSharedKeys } from '../hooks/useSharedKeys';
-import type { Subscription, SharedKey } from '../types';
+import type { SharedKey } from '../types';
 
 interface SubscriptionContextValue {
-  subscription: Subscription | null;
-  isSubscribed: boolean;
-  planSlug: string | null;
+  tokenBalance: number;
+  hasTokens: boolean;
+  isSubscribed: boolean; // alias for hasTokens (backward compat)
   loading: boolean;
   sharedKeys: SharedKey[];
   getSharedKey: (provider: string) => string | null;
@@ -17,14 +17,14 @@ interface SubscriptionContextValue {
 const SubscriptionContext = createContext<SubscriptionContextValue | null>(null);
 
 export function SubscriptionProvider({ children }: { children: ReactNode }): ReactElement {
-  const { subscription, isSubscribed, planSlug, loading, refresh } = useSubscription();
-  const { sharedKeys, getSharedKey, hasSharedKey } = useSharedKeys(isSubscribed);
+  const { tokenBalance, hasTokens, loading, refresh } = useSubscription();
+  const { sharedKeys, getSharedKey, hasSharedKey } = useSharedKeys(hasTokens);
 
   return (
     <SubscriptionContext.Provider value={{
-      subscription,
-      isSubscribed,
-      planSlug,
+      tokenBalance,
+      hasTokens,
+      isSubscribed: hasTokens,
       loading,
       sharedKeys,
       getSharedKey,
