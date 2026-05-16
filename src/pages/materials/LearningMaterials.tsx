@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -11,16 +11,33 @@ import type { ReactElement } from 'react';
 export default function LearningMaterials(): ReactElement {
   const { category: routeCategory } = useParams<{ category: string }>();
   const { language } = useLanguage();
-  const [activeCategory, setActiveCategory] = useState(routeCategory || MATERIAL_CATEGORIES[0]?.id || 'ai-basics');
+  const isKo = language === 'ko';
+
+  const [expandedCategories, setExpandedCategories] = useState<Set<string>>(() => {
+    const initial = routeCategory || MATERIAL_CATEGORIES[0]?.id || 'ai-basics';
+    return new Set([initial]);
+  });
   const [selectedItemId, setSelectedItemId] = useState<string | null>(null);
 
-  const currentCategory = MATERIAL_CATEGORIES.find(c => c.id === activeCategory);
-  const categoryItems = MATERIALS.filter(m => m.categoryId === activeCategory);
+  // Auto-expand category from route param
+  useEffect(() => {
+    if (routeCategory) {
+      setExpandedCategories(prev => new Set(prev).add(routeCategory));
+    }
+  }, [routeCategory]);
+
   const selectedItem = selectedItemId ? MATERIALS.find(m => m.id === selectedItemId) : null;
 
-  const handleCategoryClick = (categoryId: string) => {
-    setActiveCategory(categoryId);
-    setSelectedItemId(null);
+  const toggleCategory = (categoryId: string) => {
+    setExpandedCategories(prev => {
+      const next = new Set(prev);
+      if (next.has(categoryId)) {
+        next.delete(categoryId);
+      } else {
+        next.add(categoryId);
+      }
+      return next;
+    });
   };
 
   const handleItemClick = (itemId: string) => {
@@ -33,17 +50,22 @@ export default function LearningMaterials(): ReactElement {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  // Find which category the selected item belongs to
+  const selectedCategory = selectedItem
+    ? MATERIAL_CATEGORIES.find(c => c.id === selectedItem.categoryId)
+    : null;
+
   return (
     <>
       <SEOHead
-        title={language === 'ko' ? '학습자료' : 'Learning Materials'}
+        title={isKo ? '학습자료' : 'Learning Materials'}
         path="/materials"
       />
 
       <section className="page-header">
         <div className="container">
-          <h1>{language === 'ko' ? '학습자료' : 'Learning Materials'}</h1>
-          <p>{language === 'ko'
+          <h1>{isKo ? '학습자료' : 'Learning Materials'}</h1>
+          <p>{isKo
             ? '교육에 필요한 자료를 카테고리별로 제공합니다.'
             : 'Educational materials organized by category.'}</p>
         </div>
@@ -52,19 +74,39 @@ export default function LearningMaterials(): ReactElement {
       <section className="section">
         <div className="container">
           <div className="materials-layout">
-            {/* Sidebar */}
+            {/* Sidebar with accordion */}
             <aside className="materials-sidebar">
               <nav>
-                {MATERIAL_CATEGORIES.map(cat => (
-                  <button
-                    key={cat.id}
-                    className={`sidebar-item ${activeCategory === cat.id ? 'active' : ''}`}
-                    onClick={() => handleCategoryClick(cat.id)}
-                  >
-                    <i className={`fa-solid ${cat.icon}`} />
-                    {language === 'ko' ? cat.nameKo : cat.nameEn}
-                  </button>
-                ))}
+                {MATERIAL_CATEGORIES.map(cat => {
+                  const isExpanded = expandedCategories.has(cat.id);
+                  const items = MATERIALS.filter(m => m.categoryId === cat.id);
+                  return (
+                    <div key={cat.id} className="sidebar-group">
+                      <button
+                        className={`sidebar-item sidebar-category ${isExpanded ? 'expanded' : ''}`}
+                        onClick={() => toggleCategory(cat.id)}
+                      >
+                        <i className={`fa-solid ${cat.icon}`} />
+                        <span className="sidebar-category-label">{isKo ? cat.nameKo : cat.nameEn}</span>
+                        <i className={`fa-solid fa-chevron-down sidebar-chevron ${isExpanded ? 'open' : ''}`} />
+                      </button>
+                      {isExpanded && (
+                        <div className="sidebar-subitems">
+                          {items.map(item => (
+                            <button
+                              key={item.id}
+                              className={`sidebar-subitem ${selectedItemId === item.id ? 'active' : ''}`}
+                              onClick={() => handleItemClick(item.id)}
+                            >
+                              <i className={`fa-solid ${item.type === 'guide' ? 'fa-book' : item.type === 'template' ? 'fa-file-alt' : 'fa-bookmark'}`} />
+                              {isKo ? item.nameKo : item.nameEn}
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
               </nav>
             </aside>
 
@@ -72,44 +114,57 @@ export default function LearningMaterials(): ReactElement {
             <div className="materials-content">
               {selectedItem ? (
                 <>
-                  <button className="btn btn-outline btn-back" onClick={handleBackToList}>
-                    <i className="fa-solid fa-arrow-left" />
-                    {language === 'ko' ? '목록으로 돌아가기' : 'Back to list'}
-                  </button>
-                  <h2>{language === 'ko' ? selectedItem.nameKo : selectedItem.nameEn}</h2>
+                  <div className="materials-breadcrumb">
+                    <button className="breadcrumb-link" onClick={handleBackToList}>
+                      {isKo ? '학습자료' : 'Materials'}
+                    </button>
+                    <i className="fa-solid fa-chevron-right" />
+                    {selectedCategory && (
+                      <>
+                        <span>{isKo ? selectedCategory.nameKo : selectedCategory.nameEn}</span>
+                        <i className="fa-solid fa-chevron-right" />
+                      </>
+                    )}
+                    <span className="breadcrumb-current">{isKo ? selectedItem.nameKo : selectedItem.nameEn}</span>
+                  </div>
+                  <h2>{isKo ? selectedItem.nameKo : selectedItem.nameEn}</h2>
                   <span className="material-type">{selectedItem.type}</span>
                   <div className="markdown-body">
                     <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
-                      {language === 'ko' ? selectedItem.contentKo : selectedItem.contentEn}
+                      {isKo ? selectedItem.contentKo : selectedItem.contentEn}
                     </ReactMarkdown>
                   </div>
                 </>
-              ) : currentCategory ? (
-                <>
-                  <h2>{language === 'ko' ? currentCategory.nameKo : currentCategory.nameEn}</h2>
-                  <p className="materials-desc">
-                    {language === 'ko' ? currentCategory.descKo : currentCategory.descEn}
-                  </p>
-                  <div className="materials-list">
-                    {categoryItems.map(item => (
-                      <div
-                        key={item.id}
-                        className="material-item"
-                        onClick={() => handleItemClick(item.id)}
-                        style={{ cursor: 'pointer' }}
-                      >
-                        <div className="material-icon">
-                          <i className={`fa-solid ${item.type === 'guide' ? 'fa-book' : item.type === 'template' ? 'fa-file-alt' : 'fa-bookmark'}`} />
-                        </div>
-                        <div className="material-info">
-                          <h4>{language === 'ko' ? item.nameKo : item.nameEn}</h4>
-                          <span className="material-type">{item.type}</span>
-                        </div>
-                      </div>
-                    ))}
+              ) : (
+                <div className="materials-welcome">
+                  <div className="materials-welcome-icon">
+                    <i className="fa-solid fa-book-open" />
                   </div>
-                </>
-              ) : null}
+                  <h2>{isKo ? '학습자료에 오신 것을 환영합니다' : 'Welcome to Learning Materials'}</h2>
+                  <p>{isKo
+                    ? '왼쪽 메뉴에서 카테고리를 펼치고 원하는 자료를 선택하세요.'
+                    : 'Expand a category on the left and select a material to read.'}</p>
+
+                  <div className="materials-overview">
+                    {MATERIAL_CATEGORIES.map(cat => {
+                      const items = MATERIALS.filter(m => m.categoryId === cat.id);
+                      return (
+                        <div key={cat.id} className="materials-overview-card" onClick={() => {
+                          setExpandedCategories(prev => new Set(prev).add(cat.id));
+                          if (items.length > 0) handleItemClick(items[0].id);
+                        }}>
+                          <div className="overview-card-icon">
+                            <i className={`fa-solid ${cat.icon}`} />
+                          </div>
+                          <h4>{isKo ? cat.nameKo : cat.nameEn}</h4>
+                          <p>{isKo ? cat.descKo : cat.descEn}</p>
+                          <span className="overview-card-count">{items.length} {isKo ? '개 자료' : 'materials'}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
