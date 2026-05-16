@@ -554,6 +554,93 @@
   gap: 6px;
 }
 
+/* ─── MyPage Token Log ─── */
+.mypage-token-log {
+  margin-top: 20px;
+  border-top: 1px solid var(--border-light);
+  padding-top: 16px;
+}
+
+.mypage-log-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-light);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.mypage-log-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.mypage-log-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="dark"] .mypage-log-item {
+  border-bottom-color: rgba(255, 255, 255, 0.05);
+}
+
+.mypage-log-item:last-child {
+  border-bottom: none;
+}
+
+.mypage-log-icon {
+  flex-shrink: 0;
+  font-size: 14px;
+}
+
+.mypage-log-icon .fa-circle-plus {
+  color: #10b981;
+}
+
+.mypage-log-icon .fa-circle-minus {
+  color: #f59e0b;
+}
+
+.mypage-log-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.mypage-log-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mypage-log-date {
+  display: block;
+  font-size: 11px;
+  color: var(--text-light);
+  margin-top: 2px;
+}
+
+.mypage-log-amount {
+  font-size: 13px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.mypage-log-amount.positive {
+  color: #10b981;
+}
+
+.mypage-log-amount.negative {
+  color: #f59e0b;
+}
+
 @media (max-width: 480px) {
   .mypage-token-grid {
     grid-template-columns: 1fr 1fr 1fr;

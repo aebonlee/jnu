@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useAuth } from '../contexts/AuthContext';
-import { useSubscriptionContext } from '../contexts/SubscriptionContext';
 import { useCart } from '../contexts/CartContext';
 import { useToast } from '../contexts/ToastContext';
 import { getPlans } from '../utils/subscription';
@@ -14,7 +13,6 @@ import '../styles/pricing.css';
 export default function Pricing() {
   const { language, t } = useLanguage();
   const { isLoggedIn } = useAuth();
-  const { tokenBalance } = useSubscriptionContext();
   const { addItem } = useCart();
   const toast = useToast();
   const navigate = useNavigate();
@@ -84,18 +82,6 @@ export default function Pricing() {
 
       <section className="pricing-section">
         <div className="container">
-          {/* Current balance */}
-          {isLoggedIn && (
-            <div className="token-balance-banner" data-aos="fade-up">
-              <div className="token-balance-icon">
-                <i className="fa-solid fa-wallet" />
-              </div>
-              <div className="token-balance-info">
-                <span className="token-balance-label">{isKo ? '내 토큰 잔액' : 'My Token Balance'}</span>
-                <span className="token-balance-value">{tokenBalance.toLocaleString()}</span>
-              </div>
-            </div>
-          )}
 
           {loading ? (
             <div className="text-center" style={{ padding: '60px 0' }}>

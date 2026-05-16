@@ -4,17 +4,27 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { useAuth } from '../contexts/AuthContext';
 import { useSubscriptionContext } from '../contexts/SubscriptionContext';
 import { useUsageLog } from '../hooks/useUsageLog';
+import { getPurchaseHistory } from '../utils/subscription';
 import { updateProfile } from '../utils/auth';
 import SEOHead from '../components/SEOHead';
+import type { TokenPurchase } from '../types';
 import '../styles/auth.css';
 
 const MyPage = (): ReactElement => {
   const { t, language } = useLanguage();
   const { user, profile, signOut, refreshProfile } = useAuth();
   const { tokenBalance, hasTokens } = useSubscriptionContext();
-  const { monthlyUsage } = useUsageLog();
+  const { logs, monthlyUsage } = useUsageLog();
   const navigate = useNavigate();
   const isKo = language === 'ko';
+
+  const [purchases, setPurchases] = useState<TokenPurchase[]>([]);
+
+  useEffect(() => {
+    if (user) {
+      getPurchaseHistory(user.id).then(setPurchases).catch(() => {});
+    }
+  }, [user]);
 
   const [editing, setEditing] = useState(false);
   const [form, setForm] = useState({ displayName: '', avatarUrl: '' });
@@ -144,6 +154,52 @@ const MyPage = (): ReactElement => {
                   <i className="fa-solid fa-chart-simple" /> {isKo ? '상세 이력' : 'Details'}
                 </Link>
               </div>
+
+              {/* 충전 & 사용 로그 */}
+              {(purchases.length > 0 || logs.length > 0) && (
+                <div className="mypage-token-log">
+                  <h4 className="mypage-log-title">{isKo ? '최근 내역' : 'Recent Activity'}</h4>
+                  <div className="mypage-log-list">
+                    {/* 충전 내역 + 사용 내역을 시간순으로 합쳐서 표시 */}
+                    {[
+                      ...purchases.map(p => ({
+                        type: 'charge' as const,
+                        date: p.created_at,
+                        label: isKo ? `토큰 충전 (${p.plan?.name_ko || ''})` : `Token Recharge (${p.plan?.name_en || ''})`,
+                        amount: `+${(p.token_amount || 0).toLocaleString()}`,
+                        positive: true,
+                      })),
+                      ...logs.slice(0, 20).map(l => ({
+                        type: 'usage' as const,
+                        date: l.created_at,
+                        label: isKo
+                          ? `${l.tool_id || 'AI 도구'} (${l.model})`
+                          : `${l.tool_id || 'AI Tool'} (${l.model})`,
+                        amount: l.key_source === 'shared'
+                          ? `-${(l.input_tokens + l.output_tokens).toLocaleString()}`
+                          : `${(l.input_tokens + l.output_tokens).toLocaleString()}`,
+                        positive: l.key_source !== 'shared',
+                      })),
+                    ]
+                      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+                      .slice(0, 15)
+                      .map((item, idx) => (
+                        <div key={idx} className="mypage-log-item">
+                          <div className="mypage-log-icon">
+                            <i className={`fa-solid ${item.type === 'charge' ? 'fa-circle-plus' : 'fa-circle-minus'}`} />
+                          </div>
+                          <div className="mypage-log-info">
+                            <span className="mypage-log-label">{item.label}</span>
+                            <span className="mypage-log-date">{new Date(item.date).toLocaleDateString()}</span>
+                          </div>
+                          <span className={`mypage-log-amount ${item.positive ? 'positive' : 'negative'}`}>
+                            {item.amount}
+                          </span>
+                        </div>
+                      ))}
+                  </div>
+                </div>
+              )}
             </div>
 
             <div className="mypage-sections">
