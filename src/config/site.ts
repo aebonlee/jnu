@@ -69,7 +69,17 @@ const site: SiteConfig = {
         { path: '/courses/assistant', labelKey: 'site.nav.assistant' },
       ]
     },
-    { path: '/materials', labelKey: 'site.nav.materials' },
+    {
+      labelKey: 'site.nav.materials',
+      path: '/materials',
+      activePath: '/materials',
+      dropdown: [
+        { path: '/materials/ai-basics', labelKey: 'site.nav.matAiBasics' },
+        { path: '/materials/document', labelKey: 'site.nav.matDocument' },
+        { path: '/materials/admin', labelKey: 'site.nav.matAdmin' },
+        { path: '/materials/prompt', labelKey: 'site.nav.matPrompt' },
+      ]
+    },
     {
       labelKey: 'site.nav.aiTools',
       path: '/tools',
