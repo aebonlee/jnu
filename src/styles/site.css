@@ -2,6 +2,29 @@
    CNU (전남대학교 생성형 AI 교육) - 사이트 전용 스타일
    ============================================ */
 
+/* ─── Site Variable Aliases ─── */
+:root {
+  --card-bg: var(--bg-white);
+  --border-color: var(--border-light);
+  --primary: var(--primary-blue);
+  --primary-light: rgba(0, 70, 200, 0.08);
+  --text: var(--text-primary);
+  --bg-alt: var(--bg-light-gray);
+}
+
+html[data-color="red"] {
+  --primary-light: rgba(200, 16, 46, 0.08);
+}
+html[data-color="green"] {
+  --primary-light: rgba(0, 133, 90, 0.08);
+}
+html[data-color="purple"] {
+  --primary-light: rgba(139, 26, 200, 0.08);
+}
+html[data-color="orange"] {
+  --primary-light: rgba(200, 114, 0, 0.08);
+}
+
 /* ─── Course Category Grid (Home) ─── */
 .course-category-grid {
   display: grid;
