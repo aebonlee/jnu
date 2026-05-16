@@ -6,7 +6,7 @@
     background: linear-gradient(180deg, #111827 0%, #0A0F1A 100%);
     color: var(--text-white);
     padding: 80px 0 32px;
-    margin-top: 0;
+    margin-top: auto;
 }
 
 .footer-content {
