@@ -542,6 +542,181 @@ html[data-color="orange"] {
   width: 16px;
 }
 
+/* ─── Back Button ─── */
+.btn-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+  font-size: 14px;
+}
+
+.btn-back i {
+  font-size: 12px;
+}
+
+/* ─── Markdown Body (Materials Content) ─── */
+.markdown-body {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text);
+  word-break: break-word;
+}
+
+.markdown-body h1 {
+  font-size: 26px;
+  font-weight: 800;
+  margin: 40px 0 16px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--primary);
+  color: var(--text);
+}
+
+.markdown-body h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 36px 0 12px;
+  padding-left: 12px;
+  border-left: 4px solid var(--primary);
+  color: var(--text);
+}
+
+.markdown-body h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 28px 0 10px;
+  color: var(--text);
+}
+
+.markdown-body h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 24px 0 8px;
+  color: var(--text);
+}
+
+.markdown-body p {
+  margin: 0 0 16px;
+}
+
+.markdown-body a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.markdown-body a:hover {
+  opacity: 0.8;
+}
+
+.markdown-body strong {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 24px;
+  margin: 0 0 16px;
+}
+
+.markdown-body li {
+  margin-bottom: 6px;
+  line-height: 1.7;
+}
+
+.markdown-body li > ul,
+.markdown-body li > ol {
+  margin-top: 6px;
+  margin-bottom: 0;
+}
+
+.markdown-body blockquote {
+  margin: 16px 0;
+  padding: 12px 20px;
+  border-left: 4px solid var(--primary);
+  background: var(--primary-light);
+  border-radius: 0 8px 8px 0;
+  color: var(--text);
+}
+
+.markdown-body blockquote p {
+  margin: 0;
+}
+
+.markdown-body hr {
+  border: none;
+  border-top: 1px solid var(--border-color);
+  margin: 32px 0;
+}
+
+.markdown-body code {
+  background: var(--bg-alt);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-family: 'Fira Code', 'Consolas', monospace;
+  border: 1px solid var(--border-color);
+}
+
+.markdown-body pre {
+  margin: 16px 0;
+  border-radius: 8px;
+  overflow-x: auto;
+  background: #1e1e2e;
+  border: 1px solid var(--border-color);
+}
+
+.markdown-body pre code {
+  display: block;
+  padding: 16px 20px;
+  background: transparent;
+  border: none;
+  color: #cdd6f4;
+  font-size: 13px;
+  line-height: 1.7;
+  white-space: pre;
+}
+
+.markdown-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.markdown-body thead th {
+  background: var(--primary);
+  color: #fff;
+  font-weight: 600;
+  text-align: left;
+  padding: 10px 14px;
+  font-size: 13px;
+}
+
+.markdown-body tbody td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border-color);
+  vertical-align: top;
+}
+
+.markdown-body tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.markdown-body tbody tr:hover td {
+  background: var(--primary-light);
+}
+
+.markdown-body img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin: 16px 0;
+}
+
 /* ─── Dark Mode Navbar Buttons ─── */
 [data-theme="dark"] .theme-toggle,
 [data-theme="dark"] .color-picker-btn,
