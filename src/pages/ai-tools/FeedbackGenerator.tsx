@@ -8,11 +8,13 @@ import { AI_PROVIDERS } from '../../config/ai-providers';
 import SEOHead from '../../components/SEOHead';
 import TwoColumnLayout from '../../components/ai/TwoColumnLayout';
 import AIProviderSelect from '../../components/ai/AIProviderSelect';
+import KeySourceIndicator from '../../components/ai/KeySourceIndicator';
+import SubscribePrompt from '../../components/SubscribePrompt';
 
 export default function FeedbackGenerator() {
   const { language, t } = useLanguage();
   const { output, isStreaming, error, usage, generate } = useAIStream();
-  const { keys, getApiKey, hasApiKey } = useApiKeys();
+  const { keys, getEffectiveApiKey, hasAnyKey } = useApiKeys();
   const toast = useToast();
 
   const [provider, setProvider] = useState('openai');
@@ -33,11 +35,12 @@ export default function FeedbackGenerator() {
       toast.warning(language === 'ko' ? '교과목 또는 과제명을 입력해주세요.' : 'Please enter a course or assignment name.');
       return;
     }
-    if (!hasApiKey(provider)) { toast.warning(t('ai.noApiKey')); return; }
+    const { key, source } = getEffectiveApiKey(provider);
+    if (!key) { toast.warning(t('ai.noApiKey')); return; }
 
     const messages = buildFeedbackPrompt({ ...form, language });
     try {
-      await generate({ provider, apiKey: getApiKey(provider), model: AI_PROVIDERS[provider].defaultModel, messages });
+      await generate({ provider, apiKey: key, model: AI_PROVIDERS[provider].defaultModel, messages, toolId: 'feedback', keySource: source as 'personal' | 'shared' });
     } catch (err: unknown) { toast.error((err as Error).message); }
   }
 
@@ -45,6 +48,8 @@ export default function FeedbackGenerator() {
     <>
       <h3><i className="fa-solid fa-comments" /> {t('tools.feedback')}</h3>
       <AIProviderSelect selected={provider} onSelect={setProvider} apiKeys={keys} />
+      <KeySourceIndicator provider={provider} />
+      {!hasAnyKey(provider) && <SubscribePrompt />}
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
         <div className="ai-form-group">

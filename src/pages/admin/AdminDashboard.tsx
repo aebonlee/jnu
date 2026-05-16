@@ -46,9 +46,12 @@ export default function AdminDashboard() {
           </div>
         </div>
 
-        <div className="mt-4">
+        <div className="mt-4" style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
           <Link to="/admin/users" className="btn btn-primary btn-sm">
             <i className="fa-solid fa-users" /> {isKo ? '회원 관리' : 'User Management'}
+          </Link>
+          <Link to="/admin/plans" className="btn btn-primary btn-sm">
+            <i className="fa-solid fa-crown" /> {isKo ? '요금제/공유키 관리' : 'Plans & Shared Keys'}
           </Link>
         </div>
       </div>

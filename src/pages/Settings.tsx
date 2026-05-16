@@ -1,7 +1,10 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useApiKeys } from '../hooks/useApiKeys';
+import { useSubscriptionContext } from '../contexts/SubscriptionContext';
+import { useUsageLog } from '../hooks/useUsageLog';
 import { useToast } from '../contexts/ToastContext';
 import { PROVIDER_LIST } from '../config/ai-providers';
 import SEOHead from '../components/SEOHead';
@@ -11,6 +14,8 @@ export default function Settings() {
   const { user, profile, updateProfile } = useAuth();
   const { language, t } = useLanguage();
   const { getApiKey, setApiKey, hasApiKey } = useApiKeys();
+  const { subscription, isSubscribed } = useSubscriptionContext();
+  const { logs, monthlyUsage, loading: usageLoading } = useUsageLog();
   const toast = useToast();
 
   const [activeTab, setActiveTab] = useState('apiKeys');
@@ -30,6 +35,7 @@ export default function Settings() {
 
   const tabs = [
     { id: 'apiKeys', icon: 'fa-key', label: t('settings.apiKeys') },
+    { id: 'subscription', icon: 'fa-crown', label: t('settings.subscription') },
     { id: 'profile', icon: 'fa-user', label: t('settings.profile') },
     { id: 'usage', icon: 'fa-chart-simple', label: t('settings.usage') },
   ];
@@ -110,14 +116,102 @@ export default function Settings() {
               </div>
             )}
 
+            {activeTab === 'subscription' && (
+              <div className="settings-card">
+                <h2>{t('settings.subscription')}</h2>
+                <p className="settings-card-desc">{t('settings.subscriptionDesc')}</p>
+                {isSubscribed && subscription ? (
+                  <div style={{ marginTop: '16px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
+                      <span className="api-key-status valid">{t('subscription.active')}</span>
+                      <span style={{ fontWeight: 600, fontSize: '16px' }}>
+                        {language === 'ko' ? subscription.plan?.name_ko : subscription.plan?.name_en}
+                      </span>
+                    </div>
+                    {subscription.expires_at && (
+                      <p style={{ fontSize: '14px', color: 'var(--text-light)' }}>
+                        {t('subscription.expiresAt')}: {new Date(subscription.expires_at).toLocaleDateString()}
+                      </p>
+                    )}
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginTop: '16px' }}>
+                      <div style={{ background: 'var(--card-bg)', border: '1px solid var(--border-color)', borderRadius: '10px', padding: '16px', textAlign: 'center' }}>
+                        <div style={{ fontSize: '24px', fontWeight: 700, color: 'var(--primary-blue)' }}>{monthlyUsage.tokens.toLocaleString()}</div>
+                        <div style={{ fontSize: '12px', color: 'var(--text-light)', marginTop: '4px' }}>{t('subscription.monthlyTokens')}</div>
+                      </div>
+                      <div style={{ background: 'var(--card-bg)', border: '1px solid var(--border-color)', borderRadius: '10px', padding: '16px', textAlign: 'center' }}>
+                        <div style={{ fontSize: '24px', fontWeight: 700, color: 'var(--primary-blue)' }}>{monthlyUsage.requests}</div>
+                        <div style={{ fontSize: '12px', color: 'var(--text-light)', marginTop: '4px' }}>{t('subscription.monthlyRequests')}</div>
+                      </div>
+                    </div>
+                    <div style={{ marginTop: '20px' }}>
+                      <Link to="/pricing" className="btn btn-outline btn-sm">
+                        {t('subscription.managePlan')}
+                      </Link>
+                    </div>
+                  </div>
+                ) : (
+                  <div style={{ textAlign: 'center', padding: '40px 20px' }}>
+                    <p style={{ fontSize: '40px', marginBottom: '12px', opacity: 0.15 }}><i className="fa-solid fa-crown" /></p>
+                    <p style={{ color: 'var(--text-light)', marginBottom: '16px' }}>{t('subscription.noSubscription')}</p>
+                    <Link to="/pricing" className="btn btn-primary btn-sm">
+                      {t('pricing.viewPlans')}
+                    </Link>
+                  </div>
+                )}
+              </div>
+            )}
+
             {activeTab === 'usage' && (
               <div className="settings-card">
                 <h2>{t('settings.usage')}</h2>
                 <p className="settings-card-desc">{t('settings.usageDesc')}</p>
-                <div style={{ textAlign: 'center', padding: '40px 20px', color: 'var(--text-light)' }}>
-                  <p style={{ fontSize: '40px', marginBottom: '12px', opacity: 0.15 }}><i className="fa-solid fa-chart-simple" /></p>
-                  <p>{language === 'ko' ? '사용 이력은 AI 도구를 사용한 후 표시됩니다.' : 'Usage history will appear after using AI tools.'}</p>
-                </div>
+                {usageLoading ? (
+                  <div style={{ textAlign: 'center', padding: '40px' }}><div className="loading-spinner" /></div>
+                ) : logs.length === 0 ? (
+                  <div style={{ textAlign: 'center', padding: '40px 20px', color: 'var(--text-light)' }}>
+                    <p style={{ fontSize: '40px', marginBottom: '12px', opacity: 0.15 }}><i className="fa-solid fa-chart-simple" /></p>
+                    <p>{language === 'ko' ? '사용 이력은 AI 도구를 사용한 후 표시됩니다.' : 'Usage history will appear after using AI tools.'}</p>
+                  </div>
+                ) : (
+                  <div style={{ marginTop: '16px' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '20px' }}>
+                      <div style={{ background: 'var(--card-bg)', border: '1px solid var(--border-color)', borderRadius: '10px', padding: '16px', textAlign: 'center' }}>
+                        <div style={{ fontSize: '24px', fontWeight: 700, color: 'var(--primary-blue)' }}>{monthlyUsage.tokens.toLocaleString()}</div>
+                        <div style={{ fontSize: '12px', color: 'var(--text-light)', marginTop: '4px' }}>{language === 'ko' ? '이번 달 토큰' : 'Tokens This Month'}</div>
+                      </div>
+                      <div style={{ background: 'var(--card-bg)', border: '1px solid var(--border-color)', borderRadius: '10px', padding: '16px', textAlign: 'center' }}>
+                        <div style={{ fontSize: '24px', fontWeight: 700, color: 'var(--primary-blue)' }}>{monthlyUsage.requests}</div>
+                        <div style={{ fontSize: '12px', color: 'var(--text-light)', marginTop: '4px' }}>{language === 'ko' ? '이번 달 요청' : 'Requests This Month'}</div>
+                      </div>
+                    </div>
+                    <table style={{ width: '100%', fontSize: '13px', borderCollapse: 'collapse' }}>
+                      <thead>
+                        <tr style={{ borderBottom: '1px solid var(--border-color)' }}>
+                          <th style={{ padding: '8px 4px', textAlign: 'left' }}>{language === 'ko' ? '날짜' : 'Date'}</th>
+                          <th style={{ padding: '8px 4px', textAlign: 'left' }}>{language === 'ko' ? '도구' : 'Tool'}</th>
+                          <th style={{ padding: '8px 4px', textAlign: 'left' }}>{language === 'ko' ? '모델' : 'Model'}</th>
+                          <th style={{ padding: '8px 4px', textAlign: 'right' }}>{language === 'ko' ? '토큰' : 'Tokens'}</th>
+                          <th style={{ padding: '8px 4px', textAlign: 'center' }}>{language === 'ko' ? '키' : 'Key'}</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {logs.slice(0, 20).map(log => (
+                          <tr key={log.id} style={{ borderBottom: '1px solid var(--border-color)' }}>
+                            <td style={{ padding: '8px 4px' }}>{new Date(log.created_at).toLocaleDateString()}</td>
+                            <td style={{ padding: '8px 4px' }}>{log.tool_id || '-'}</td>
+                            <td style={{ padding: '8px 4px' }}>{log.model}</td>
+                            <td style={{ padding: '8px 4px', textAlign: 'right' }}>{(log.input_tokens + log.output_tokens).toLocaleString()}</td>
+                            <td style={{ padding: '8px 4px', textAlign: 'center' }}>
+                              <span className={`key-source ${log.key_source}`} style={{ fontSize: '11px' }}>
+                                {log.key_source === 'personal' ? (language === 'ko' ? '개인' : 'Personal') : (language === 'ko' ? '공유' : 'Shared')}
+                              </span>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
               </div>
             )}
           </div>

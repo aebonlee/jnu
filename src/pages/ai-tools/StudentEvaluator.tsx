@@ -8,11 +8,13 @@ import { AI_PROVIDERS } from '../../config/ai-providers';
 import SEOHead from '../../components/SEOHead';
 import TwoColumnLayout from '../../components/ai/TwoColumnLayout';
 import AIProviderSelect from '../../components/ai/AIProviderSelect';
+import KeySourceIndicator from '../../components/ai/KeySourceIndicator';
+import SubscribePrompt from '../../components/SubscribePrompt';
 
 export default function StudentEvaluator() {
   const { language, t } = useLanguage();
   const { output, isStreaming, error, usage, generate } = useAIStream();
-  const { keys, getApiKey, hasApiKey } = useApiKeys();
+  const { keys, getEffectiveApiKey, hasAnyKey } = useApiKeys();
   const toast = useToast();
 
   const [provider, setProvider] = useState('openai');
@@ -31,11 +33,12 @@ export default function StudentEvaluator() {
       toast.warning(language === 'ko' ? '학생 제출물을 입력해주세요.' : 'Please enter student submission.');
       return;
     }
-    if (!hasApiKey(provider)) { toast.warning(t('ai.noApiKey')); return; }
+    const { key, source } = getEffectiveApiKey(provider);
+    if (!key) { toast.warning(t('ai.noApiKey')); return; }
 
     const messages = buildEvaluatorPrompt({ ...form, language });
     try {
-      await generate({ provider, apiKey: getApiKey(provider), model: AI_PROVIDERS[provider].defaultModel, messages });
+      await generate({ provider, apiKey: key, model: AI_PROVIDERS[provider].defaultModel, messages, toolId: 'evaluator', keySource: source as 'personal' | 'shared' });
     } catch (err: unknown) { toast.error((err as Error).message); }
   }
 
@@ -43,6 +46,8 @@ export default function StudentEvaluator() {
     <>
       <h3><i className="fa-solid fa-check-double" /> {t('tools.evaluator')}</h3>
       <AIProviderSelect selected={provider} onSelect={setProvider} apiKeys={keys} />
+      <KeySourceIndicator provider={provider} />
+      {!hasAnyKey(provider) && <SubscribePrompt />}
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
         <div className="ai-form-group">

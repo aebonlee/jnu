@@ -8,11 +8,13 @@ import { AI_PROVIDERS } from '../../config/ai-providers';
 import SEOHead from '../../components/SEOHead';
 import TwoColumnLayout from '../../components/ai/TwoColumnLayout';
 import AIProviderSelect from '../../components/ai/AIProviderSelect';
+import KeySourceIndicator from '../../components/ai/KeySourceIndicator';
+import SubscribePrompt from '../../components/SubscribePrompt';
 
 export default function SyllabusGenerator() {
   const { language, t } = useLanguage();
   const { output, isStreaming, error, usage, generate } = useAIStream();
-  const { keys, getApiKey, hasApiKey } = useApiKeys();
+  const { keys, getEffectiveApiKey, hasAnyKey } = useApiKeys();
   const toast = useToast();
 
   const [provider, setProvider] = useState('openai');
@@ -33,7 +35,8 @@ export default function SyllabusGenerator() {
       toast.warning(language === 'ko' ? '과목명을 입력해주세요.' : 'Please enter a course name.');
       return;
     }
-    if (!hasApiKey(provider)) {
+    const { key, source } = getEffectiveApiKey(provider);
+    if (!key) {
       toast.warning(t('ai.noApiKey'));
       return;
     }
@@ -43,9 +46,11 @@ export default function SyllabusGenerator() {
     try {
       await generate({
         provider,
-        apiKey: getApiKey(provider),
+        apiKey: key,
         model: providerConfig.defaultModel,
         messages,
+        toolId: 'syllabus',
+        keySource: source as 'personal' | 'shared',
       });
     } catch (err: unknown) {
       toast.error((err as Error).message);
@@ -56,6 +61,8 @@ export default function SyllabusGenerator() {
     <>
       <h3><i className="fa-solid fa-calendar-days" /> {t('tools.syllabus')}</h3>
       <AIProviderSelect selected={provider} onSelect={setProvider} apiKeys={keys} />
+      <KeySourceIndicator provider={provider} />
+      {!hasAnyKey(provider) && <SubscribePrompt />}
 
       <div className="ai-form-group">
         <label className="ai-form-label"><span className="label-icon"><i className="fa-solid fa-book" /></span> {language === 'ko' ? '과목명' : 'Course Name'} *</label>

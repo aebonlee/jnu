@@ -4,7 +4,9 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { useCart } from '../contexts/CartContext';
 import { useAuth } from '../contexts/AuthContext';
 import { useToast } from '../contexts/ToastContext';
+import { useSubscriptionContext } from '../contexts/SubscriptionContext';
 import { createOrder, verifyPayment, updateOrderStatus } from '../utils/supabase';
+import { createSubscriptionBySlug } from '../utils/subscription';
 import { requestPayment } from '../utils/portone';
 import useAOS from '../hooks/useAOS';
 import SEOHead from '../components/SEOHead';
@@ -26,6 +28,7 @@ const Checkout = (): ReactElement | null => {
   const { cartItems, cartTotal, cartCount, clearCart } = useCart();
   const { user, profile } = useAuth();
   const { showToast } = useToast();
+  const { refreshSubscription } = useSubscriptionContext();
   const navigate = useNavigate();
   const isEn = language === 'en';
   useAOS();
@@ -161,7 +164,19 @@ const Checkout = (): ReactElement | null => {
         }
       }
 
-      // 4. Payment successful - clear cart and redirect
+      // 4. Handle subscription items
+      const subscriptionItem = cartItems.find(item => item.category === 'subscription');
+      if (subscriptionItem && user) {
+        try {
+          const slug = subscriptionItem.slug.replace('subscription-', '');
+          await createSubscriptionBySlug(user.id, slug, orderNumber);
+          await refreshSubscription();
+        } catch (subErr) {
+          console.warn('Subscription creation failed (payment was successful):', subErr);
+        }
+      }
+
+      // 5. Payment successful - clear cart and redirect
       paymentDone.current = true;
       const confirmState: ConfirmState = {
         orderNumber,

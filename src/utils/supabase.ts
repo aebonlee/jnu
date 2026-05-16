@@ -18,6 +18,10 @@ export const TABLES = {
   feedback: `${site.dbPrefix}feedback`,
   evaluations: `${site.dbPrefix}evaluations`,
   courses: `${site.dbPrefix}courses`,
+  plans: `${site.dbPrefix}plans`,
+  subscriptions: `${site.dbPrefix}subscriptions`,
+  shared_keys: `${site.dbPrefix}shared_keys`,
+  usage_log: `${site.dbPrefix}usage_log`,
 } as const;
 
 let _supabase: SupabaseClient | null = null;

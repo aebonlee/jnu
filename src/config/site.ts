@@ -83,6 +83,7 @@ const site: SiteConfig = {
       ]
     },
     { path: '/prompt-eval/practice', labelKey: 'site.nav.promptPractice' },
+    { path: '/pricing', labelKey: 'pricing.title' },
     { path: '/community', labelKey: 'nav.community' },
   ],
 

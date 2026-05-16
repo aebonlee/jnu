@@ -8,11 +8,13 @@ import { AI_PROVIDERS } from '../../config/ai-providers';
 import SEOHead from '../../components/SEOHead';
 import TwoColumnLayout from '../../components/ai/TwoColumnLayout';
 import AIProviderSelect from '../../components/ai/AIProviderSelect';
+import KeySourceIndicator from '../../components/ai/KeySourceIndicator';
+import SubscribePrompt from '../../components/SubscribePrompt';
 
 export default function RubricBuilder() {
   const { language, t } = useLanguage();
   const { output, isStreaming, error, usage, generate } = useAIStream();
-  const { keys, getApiKey, hasApiKey } = useApiKeys();
+  const { keys, getEffectiveApiKey, hasAnyKey } = useApiKeys();
   const toast = useToast();
 
   const [provider, setProvider] = useState('openai');
@@ -31,11 +33,12 @@ export default function RubricBuilder() {
       toast.warning(language === 'ko' ? '과제명을 입력해주세요.' : 'Please enter a task name.');
       return;
     }
-    if (!hasApiKey(provider)) { toast.warning(t('ai.noApiKey')); return; }
+    const { key, source } = getEffectiveApiKey(provider);
+    if (!key) { toast.warning(t('ai.noApiKey')); return; }
 
     const messages = buildRubricPrompt({ ...form, language });
     try {
-      await generate({ provider, apiKey: getApiKey(provider), model: AI_PROVIDERS[provider].defaultModel, messages });
+      await generate({ provider, apiKey: key, model: AI_PROVIDERS[provider].defaultModel, messages, toolId: 'rubric', keySource: source as 'personal' | 'shared' });
     } catch (err: unknown) { toast.error((err as Error).message); }
   }
 
@@ -43,6 +46,8 @@ export default function RubricBuilder() {
     <>
       <h3><i className="fa-solid fa-table-cells" /> {t('tools.rubric')}</h3>
       <AIProviderSelect selected={provider} onSelect={setProvider} apiKeys={keys} />
+      <KeySourceIndicator provider={provider} />
+      {!hasAnyKey(provider) && <SubscribePrompt />}
 
       <div className="ai-form-group">
         <label className="ai-form-label"><span className="label-icon"><i className="fa-solid fa-pen-to-square" /></span> {language === 'ko' ? '과제명' : 'Task Name'} *</label>

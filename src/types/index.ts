@@ -266,3 +266,56 @@ export type ColorTheme = 'blue' | 'red' | 'green' | 'purple' | 'orange';
 
 // ─── Language ───
 export type Language = 'ko' | 'en';
+
+// ─── Subscription & Plans ───
+export interface Plan {
+  id: string;
+  slug: string;
+  name_ko: string;
+  name_en: string;
+  description_ko: string | null;
+  description_en: string | null;
+  price: number;
+  duration_days: number | null;
+  monthly_token_limit: number | null;
+  daily_request_limit: number | null;
+  is_active: boolean;
+  sort_order: number;
+  created_at: string;
+}
+
+export type SubscriptionStatus = 'active' | 'expired' | 'cancelled';
+
+export interface Subscription {
+  id: string;
+  user_id: string;
+  plan_id: string;
+  status: SubscriptionStatus;
+  started_at: string;
+  expires_at: string | null;
+  order_number: string | null;
+  created_at: string;
+  plan?: Plan;
+}
+
+export interface SharedKey {
+  id: string;
+  provider: string;
+  api_key: string;
+  is_active: boolean;
+  label: string | null;
+  updated_at: string;
+}
+
+export interface UsageLog {
+  id: number;
+  user_id: string;
+  provider: string;
+  model: string;
+  tool_id: string | null;
+  input_tokens: number;
+  output_tokens: number;
+  estimated_cost: number;
+  key_source: 'personal' | 'shared';
+  created_at: string;
+}

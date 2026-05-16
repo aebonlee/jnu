@@ -50,10 +50,12 @@ const BoardWrite = lazy(() => import('../pages/community/BoardWrite'));
 // 대시보드 & 설정
 const Dashboard = lazy(() => import('../pages/Dashboard'));
 const Settings = lazy(() => import('../pages/Settings'));
+const Pricing = lazy(() => import('../pages/Pricing'));
 
 // 관리자
 const AdminDashboard = lazy(() => import('../pages/admin/AdminDashboard'));
 const AdminUsers = lazy(() => import('../pages/admin/AdminUsers'));
+const AdminPlans = lazy(() => import('../pages/admin/AdminPlans'));
 
 const Loading = (): ReactElement => (
   <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '60vh' }}>
@@ -102,6 +104,9 @@ const PublicLayout = (): ReactElement => {
               </>
             )}
 
+            {/* 요금제 */}
+            <Route path="/pricing" element={<Pricing />} />
+
             {/* 대시보드 & 설정 */}
             <Route path="/dashboard" element={<AuthGuard><Dashboard /></AuthGuard>} />
             <Route path="/settings" element={<AuthGuard><Settings /></AuthGuard>} />
@@ -132,6 +137,7 @@ const PublicLayout = (): ReactElement => {
             {/* 관리자 */}
             <Route path="/admin" element={<AdminGuard><AdminDashboard /></AdminGuard>} />
             <Route path="/admin/users" element={<AdminGuard><AdminUsers /></AdminGuard>} />
+            <Route path="/admin/plans" element={<AdminGuard><AdminPlans /></AdminGuard>} />
 
             {/* 404 */}
             <Route path="*" element={<NotFound />} />
