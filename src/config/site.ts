@@ -59,7 +59,6 @@ const site: SiteConfig = {
   ],
 
   menuItems: [
-    { path: '/', labelKey: 'nav.home' },
     {
       labelKey: 'nav.education',
       path: '/courses',
@@ -88,7 +87,6 @@ const site: SiteConfig = {
   ],
 
   footerLinks: [
-    { path: '/', labelKey: 'nav.home' },
     { path: '/courses', labelKey: 'nav.education' },
     { path: '/tools', labelKey: 'site.nav.aiTools' },
     { path: '/community', labelKey: 'nav.community' },
