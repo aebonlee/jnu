@@ -1,74 +1,37 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 import { useLanguage } from '../../contexts/LanguageContext';
 import SEOHead from '../../components/SEOHead';
+import { MATERIAL_CATEGORIES, MATERIALS } from '../../data/materials';
 import type { ReactElement } from 'react';
-
-const CATEGORIES = [
-  { id: 'ai-basics', nameKo: 'AI 기초', nameEn: 'AI Basics', icon: 'fa-robot' },
-  { id: 'document', nameKo: '문서 자동화', nameEn: 'Document Automation', icon: 'fa-file-lines' },
-  { id: 'admin', nameKo: '행정 업무', nameEn: 'Administration', icon: 'fa-briefcase' },
-  { id: 'prompt', nameKo: '프롬프트 엔지니어링', nameEn: 'Prompt Engineering', icon: 'fa-keyboard' },
-];
-
-const MATERIALS: Record<string, { titleKo: string; titleEn: string; descKo: string; descEn: string; items: { nameKo: string; nameEn: string; type: string }[] }> = {
-  'ai-basics': {
-    titleKo: 'AI 기초',
-    titleEn: 'AI Basics',
-    descKo: '생성형 AI의 기본 개념과 주요 서비스를 학습합니다.',
-    descEn: 'Learn the fundamentals of generative AI and major services.',
-    items: [
-      { nameKo: '생성형 AI 개요', nameEn: 'Generative AI Overview', type: 'guide' },
-      { nameKo: 'ChatGPT 활용법', nameEn: 'How to Use ChatGPT', type: 'guide' },
-      { nameKo: 'Claude 활용법', nameEn: 'How to Use Claude', type: 'guide' },
-      { nameKo: 'Gemini 활용법', nameEn: 'How to Use Gemini', type: 'guide' },
-      { nameKo: 'AI 서비스 비교', nameEn: 'AI Service Comparison', type: 'reference' },
-    ],
-  },
-  'document': {
-    titleKo: '문서 자동화',
-    titleEn: 'Document Automation',
-    descKo: 'AI를 활용한 문서 작성 및 자동화를 학습합니다.',
-    descEn: 'Learn document creation and automation with AI.',
-    items: [
-      { nameKo: '공문서 작성 가이드', nameEn: 'Official Document Guide', type: 'guide' },
-      { nameKo: '회의록 정리 템플릿', nameEn: 'Meeting Minutes Template', type: 'template' },
-      { nameKo: 'PPT 자동 생성', nameEn: 'Auto PPT Generation', type: 'guide' },
-      { nameKo: 'Excel 수식 자동화', nameEn: 'Excel Formula Automation', type: 'guide' },
-    ],
-  },
-  'admin': {
-    titleKo: '행정 업무',
-    titleEn: 'Administration',
-    descKo: '행정 업무에 AI를 효과적으로 활용하는 방법을 학습합니다.',
-    descEn: 'Learn how to effectively use AI in administrative tasks.',
-    items: [
-      { nameKo: '인사 문서 자동화', nameEn: 'HR Document Automation', type: 'guide' },
-      { nameKo: '근태 데이터 분석', nameEn: 'Attendance Data Analysis', type: 'guide' },
-      { nameKo: '업무 워크플로우 설계', nameEn: 'Workflow Design', type: 'guide' },
-      { nameKo: '프롬프트 라이브러리', nameEn: 'Prompt Library', type: 'template' },
-    ],
-  },
-  'prompt': {
-    titleKo: '프롬프트 엔지니어링',
-    titleEn: 'Prompt Engineering',
-    descKo: '효과적인 프롬프트 작성 기법을 학습합니다.',
-    descEn: 'Learn effective prompt writing techniques.',
-    items: [
-      { nameKo: 'RCF 프레임워크', nameEn: 'RCF Framework', type: 'guide' },
-      { nameKo: '역할 기반 프롬프트', nameEn: 'Role-Based Prompting', type: 'guide' },
-      { nameKo: '단계적 프롬프트', nameEn: 'Step-by-Step Prompting', type: 'guide' },
-      { nameKo: '프롬프트 실전 예시', nameEn: 'Prompt Examples', type: 'reference' },
-    ],
-  },
-};
 
 export default function LearningMaterials(): ReactElement {
   const { category: routeCategory } = useParams<{ category: string }>();
   const { language } = useLanguage();
-  const [activeCategory, setActiveCategory] = useState(routeCategory || 'ai-basics');
+  const [activeCategory, setActiveCategory] = useState(routeCategory || MATERIAL_CATEGORIES[0]?.id || 'ai-basics');
+  const [selectedItemId, setSelectedItemId] = useState<string | null>(null);
 
-  const currentMaterial = MATERIALS[activeCategory];
+  const currentCategory = MATERIAL_CATEGORIES.find(c => c.id === activeCategory);
+  const categoryItems = MATERIALS.filter(m => m.categoryId === activeCategory);
+  const selectedItem = selectedItemId ? MATERIALS.find(m => m.id === selectedItemId) : null;
+
+  const handleCategoryClick = (categoryId: string) => {
+    setActiveCategory(categoryId);
+    setSelectedItemId(null);
+  };
+
+  const handleItemClick = (itemId: string) => {
+    setSelectedItemId(itemId);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleBackToList = () => {
+    setSelectedItemId(null);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
     <>
@@ -92,11 +55,11 @@ export default function LearningMaterials(): ReactElement {
             {/* Sidebar */}
             <aside className="materials-sidebar">
               <nav>
-                {CATEGORIES.map(cat => (
+                {MATERIAL_CATEGORIES.map(cat => (
                   <button
                     key={cat.id}
                     className={`sidebar-item ${activeCategory === cat.id ? 'active' : ''}`}
-                    onClick={() => setActiveCategory(cat.id)}
+                    onClick={() => handleCategoryClick(cat.id)}
                   >
                     <i className={`fa-solid ${cat.icon}`} />
                     {language === 'ko' ? cat.nameKo : cat.nameEn}
@@ -107,15 +70,34 @@ export default function LearningMaterials(): ReactElement {
 
             {/* Content */}
             <div className="materials-content">
-              {currentMaterial && (
+              {selectedItem ? (
                 <>
-                  <h2>{language === 'ko' ? currentMaterial.titleKo : currentMaterial.titleEn}</h2>
+                  <button className="btn btn-outline btn-back" onClick={handleBackToList}>
+                    <i className="fa-solid fa-arrow-left" />
+                    {language === 'ko' ? '목록으로 돌아가기' : 'Back to list'}
+                  </button>
+                  <h2>{language === 'ko' ? selectedItem.nameKo : selectedItem.nameEn}</h2>
+                  <span className="material-type">{selectedItem.type}</span>
+                  <div className="markdown-body">
+                    <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
+                      {language === 'ko' ? selectedItem.contentKo : selectedItem.contentEn}
+                    </ReactMarkdown>
+                  </div>
+                </>
+              ) : currentCategory ? (
+                <>
+                  <h2>{language === 'ko' ? currentCategory.nameKo : currentCategory.nameEn}</h2>
                   <p className="materials-desc">
-                    {language === 'ko' ? currentMaterial.descKo : currentMaterial.descEn}
+                    {language === 'ko' ? currentCategory.descKo : currentCategory.descEn}
                   </p>
                   <div className="materials-list">
-                    {currentMaterial.items.map((item, i) => (
-                      <div key={i} className="material-item">
+                    {categoryItems.map(item => (
+                      <div
+                        key={item.id}
+                        className="material-item"
+                        onClick={() => handleItemClick(item.id)}
+                        style={{ cursor: 'pointer' }}
+                      >
                         <div className="material-icon">
                           <i className={`fa-solid ${item.type === 'guide' ? 'fa-book' : item.type === 'template' ? 'fa-file-alt' : 'fa-bookmark'}`} />
                         </div>
@@ -127,7 +109,7 @@ export default function LearningMaterials(): ReactElement {
                     ))}
                   </div>
                 </>
-              )}
+              ) : null}
             </div>
           </div>
         </div>
