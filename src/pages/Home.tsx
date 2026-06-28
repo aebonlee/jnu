@@ -81,7 +81,7 @@ export default function Home(): ReactElement {
               <h1 className="hero-ed-title" data-aos="fade-up" data-aos-delay="50">
                 {isKo ? '전남대GPT로 배우는' : 'Learn with CNU GPT'}<br />
                 <span className="accent">{isKo ? '생성형 AI 실무' : 'Hands-on Generative AI'}</span><br />
-                <span className="accent">{isKo ? '4개 과정 · 16시간' : '4 Programs · 16 Hours'}</span>
+                <span className="accent">{isKo ? '4개 과정 · 각 16시간' : '4 Programs · 16 Hours Each'}</span>
               </h1>
               <p className="hero-ed-lead" data-aos="fade-up" data-aos-delay="100">
                 {isKo
