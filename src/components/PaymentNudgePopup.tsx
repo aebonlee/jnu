@@ -130,7 +130,9 @@ export default function PaymentNudgePopup({
         </button>
 
         {/* 아이콘 */}
-        <div style={{ fontSize: '48px', marginBottom: '12px' }}>📚</div>
+        <div style={{ fontSize: '48px', marginBottom: '12px', color: 'var(--primary-blue)' }}>
+          <i className="fa-solid fa-graduation-cap" />
+        </div>
 
         <h2 style={{ margin: '0 0 8px', fontSize: '20px', fontWeight: 700, color: '#111' }}>
           더 나은 학습 경험을 위해

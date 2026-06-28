@@ -24,7 +24,7 @@ export default function ApiKeyInput({ value, onChange, placeholder = 'sk-...' }:
         type="button"
         title={visible ? 'Hide' : 'Show'}
       >
-        {visible ? '🙈' : '👁️'}
+        <i className={`fa-solid ${visible ? 'fa-eye-slash' : 'fa-eye'}`} />
       </button>
     </div>
   );
