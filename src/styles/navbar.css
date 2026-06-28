@@ -702,3 +702,10 @@
     width: 18px;
     height: 18px;
 }
+
+/* 비로그인 '설정' 집결 드롭다운 위치 */
+.nav-util-dropdown {
+    right: 0;
+    left: auto;
+    min-width: 250px;
+}

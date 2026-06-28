@@ -18,6 +18,7 @@ const Navbar = (): ReactElement => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<number | null>(null);
   const [showColorPicker, setShowColorPicker] = useState(false);
+  const [showUtilMenu, setShowUtilMenu] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
@@ -134,14 +135,6 @@ const Navbar = (): ReactElement => {
           </ul>
 
           <div className="nav-actions">
-            {!isLoggedIn && site.features.search && (
-              <button className="nav-search-btn nav-tip" data-tip={language === 'ko' ? '검색' : 'Search'} onClick={() => setShowSearch(true)} aria-label="Search">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <circle cx="11" cy="11" r="8" />
-                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                </svg>
-              </button>
-            )}
             {site.features.shop && (
               <Link to="/cart" className="cart-icon-link nav-tip" data-tip={language === 'ko' ? '장바구니' : 'Cart'} aria-label="Cart">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="cart-icon-svg">
@@ -152,76 +145,62 @@ const Navbar = (): ReactElement => {
                 {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
               </Link>
             )}
+            {/* 비로그인: 검색·언어·색상·모드를 '설정' 버튼 하나로 집결 */}
             {!isLoggedIn && (
-            <button className="lang-switcher nav-tip" data-tip={language === 'ko' ? '언어 (한/영)' : 'Language (KR/EN)'} onClick={toggleLanguage} aria-label={language === 'ko' ? 'Switch to English' : '한국어로 전환'}>
-              {language === 'ko' ? 'EN' : 'KR'}
-            </button>
-            )}
-            {!isLoggedIn && (
-            <div className="color-picker-wrapper">
-              <button
-                className="color-picker-btn nav-tip"
-                data-tip={language === 'ko' ? '색상 테마' : 'Color theme'}
-                onClick={() => setShowColorPicker(!showColorPicker)}
-                aria-label="Color theme"
-              >
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <circle cx="13.5" cy="6.5" r="2.5" style={{ fill: '#C8102E', stroke: 'none' }} />
-                  <circle cx="17.5" cy="10.5" r="2.5" style={{ fill: '#C87200', stroke: 'none' }} />
-                  <circle cx="8.5" cy="7.5" r="2.5" style={{ fill: '#00855A', stroke: 'none' }} />
-                  <circle cx="6.5" cy="12" r="2.5" style={{ fill: '#0046C8', stroke: 'none' }} />
-                  <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.93 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.04-.24-.3-.39-.65-.39-1.04 0-.83.67-1.5 1.5-1.5H16c3.31 0 6-2.69 6-6 0-5.17-4.5-9-10-9z" />
-                </svg>
-              </button>
-              {showColorPicker && (
-                <>
-                  <div className="color-picker-overlay" onClick={() => setShowColorPicker(false)} />
-                  <div className="color-picker-tooltip">
-                    <div className="color-picker-arrow" />
-                    {site.colors.map((c) => (
-                      <button
-                        key={c.name}
-                        className={`color-dot${colorTheme === c.name ? ' active' : ''}`}
-                        style={{ background: c.color }}
-                        onClick={() => { setColorTheme(c.name); setShowColorPicker(false); }}
-                        aria-label={`${c.name} theme`}
-                      />
-                    ))}
-                  </div>
-                </>
-              )}
-            </div>
-            )}
-            {!isLoggedIn && (
-            <button className="theme-toggle nav-tip" data-tip={language === 'ko' ? (mode === 'auto' ? '화면 모드 (자동)' : mode === 'light' ? '화면 모드 (라이트)' : '화면 모드 (다크)') : 'Display mode'} onClick={toggleTheme} aria-label="테마 전환" data-mode={mode}>
-              {/* Light mode icon (sun) */}
-              <svg className="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="12" cy="12" r="5" />
-                <line x1="12" y1="1" x2="12" y2="3" />
-                <line x1="12" y1="21" x2="12" y2="23" />
-                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-                <line x1="1" y1="12" x2="3" y2="12" />
-                <line x1="21" y1="12" x2="23" y2="12" />
-                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-              </svg>
-              {/* Dark mode icon (moon) */}
-              <svg className="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-              </svg>
-              {/* Auto mode icon (sun+moon half) */}
-              <svg className="auto-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="12" cy="12" r="9" />
-                <path d="M12 3a9 9 0 0 1 0 18" fill="currentColor" opacity="0.3" />
-                <circle cx="12" cy="12" r="4" />
-                <line x1="12" y1="1" x2="12" y2="3" />
-                <line x1="12" y1="21" x2="12" y2="23" />
-                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-                <line x1="1" y1="12" x2="3" y2="12" />
-                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-              </svg>
-            </button>
+              <div className="color-picker-wrapper">
+                <button
+                  className="theme-toggle nav-tip"
+                  data-tip={language === 'ko' ? '설정 (검색·언어·테마)' : 'Settings'}
+                  onClick={() => setShowUtilMenu(!showUtilMenu)}
+                  aria-label="Settings"
+                >
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ display: 'block' }}>
+                    <line x1="4" y1="7" x2="20" y2="7" /><circle cx="9" cy="7" r="2" fill="var(--bg-white)" />
+                    <line x1="4" y1="12" x2="20" y2="12" /><circle cx="15" cy="12" r="2" fill="var(--bg-white)" />
+                    <line x1="4" y1="17" x2="20" y2="17" /><circle cx="8" cy="17" r="2" fill="var(--bg-white)" />
+                  </svg>
+                </button>
+                {showUtilMenu && (
+                  <>
+                    <div className="color-picker-overlay" onClick={() => setShowUtilMenu(false)} />
+                    <div className="nav-user-dropdown nav-util-dropdown">
+                      {site.features.search && (
+                        <button className="dropdown-menu-item" onClick={() => { setShowSearch(true); setShowUtilMenu(false); }}>
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                          {language === 'ko' ? '검색' : 'Search'}
+                        </button>
+                      )}
+                      <button className="dropdown-menu-item" onClick={toggleLanguage}>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                        {language === 'ko' ? '언어 — 한국어 / English' : 'Language — 한국어 / English'}
+                      </button>
+                      <button className="dropdown-menu-item" onClick={toggleTheme}>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                        {language === 'ko'
+                          ? `화면 모드 — ${mode === 'auto' ? '자동' : mode === 'light' ? '라이트' : '다크'}`
+                          : `Display — ${mode}`}
+                      </button>
+                      <div className="dropdown-color-row">
+                        <span className="dropdown-color-label">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="13.5" cy="6.5" r="1.5"/><circle cx="17.5" cy="10.5" r="1.5"/><circle cx="8.5" cy="7.5" r="1.5"/><circle cx="6.5" cy="12" r="1.5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.93 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.04-.24-.3-.39-.65-.39-1.04 0-.83.67-1.5 1.5-1.5H16c3.31 0 6-2.69 6-6 0-5.17-4.5-9-10-9z"/></svg>
+                          {language === 'ko' ? '색상 테마' : 'Color theme'}
+                        </span>
+                        <span className="dropdown-color-dots">
+                          {site.colors.map((c) => (
+                            <button
+                              key={c.name}
+                              className={`color-dot${colorTheme === c.name ? ' active' : ''}`}
+                              style={{ background: c.color }}
+                              onClick={() => setColorTheme(c.name)}
+                              aria-label={`${c.name} theme`}
+                            />
+                          ))}
+                        </span>
+                      </div>
+                    </div>
+                  </>
+                )}
+              </div>
             )}
             {/* User Auth */}
             {isLoggedIn ? (
