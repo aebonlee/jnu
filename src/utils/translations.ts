@@ -245,6 +245,7 @@ export const translations: Record<string, Record<string, unknown>> = {
         feedback: '피드백 생성기',
         evaluator: '학생 과제 평가',
         promptPractice: '프롬프트 실습',
+        promptEval: '프롬프트 평가',
         recommended: '추천사이트',
       },
       home: {
@@ -514,6 +515,7 @@ export const translations: Record<string, Record<string, unknown>> = {
         feedback: 'Feedback Generator',
         evaluator: 'Student Evaluator',
         promptPractice: 'Prompt Practice',
+        promptEval: 'Prompt Evaluation',
         recommended: 'Recommended',
       },
       home: {

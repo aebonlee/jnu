@@ -65,24 +65,20 @@ const site: SiteConfig = {
     { path: '/courses/data-budget', activePath: '/courses/data-budget', labelKey: 'site.nav.progDataBudget' },
     { path: '/courses/research-lab', activePath: '/courses/research-lab', labelKey: 'site.nav.progResearchLab' },
     {
-      labelKey: 'site.nav.aiTools',
-      path: '/tools',
-      activePath: '/tools',
+      labelKey: 'site.nav.promptPractice',
+      path: '/prompt-eval',
+      activePath: '/prompt-eval',
       dropdown: [
-        { path: '/tools/syllabus', labelKey: 'site.nav.syllabus' },
-        { path: '/tools/rubric', labelKey: 'site.nav.rubric' },
-        { path: '/tools/assignment', labelKey: 'site.nav.assignment' },
-        { path: '/tools/feedback', labelKey: 'site.nav.feedback' },
-        { path: '/tools/evaluator', labelKey: 'site.nav.evaluator' },
+        { path: '/prompt-eval/practice', labelKey: 'site.nav.promptPractice' },
+        { path: '/prompt-eval/workshop', labelKey: 'site.nav.promptEval' },
       ]
     },
-    { path: '/prompt-eval/practice', labelKey: 'site.nav.promptPractice' },
     { path: '/recommended', labelKey: 'site.nav.recommended' },
   ],
 
   footerLinks: [
     { path: '/courses', labelKey: 'nav.education' },
-    { path: '/tools', labelKey: 'site.nav.aiTools' },
+    { path: '/prompt-eval', labelKey: 'site.nav.promptPractice' },
     { path: '/community', labelKey: 'nav.community' },
     { path: '/about', labelKey: 'nav.about' },
   ],

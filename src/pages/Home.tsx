@@ -1,7 +1,7 @@
 import { useLanguage } from '../contexts/LanguageContext';
 import { useNavigate } from 'react-router-dom';
 import SEOHead from '../components/SEOHead';
-import site, { AI_TOOLS } from '../config/site';
+import site from '../config/site';
 import { COURSE_CATEGORIES } from '../data/courses';
 import useCountUp from '../hooks/useCountUp';
 import useAOS from '../hooks/useAOS';
@@ -262,34 +262,6 @@ export default function Home(): ReactElement {
             <button className="btn btn-accent btn-lg" onClick={() => navigate('/courses')}>
               <i className="fa-solid fa-graduation-cap" /> {isKo ? '과정 선택하고 신청하기' : 'Choose a program & enroll'}
             </button>
-          </div>
-        </div>
-      </section>
-
-      {/* AI Tools */}
-      <section className="section section-alt">
-        <div className="container">
-          <div className="section-header" data-aos="fade-up">
-            <h2>{t('site.home.toolsTitle')}</h2>
-            <p>{t('site.home.toolsDesc')}</p>
-          </div>
-          <div className="ai-tools-grid">
-            {AI_TOOLS.map((tool, i) => (
-              <div
-                key={tool.id}
-                className="ai-tool-card"
-                data-aos="fade-up"
-                data-aos-delay={i * 80}
-                onClick={() => navigate(tool.path)}
-                style={{ cursor: 'pointer' }}
-              >
-                <div className="tool-icon">
-                  <i className={`fa-solid ${tool.icon}`} />
-                </div>
-                <h4>{language === 'ko' ? tool.nameKo : tool.nameEn}</h4>
-                <p>{language === 'ko' ? tool.descKo : tool.descEn}</p>
-              </div>
-            ))}
           </div>
         </div>
       </section>
