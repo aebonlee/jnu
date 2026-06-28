@@ -538,7 +538,8 @@
   font-size: 13px;
   line-height: 1.65;
   white-space: pre-wrap;
-  word-break: break-word;
+  word-break: keep-all;
+  overflow-wrap: break-word;
   overflow-x: auto;
 }
 .practice-prompt code {
