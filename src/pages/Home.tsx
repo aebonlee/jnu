@@ -12,16 +12,16 @@ export default function Home(): ReactElement {
   const navigate = useNavigate();
   useAOS();
 
-  const stat0 = useCountUp(500);
-  const stat1 = useCountUp(12);
-  const stat2 = useCountUp(5);
-  const stat3 = useCountUp(98);
+  const stat0 = useCountUp(4);
+  const stat1 = useCountUp(16);
+  const stat2 = useCountUp(32);
+  const stat3 = useCountUp(65);
 
   const stats = [
-    { value: stat0.count, label: language === 'ko' ? '수강생' : 'Students', suffix: '+' },
-    { value: stat1.count, label: language === 'ko' ? '교육 과정' : 'Courses', suffix: '' },
-    { value: stat2.count, label: language === 'ko' ? 'AI 도구' : 'AI Tools', suffix: '' },
-    { value: stat3.count, label: language === 'ko' ? '만족도' : 'Satisfaction', suffix: '%' },
+    { value: stat0.count, label: language === 'ko' ? '전문 과정' : 'Programs', suffix: '' },
+    { value: stat1.count, label: language === 'ko' ? '과정당 시간' : 'Hours / Program', suffix: 'h' },
+    { value: stat2.count, label: language === 'ko' ? '실습 교시' : 'Practice Sessions', suffix: '' },
+    { value: stat3.count, label: language === 'ko' ? '실습 사례' : 'Practice Cases', suffix: '+' },
   ];
 
   return (
@@ -70,10 +70,17 @@ export default function Home(): ReactElement {
                 <div className="category-icon" style={{ background: cat.color }}>
                   <i className={`fa-solid ${cat.icon}`} />
                 </div>
+                <span className="category-duration"><i className="fa-regular fa-clock" /> {cat.duration}</span>
                 <h3>{language === 'ko' ? cat.nameKo : cat.nameEn}</h3>
+                <p className="category-tagline">{cat.tagline}</p>
                 <p>{language === 'ko' ? cat.descKo : cat.descEn}</p>
+                <div className="category-tags">
+                  {cat.highlights.slice(0, 3).map((h) => (
+                    <span key={h} className="category-tag">{h}</span>
+                  ))}
+                </div>
                 <span className="category-link">
-                  {language === 'ko' ? '과정 보기' : 'View Courses'} <i className="fa-solid fa-arrow-right" />
+                  {language === 'ko' ? '커리큘럼 보기' : 'View Curriculum'} <i className="fa-solid fa-arrow-right" />
                 </span>
               </div>
             ))}

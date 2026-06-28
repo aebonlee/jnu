@@ -263,7 +263,7 @@ export interface Toast {
 
 // ─── Theme ───
 export type ThemeMode = 'auto' | 'light' | 'dark';
-export type ColorTheme = 'blue' | 'red' | 'green' | 'purple' | 'orange';
+export type ColorTheme = 'academic' | 'research' | 'cnu' | 'vibe';
 
 // ─── Language ───
 export type Language = 'ko' | 'en';

@@ -10,7 +10,7 @@ const site: SiteConfig = {
   id: 'cnu',
   name: 'CNU AI Education',
   nameKo: '전남대학교 생성형 AI 교육',
-  description: '전남대학교 교수자·직원·조교를 위한 생성형 AI 교육 플랫폼',
+  description: '전남대GPT(타임리GPT 기반)로 배우는 전남대학교 실습 중심 생성형 AI 교육 — 기초·심화, 데이터분석&논문작성, 데이터분석&예산회계, 연구&실험지원 4개 과정',
   url: 'https://cnu.dreamitbiz.com',
   dbPrefix: 'cnu_',
 
@@ -50,12 +50,12 @@ const site: SiteConfig = {
     license: false,
   },
 
+  // 기본 컬러셋 = academic(네이비+골드). 나머지는 후보 컬러셋
   colors: [
-    { name: 'blue', color: '#0046C8' },
-    { name: 'red', color: '#C8102E' },
-    { name: 'green', color: '#00855A' },
-    { name: 'purple', color: '#8B1AC8' },
-    { name: 'orange', color: '#C87200' },
+    { name: 'academic', color: '#C8A04A' }, // 네이비+골드 (기본)
+    { name: 'research', color: '#14B8A6' },  // 딥네이비+틸
+    { name: 'cnu', color: '#00553F' },       // 전남대 그린
+    { name: 'vibe', color: '#6D28D9' },      // 모던 바이올렛
   ],
 
   menuItems: [
@@ -64,9 +64,10 @@ const site: SiteConfig = {
       path: '/courses',
       activePath: '/courses',
       dropdown: [
-        { path: '/courses/professor', labelKey: 'site.nav.professor' },
-        { path: '/courses/staff', labelKey: 'site.nav.staff' },
-        { path: '/courses/assistant', labelKey: 'site.nav.assistant' },
+        { path: '/courses/foundation', labelKey: 'site.nav.progFoundation' },
+        { path: '/courses/research-writing', labelKey: 'site.nav.progResearchWriting' },
+        { path: '/courses/data-budget', labelKey: 'site.nav.progDataBudget' },
+        { path: '/courses/research-lab', labelKey: 'site.nav.progResearchLab' },
       ]
     },
     {

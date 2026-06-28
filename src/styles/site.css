@@ -7,22 +7,23 @@
   --card-bg: var(--bg-white);
   --border-color: var(--border-light);
   --primary: var(--primary-blue);
-  --primary-light: rgba(0, 70, 200, 0.08);
+  --primary-light: rgba(26, 43, 74, 0.07);
+  --accent-soft: rgba(200, 160, 74, 0.12);
   --text: var(--text-primary);
   --bg-alt: var(--bg-light-gray);
 }
 
-html[data-color="red"] {
-  --primary-light: rgba(200, 16, 46, 0.08);
+html[data-color="research"] {
+  --primary-light: rgba(15, 42, 74, 0.07);
+  --accent-soft: rgba(20, 184, 166, 0.12);
 }
-html[data-color="green"] {
-  --primary-light: rgba(0, 133, 90, 0.08);
+html[data-color="cnu"] {
+  --primary-light: rgba(0, 85, 63, 0.07);
+  --accent-soft: rgba(200, 160, 74, 0.12);
 }
-html[data-color="purple"] {
-  --primary-light: rgba(139, 26, 200, 0.08);
-}
-html[data-color="orange"] {
-  --primary-light: rgba(200, 114, 0, 0.08);
+html[data-color="vibe"] {
+  --primary-light: rgba(109, 40, 217, 0.07);
+  --accent-soft: rgba(37, 99, 235, 0.12);
 }
 
 /* ─── Recommended Sites Page ─── */

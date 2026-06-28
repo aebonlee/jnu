@@ -1,18 +1,12 @@
 import { useLanguage } from '../../contexts/LanguageContext';
 import { useNavigate } from 'react-router-dom';
 import SEOHead from '../../components/SEOHead';
-import { COURSE_CATEGORIES, COURSES } from '../../data/courses';
-import { useState } from 'react';
+import { PROGRAMS } from '../../data/courses';
 import type { ReactElement } from 'react';
 
 export default function CourseCatalog(): ReactElement {
   const { language } = useLanguage();
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState('all');
-
-  const filteredCourses = activeTab === 'all'
-    ? COURSES
-    : COURSES.filter(c => c.category === activeTab);
 
   return (
     <>
@@ -23,71 +17,59 @@ export default function CourseCatalog(): ReactElement {
 
       <section className="page-header">
         <div className="container">
+          <div className="eyebrow">Programs</div>
           <h1>{language === 'ko' ? '교육과정' : 'Courses'}</h1>
           <p>{language === 'ko'
-            ? '전남대학교 교수자·직원·조교를 위한 맞춤형 AI 교육 과정'
-            : 'Customized AI education courses for CNU faculty, staff, and TAs'}</p>
+            ? '전남대GPT(타임리GPT 기반)로 배우는 4개 과정 · 각 2일 16시간 · 실습 중심'
+            : 'Four programs powered by CNU GPT (TimelyGPT-based) — 2 days / 16 hours each, hands-on.'}</p>
         </div>
       </section>
 
       <section className="section">
         <div className="container">
-          {/* Category Tabs */}
-          <div className="course-tabs">
-            <button
-              className={`course-tab ${activeTab === 'all' ? 'active' : ''}`}
-              onClick={() => setActiveTab('all')}
-            >
-              {language === 'ko' ? '전체' : 'All'}
-            </button>
-            {COURSE_CATEGORIES.map(cat => (
-              <button
-                key={cat.id}
-                className={`course-tab ${activeTab === cat.id ? 'active' : ''}`}
-                onClick={() => setActiveTab(cat.id)}
-              >
-                <i className={`fa-solid ${cat.icon}`} />
-                {language === 'ko' ? cat.nameKo : cat.nameEn}
-              </button>
-            ))}
-          </div>
-
-          {/* Course Cards */}
-          <div className="course-grid">
-            {filteredCourses.map(course => {
-              const cat = COURSE_CATEGORIES.find(c => c.id === course.category);
+          <div className="program-grid">
+            {PROGRAMS.map((p) => {
+              const totalSessions = p.curriculum.reduce((s, d) => s + d.sessions.length, 0);
               return (
-                <div key={course.id} className="course-card">
-                  <div className="course-card-header" style={{ borderTopColor: cat?.color || '#0046C8' }}>
-                    <div className="course-icon" style={{ color: cat?.color || '#0046C8' }}>
-                      <i className={`fa-solid ${course.icon}`} />
+                <article
+                  key={p.id}
+                  className="program-card"
+                  onClick={() => navigate(`/courses/${p.id}`)}
+                  style={{ cursor: 'pointer' }}
+                >
+                  <div className="program-card-top" style={{ borderTopColor: p.color }}>
+                    <div className="program-icon" style={{ background: p.color }}>
+                      <i className={`fa-solid ${p.icon}`} />
                     </div>
-                    <span className="course-badge" style={{ background: cat?.color || '#0046C8' }}>
-                      {language === 'ko' ? cat?.nameKo : cat?.nameEn}
-                    </span>
+                    <div className="program-order">{String(p.order).padStart(2, '0')}</div>
                   </div>
-                  <div className="course-card-body">
-                    <h3>{language === 'ko' ? course.title : course.titleEn}</h3>
-                    <p>{language === 'ko' ? course.description : course.descriptionEn}</p>
-                    <div className="course-meta">
-                      <span><i className="fa-regular fa-clock" /> {course.duration}</span>
-                      <span><i className="fa-solid fa-signal" /> {course.level}</span>
+                  <div className="program-card-body">
+                    <span className="program-duration"><i className="fa-regular fa-clock" /> {p.duration}</span>
+                    <h3>{language === 'ko' ? p.nameKo : p.nameEn}</h3>
+                    <p className="program-tagline">{p.tagline}</p>
+                    <p className="program-desc">{language === 'ko' ? p.descKo : p.descEn}</p>
+
+                    <div className="program-audience">
+                      <i className="fa-solid fa-user-check" /> {p.audience}
                     </div>
-                    <div className="course-topics">
-                      {course.topics.map(topic => (
-                        <span key={topic} className="topic-tag">{topic}</span>
+
+                    <div className="program-tags">
+                      {p.highlights.map((h) => (
+                        <span key={h} className="program-tag">{h}</span>
                       ))}
                     </div>
+
+                    <div className="program-meta">
+                      <span><i className="fa-solid fa-layer-group" /> {language === 'ko' ? `${totalSessions}개 실습 교시` : `${totalSessions} sessions`}</span>
+                      <span><i className="fa-solid fa-signal" /> {p.level}</span>
+                    </div>
                   </div>
-                  <div className="course-card-footer">
-                    <button
-                      className="btn btn-primary btn-sm"
-                      onClick={() => navigate(`/courses/${course.category}`)}
-                    >
-                      {language === 'ko' ? '상세 보기' : 'View Details'} <i className="fa-solid fa-arrow-right" />
-                    </button>
+                  <div className="program-card-footer">
+                    <span className="btn btn-primary btn-sm">
+                      {language === 'ko' ? '커리큘럼 보기' : 'View Curriculum'} <i className="fa-solid fa-arrow-right" />
+                    </span>
                   </div>
-                </div>
+                </article>
               );
             })}
           </div>

@@ -1,6 +1,7 @@
 /* ============================================
-   DreamIT Biz - Base Styles
-   Design Renewal v5 (Pfizer + Weniv Reference)
+   CNU 전남대학교 생성형 AI 교육
+   Design Renewal v6 — Academic (Navy + Gold)
+   기본 컬러셋: academic. 후보군: research / cnu / vibe
    ============================================ */
 
 * {
@@ -10,34 +11,44 @@
 }
 
 :root {
-    --primary-blue: #0046C8;
-    --primary-blue-dark: #002E8A;
-    --primary-blue-light: #4A8FE7;
+    /* ── Academic (기본): Navy primary + Gold accent ── */
+    --primary-blue: #1A2B4A;
+    --primary-blue-dark: #0F1B33;
+    --primary-blue-light: #34507E;
+    --accent: #C8A04A;
+    --accent-dark: #A47E2E;
+    --accent-light: #E0C078;
+
+    /* Backgrounds — ivory tone */
     --bg-white: #FFFFFF;
-    --bg-light-gray: #F5F7FA;
-    --bg-medium-gray: #E8EDF2;
-    --text-primary: #111827;
+    --bg-light-gray: #FBF9F4;
+    --bg-medium-gray: #F1ECE0;
+    --text-primary: #1B2230;
     --text-secondary: #4B5563;
-    --text-light: #5B6370;
+    --text-light: #6B7280;
     --text-white: #FFFFFF;
-    --border-light: #E5E7EB;
-    --border-medium: #CBD5E0;
-    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
-    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.06), 0 2px 4px rgba(0, 0, 0, 0.04);
-    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.08), 0 4px 10px rgba(0, 0, 0, 0.04);
-    --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.06);
+    --border-light: #E8E2D5;
+    --border-medium: #D6CDBA;
+    --shadow-sm: 0 1px 3px rgba(26, 43, 74, 0.06);
+    --shadow-md: 0 4px 6px rgba(26, 43, 74, 0.07), 0 2px 4px rgba(26, 43, 74, 0.04);
+    --shadow-lg: 0 10px 25px rgba(26, 43, 74, 0.09), 0 4px 10px rgba(26, 43, 74, 0.05);
+    --shadow-xl: 0 20px 40px rgba(26, 43, 74, 0.12), 0 8px 16px rgba(26, 43, 74, 0.07);
     --nav-height: 80px;
     --section-padding: 80px;
     --container-max: 1280px;
 
+    /* Heading font — serif for academic gravitas */
+    --font-heading: 'Noto Serif KR', 'Noto Sans KR', serif;
+    --font-body: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+
     /* Gradient */
-    --primary-gradient: linear-gradient(135deg, #0046C8 0%, #4A8FE7 100%);
-    --accent-gradient: linear-gradient(135deg, #002E8A 0%, #0046C8 50%, #4A8FE7 100%);
+    --primary-gradient: linear-gradient(135deg, #1A2B4A 0%, #34507E 100%);
+    --accent-gradient: linear-gradient(135deg, #A47E2E 0%, #C8A04A 50%, #E0C078 100%);
 
     /* Hero / CTA / Page-header shared background */
-    --hero-bg: linear-gradient(135deg, #0046C8 0%, #002E8A 50%, #1E3A5F 100%);
-    --hero-bg-dark: linear-gradient(135deg, #0A2D6E 0%, #122870 50%, #172D58 100%);
-    --highlight-gradient: linear-gradient(135deg, #93C5FD 0%, #BFDBFE 50%, #FFFFFF 100%);
+    --hero-bg: linear-gradient(135deg, #1A2B4A 0%, #0F1B33 55%, #16243C 100%);
+    --hero-bg-dark: linear-gradient(135deg, #131D33 0%, #0C1426 55%, #101A2E 100%);
+    --highlight-gradient: linear-gradient(135deg, #E0C078 0%, #C8A04A 50%, #F0E2C0 100%);
 
     /* Glassmorphism */
     --glass-bg: rgba(255, 255, 255, 0.85);
@@ -55,51 +66,64 @@
     --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ── Color Theme Overrides ── */
-/* Blue is the default (no override needed) */
+/* ── Color Set Overrides ── */
+/* academic 이 기본값(루트) — 별도 override 불필요 */
 
-html[data-color="red"] {
-    --primary-blue: #C8102E;
-    --primary-blue-dark: #8A001A;
-    --primary-blue-light: #E74A5A;
-    --primary-gradient: linear-gradient(135deg, #C8102E 0%, #E74A5A 100%);
-    --accent-gradient: linear-gradient(135deg, #8A001A 0%, #C8102E 50%, #E74A5A 100%);
-    --hero-bg: linear-gradient(135deg, #C8102E 0%, #8A001A 50%, #5F1E28 100%);
-    --hero-bg-dark: linear-gradient(135deg, #6E1422 0%, #701020 50%, #581828 100%);
-    --highlight-gradient: linear-gradient(135deg, #FD9393 0%, #FDBFBF 50%, #FFFFFF 100%);
+/* 리서치 (Deep Navy + Teal) */
+html[data-color="research"] {
+    --primary-blue: #0F2A4A;
+    --primary-blue-dark: #0A1E36;
+    --primary-blue-light: #2C4E76;
+    --accent: #14B8A6;
+    --accent-dark: #0E8C7E;
+    --accent-light: #5EEAD4;
+    --bg-light-gray: #F8FAFC;
+    --bg-medium-gray: #EAF0F5;
+    --border-light: #E2E8F0;
+    --border-medium: #CBD5E1;
+    --primary-gradient: linear-gradient(135deg, #0F2A4A 0%, #2C4E76 100%);
+    --accent-gradient: linear-gradient(135deg, #0E8C7E 0%, #14B8A6 50%, #5EEAD4 100%);
+    --hero-bg: linear-gradient(135deg, #0F2A4A 0%, #0A1E36 55%, #103A4A 100%);
+    --hero-bg-dark: linear-gradient(135deg, #0B1E33 0%, #08182A 55%, #0C2A38 100%);
+    --highlight-gradient: linear-gradient(135deg, #5EEAD4 0%, #14B8A6 50%, #CFFAF2 100%);
 }
 
-html[data-color="green"] {
-    --primary-blue: #00855A;
-    --primary-blue-dark: #005C3E;
-    --primary-blue-light: #4AE79A;
-    --primary-gradient: linear-gradient(135deg, #00855A 0%, #4AE79A 100%);
-    --accent-gradient: linear-gradient(135deg, #005C3E 0%, #00855A 50%, #4AE79A 100%);
-    --hero-bg: linear-gradient(135deg, #00855A 0%, #005C3E 50%, #1E4A35 100%);
-    --hero-bg-dark: linear-gradient(135deg, #0A5438 0%, #104830 50%, #163D2A 100%);
-    --highlight-gradient: linear-gradient(135deg, #93FDC5 0%, #BFFDE0 50%, #FFFFFF 100%);
+/* 전남대 그린 (CNU Green + Navy) */
+html[data-color="cnu"] {
+    --primary-blue: #00553F;
+    --primary-blue-dark: #003B2C;
+    --primary-blue-light: #2E7D66;
+    --accent: #C8A04A;
+    --accent-dark: #A47E2E;
+    --accent-light: #E0C078;
+    --bg-light-gray: #F4F8F6;
+    --bg-medium-gray: #E6F0EB;
+    --border-light: #DCE8E2;
+    --border-medium: #C2D4CB;
+    --primary-gradient: linear-gradient(135deg, #00553F 0%, #2E7D66 100%);
+    --accent-gradient: linear-gradient(135deg, #A47E2E 0%, #C8A04A 50%, #E0C078 100%);
+    --hero-bg: linear-gradient(135deg, #00553F 0%, #003B2C 55%, #0F2A4A 100%);
+    --hero-bg-dark: linear-gradient(135deg, #053C2E 0%, #042B20 55%, #0B1E33 100%);
+    --highlight-gradient: linear-gradient(135deg, #E0C078 0%, #C8A04A 50%, #F0E2C0 100%);
 }
 
-html[data-color="purple"] {
-    --primary-blue: #8B1AC8;
-    --primary-blue-dark: #5E008A;
-    --primary-blue-light: #B04AE7;
-    --primary-gradient: linear-gradient(135deg, #8B1AC8 0%, #B04AE7 100%);
-    --accent-gradient: linear-gradient(135deg, #5E008A 0%, #8B1AC8 50%, #B04AE7 100%);
-    --hero-bg: linear-gradient(135deg, #8B1AC8 0%, #5E008A 50%, #3C1E5F 100%);
-    --hero-bg-dark: linear-gradient(135deg, #4A126E 0%, #3C0A60 50%, #2C1850 100%);
-    --highlight-gradient: linear-gradient(135deg, #D493FD 0%, #E4BFFD 50%, #FFFFFF 100%);
-}
-
-html[data-color="orange"] {
-    --primary-blue: #C87200;
-    --primary-blue-dark: #8A4E00;
-    --primary-blue-light: #E7A04A;
-    --primary-gradient: linear-gradient(135deg, #C87200 0%, #E7A04A 100%);
-    --accent-gradient: linear-gradient(135deg, #8A4E00 0%, #C87200 50%, #E7A04A 100%);
-    --hero-bg: linear-gradient(135deg, #C87200 0%, #8A4E00 50%, #5F401E 100%);
-    --hero-bg-dark: linear-gradient(135deg, #6E3E10 0%, #603510 50%, #4E2C18 100%);
-    --highlight-gradient: linear-gradient(135deg, #FDCF93 0%, #FDE4BF 50%, #FFFFFF 100%);
+/* 모던 바이올렛 (Violet + Blue) */
+html[data-color="vibe"] {
+    --primary-blue: #6D28D9;
+    --primary-blue-dark: #4C1D95;
+    --primary-blue-light: #9D5CF0;
+    --accent: #2563EB;
+    --accent-dark: #1D4ED8;
+    --accent-light: #60A5FA;
+    --bg-light-gray: #F8F7FE;
+    --bg-medium-gray: #EEEBFB;
+    --border-light: #E7E3F7;
+    --border-medium: #D3CCEF;
+    --primary-gradient: linear-gradient(135deg, #6D28D9 0%, #9D5CF0 100%);
+    --accent-gradient: linear-gradient(135deg, #4C1D95 0%, #6D28D9 50%, #2563EB 100%);
+    --hero-bg: linear-gradient(135deg, #6D28D9 0%, #4C1D95 55%, #2563EB 100%);
+    --hero-bg-dark: linear-gradient(135deg, #3C1A6E 0%, #2C1255 55%, #18316E 100%);
+    --highlight-gradient: linear-gradient(135deg, #C4B5FD 0%, #A78BFA 50%, #DBEAFE 100%);
 }
 
 html {
@@ -138,6 +162,7 @@ img {
 }
 
 h1, h2, h3, h4 {
+    font-family: var(--font-heading);
     word-break: keep-all;
     overflow-wrap: break-word;
 }
@@ -193,6 +218,32 @@ h4 { line-height: 1.45; letter-spacing: -0.01em; }
     color: var(--text-white);
     transform: translateY(-2px);
     box-shadow: 0 8px 24px rgba(0, 70, 200, 0.3);
+}
+
+/* Gold accent button (academic signature) */
+.btn-accent {
+    background: var(--accent);
+    color: #1B2230;
+    border-color: var(--accent);
+    font-weight: 700;
+}
+
+.btn-accent:hover {
+    background: var(--accent-dark);
+    border-color: var(--accent-dark);
+    color: #FFFFFF;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(200, 160, 74, 0.35);
+}
+
+/* Accent text + small flourishes */
+.text-accent { color: var(--accent); }
+.accent-bar {
+    display: inline-block;
+    width: 48px;
+    height: 4px;
+    border-radius: var(--radius-full);
+    background: var(--accent-gradient);
 }
 
 .btn-primary-large {
