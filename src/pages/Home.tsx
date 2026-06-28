@@ -15,7 +15,7 @@ export default function Home(): ReactElement {
   const stat0 = useCountUp(4);
   const stat1 = useCountUp(16);
   const stat2 = useCountUp(32);
-  const stat3 = useCountUp(65);
+  const stat3 = useCountUp(70);
 
   const stats = [
     { value: stat0.count, label: language === 'ko' ? '전문 과정' : 'Programs', suffix: '' },
@@ -24,31 +24,93 @@ export default function Home(): ReactElement {
     { value: stat3.count, label: language === 'ko' ? '실습 사례' : 'Practice Cases', suffix: '+' },
   ];
 
+  const isKo = language === 'ko';
+  const marqueeWords = (isKo
+    ? '전남대GPT · 프롬프트 · 데이터분석 · 논문작성 · 예산회계 · 연구지원 · 실습 · 평가하기'
+    : 'CNU GPT · Prompts · Data Analysis · Writing · Budget · Research · Practice · Evaluation'
+  ).split(' · ');
+
   return (
     <>
       <SEOHead title={t('site.home.title')} />
 
-      {/* Hero */}
-      <section className="hero">
-        <div className="hero-bg"></div>
-        <div className="container hero-content">
-          <h1 className="hero-title" data-aos="fade-up">
-            {t('site.home.heroTitle')}<br />
-            <span className="hero-highlight">{t('site.home.heroHighlight')}</span>
-          </h1>
-          <p className="hero-desc" data-aos="fade-up" data-aos-delay="100">
-            {t('site.home.heroDesc')}
-          </p>
-          <div className="hero-buttons" data-aos="fade-up" data-aos-delay="200">
-            <button className="btn btn-primary btn-lg" onClick={() => navigate('/courses')}>
-              <i className="fa-solid fa-graduation-cap" /> {t('site.home.heroCTA')}
-            </button>
-            <button className="btn btn-outline btn-lg" onClick={() => navigate('/tools')}>
-              <i className="fa-solid fa-wand-magic-sparkles" /> {t('site.home.heroSecondaryCTA')}
-            </button>
+      {/* Hero — Editorial */}
+      <section className="hero-ed">
+        <div className="hero-ed-bg" aria-hidden="true" />
+        <div className="container">
+          <div className="hero-ed-grid">
+            <div className="hero-ed-main">
+              <div className="hero-ed-eyebrow" data-aos="fade-up">
+                <span>{isKo ? '전남대학교 · 2026 · 전남대GPT 실습 교육' : 'Chonnam National University · 2026 · CNU GPT'}</span>
+              </div>
+              <h1 className="hero-ed-title" data-aos="fade-up" data-aos-delay="50">
+                {isKo ? '전남대GPT로 배우는' : 'Learn with CNU GPT'}<br />
+                <span className="accent">{isKo ? '생성형 AI 실무' : 'Hands-on Generative AI'}</span><br />
+                <span className="accent">{isKo ? '4개 과정 · 16시간' : '4 Programs · 16 Hours'}</span>
+              </h1>
+              <p className="hero-ed-lead" data-aos="fade-up" data-aos-delay="100">
+                {isKo
+                  ? '전남대GPT(타임리GPT 기반)로 배우는 실습 중심 생성형 AI 교육. 기초·심화부터 데이터분석·논문작성·예산회계·연구지원까지, 각 과정 2일 16시간 동안 예시 프롬프트로 직접 따라 하고 결과를 평가하며 익힙니다.'
+                  : 'Hands-on generative AI training on CNU GPT (TimelyGPT-based). From foundations to data analysis, writing, budgeting, and research — 2 days / 16 hours per program, with ready-to-use prompts and evaluation practice.'}
+              </p>
+              <div className="hero-ed-actions" data-aos="fade-up" data-aos-delay="150">
+                <button className="btn btn-primary btn-lg" onClick={() => navigate('/courses')}>
+                  <i className="fa-solid fa-graduation-cap" /> {isKo ? '교육과정 보기' : 'View Courses'}
+                </button>
+                <button className="btn btn-accent btn-lg" onClick={() => navigate('/prompt-eval')}>
+                  <i className="fa-solid fa-clipboard-check" /> {isKo ? '프롬프트 실습·평가' : 'Prompt Lab'}
+                </button>
+              </div>
+            </div>
+
+            <aside className="hero-ed-side" data-aos="fade-left" data-aos-delay="100">
+              <div className="hero-ed-metrics">
+                <div className="hero-metric">
+                  <div className="hero-metric-num accent">4</div>
+                  <div className="hero-metric-label">{isKo ? '전문 과정' : 'Programs'}</div>
+                </div>
+                <div className="hero-metric">
+                  <div className="hero-metric-num">16<span className="small">h</span></div>
+                  <div className="hero-metric-label">{isKo ? '과정당 시간' : 'Hours each'}</div>
+                </div>
+                <div className="hero-metric">
+                  <div className="hero-metric-num">2<span className="small">{isKo ? '일' : 'd'}</span></div>
+                  <div className="hero-metric-label">{isKo ? '과정당 일수' : 'Days each'}</div>
+                </div>
+                <div className="hero-metric">
+                  <div className="hero-metric-num accent">80<span className="small">%</span></div>
+                  <div className="hero-metric-label">{isKo ? '실습 비율' : 'Hands-on'}</div>
+                </div>
+              </div>
+              <div className="hero-ed-card">
+                <div className="hero-ed-card-eyebrow">2026 · CNU GPT Programs</div>
+                <div className="hero-ed-card-title">{isKo ? '4개 과정 · 각 2일 16시간' : 'Four Programs · 16h each'}</div>
+                <ul className="hero-ed-card-list">
+                  {COURSE_CATEGORIES.map((p) => (
+                    <li key={p.id}>
+                      <span className="hero-card-name">{isKo ? p.nameKo : p.nameEn}</span>
+                      <span className="hero-card-dur">{p.duration}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </aside>
           </div>
         </div>
       </section>
+
+      {/* Marquee */}
+      <div className="marquee" aria-hidden="true">
+        <div className="marquee-track">
+          {[0, 1, 2, 3].map((i) => (
+            <span key={i} className="marquee-group">
+              {marqueeWords.map((w, j) => (
+                <span key={`${i}-${j}`}>{w}<span className="dot">&#10022;</span></span>
+              ))}
+            </span>
+          ))}
+        </div>
+      </div>
 
       {/* Course Categories */}
       <section className="section">
