@@ -112,7 +112,7 @@ export default function CourseCategory(): ReactElement {
                 <span className="curriculum-day-badge" style={{ background: program.color }}>{day.badge}</span>
                 <div>
                   <h2 className="curriculum-day-title">{day.theme}</h2>
-                  <span className="curriculum-day-sub">8{language === 'ko' ? '시간 · 4교시' : 'h · 4 sessions'}</span>
+                  <span className="curriculum-day-sub">8{language === 'ko' ? '시간 · 8교시(50분)' : 'h · 8 periods (50min)'}</span>
                 </div>
               </div>
 

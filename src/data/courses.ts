@@ -81,7 +81,7 @@ export const PROGRAMS: Program[] = [
         themeEn: 'Foundations',
         sessions: [
           {
-            period: '1교시',
+            period: '1·2교시',
             time: T1,
             title: '생성형 AI와 전남대GPT 이해',
             goal: '생성형 AI의 작동 원리와 전남대GPT(타임리GPT 기반)의 특징·보안 이점을 이해한다.',
@@ -92,7 +92,7 @@ export const PROGRAMS: Program[] = [
             ],
           },
           {
-            period: '2교시',
+            period: '3·4교시',
             time: T2,
             title: '프롬프트 작성 6원칙',
             goal: '원하는 결과를 얻는 프롬프트 구조(역할·맥락·형식·예시)를 익힌다.',
@@ -103,7 +103,7 @@ export const PROGRAMS: Program[] = [
             ],
           },
           {
-            period: '3교시',
+            period: '5·6교시',
             time: T3,
             title: '실습 — 문서·이메일·요약 자동화',
             goal: '일상 업무 문서를 전남대GPT로 빠르게 작성·정리한다.',
@@ -115,7 +115,7 @@ export const PROGRAMS: Program[] = [
             ],
           },
           {
-            period: '4교시',
+            period: '7·8교시',
             time: T4,
             title: '실습 — 아이디어·기획에 활용하기',
             goal: '아이디어 정리·기획에 AI를 활용하는 감을 익힌다.',
@@ -134,7 +134,7 @@ export const PROGRAMS: Program[] = [
         themeEn: 'Advanced',
         sessions: [
           {
-            period: '1교시',
+            period: '1·2교시',
             time: T1,
             title: '고급 프롬프트 — 페르소나·사고연쇄',
             goal: '복잡한 업무를 단계적으로 풀어내는 고급 프롬프트 기법을 익힌다.',
@@ -145,7 +145,7 @@ export const PROGRAMS: Program[] = [
             ],
           },
           {
-            period: '2교시',
+            period: '3·4교시',
             time: T2,
             title: '실습 — 파일·이미지·데이터 분석',
             goal: '문서·표 파일을 업로드해 요약·분석·재가공한다.',
@@ -156,7 +156,7 @@ export const PROGRAMS: Program[] = [
             ],
           },
           {
-            period: '3교시',
+            period: '5·6교시',
             time: T3,
             title: '실습 — 나만의 맞춤 GPT 만들기',
             goal: '반복 업무를 처리하는 전용 도우미(맞춤 GPT)를 설계한다.',
@@ -167,7 +167,7 @@ export const PROGRAMS: Program[] = [
             ],
           },
           {
-            period: '4교시',
+            period: '7·8교시',
             time: T4,
             title: '실습 — 업무 자동화 워크플로우 설계',
             goal: '내 반복 업무를 진단하고 AI 자동화 흐름을 그린다.',
@@ -208,7 +208,7 @@ export const PROGRAMS: Program[] = [
         themeEn: 'Data Analysis',
         sessions: [
           {
-            period: '1교시',
+            period: '1·2교시',
             time: T1,
             title: '연구 데이터 이해와 전처리',
             goal: 'AI로 지저분한 데이터를 정리하고 분석 가능한 형태로 만든다.',
@@ -219,7 +219,7 @@ export const PROGRAMS: Program[] = [
             ],
           },
           {
-            period: '2교시',
+            period: '3·4교시',
             time: T2,
             title: '실습 — 기술통계와 가설검정 설계',
             goal: '연구 질문에 맞는 통계 방법을 선택하고 해석한다.',
@@ -230,7 +230,7 @@ export const PROGRAMS: Program[] = [
             ],
           },
           {
-            period: '3교시',
+            period: '5·6교시',
             time: T3,
             title: '실습 — 데이터 시각화와 해석',
             goal: '데이터를 적절한 그래프로 표현하고 의미를 읽어낸다.',
@@ -241,7 +241,7 @@ export const PROGRAMS: Program[] = [
             ],
           },
           {
-            period: '4교시',
+            period: '7·8교시',
             time: T4,
             title: '실습 — 분석 결과 종합 정리',
             goal: '분석 결과를 연구 흐름에 맞게 종합한다.',
@@ -260,7 +260,7 @@ export const PROGRAMS: Program[] = [
         themeEn: 'Academic Writing',
         sessions: [
           {
-            period: '1교시',
+            period: '1·2교시',
             time: T1,
             title: '문헌 검토와 연구 위치잡기',
             goal: '선행연구를 정리하고 내 연구의 차별점을 드러낸다.',
@@ -271,7 +271,7 @@ export const PROGRAMS: Program[] = [
             ],
           },
           {
-            period: '2교시',
+            period: '3·4교시',
             time: T2,
             title: '실습 — IMRaD 구조로 초안 쓰기',
             goal: '논문 표준 구조에 맞춰 각 절의 초안을 작성한다.',
@@ -282,7 +282,7 @@ export const PROGRAMS: Program[] = [
             ],
           },
           {
-            period: '3교시',
+            period: '5·6교시',
             time: T3,
             title: '실습 — 영문 교정과 학술 문체',
             goal: '학술 영어로 다듬고 자연스러운 표현으로 교정한다.',
@@ -293,7 +293,7 @@ export const PROGRAMS: Program[] = [
             ],
           },
           {
-            period: '4교시',
+            period: '7·8교시',
             time: T4,
             title: '실습 — 초록·키워드·투고 준비',
             goal: '초록을 완성하고 투고 체크리스트로 마무리한다.',
@@ -334,7 +334,7 @@ export const PROGRAMS: Program[] = [
         themeEn: 'Data Analysis',
         sessions: [
           {
-            period: '1교시',
+            period: '1·2교시',
             time: T1,
             title: '행정 데이터와 엑셀 기초 자동화',
             goal: 'AI로 엑셀 수식과 데이터 정리를 빠르게 처리한다.',
@@ -345,7 +345,7 @@ export const PROGRAMS: Program[] = [
             ],
           },
           {
-            period: '2교시',
+            period: '3·4교시',
             time: T2,
             title: '실습 — 데이터 집계와 피벗',
             goal: '대량 행정 데이터를 요약·집계해 한눈에 본다.',
@@ -356,7 +356,7 @@ export const PROGRAMS: Program[] = [
             ],
           },
           {
-            period: '3교시',
+            period: '5·6교시',
             time: T3,
             title: '실습 — 데이터 시각화로 보고하기',
             goal: '숫자를 설득력 있는 그래프로 바꾼다.',
@@ -367,7 +367,7 @@ export const PROGRAMS: Program[] = [
             ],
           },
           {
-            period: '4교시',
+            period: '7·8교시',
             time: T4,
             title: '실습 — 데이터 점검과 오류 찾기',
             goal: '데이터 오류를 AI로 빠르게 검증한다.',
@@ -386,7 +386,7 @@ export const PROGRAMS: Program[] = [
         themeEn: 'Budget & Accounting',
         sessions: [
           {
-            period: '1교시',
+            period: '1·2교시',
             time: T1,
             title: '예산 편성 실무와 AI 활용',
             goal: '예산안 작성과 산출 근거 정리를 효율화한다.',
@@ -397,7 +397,7 @@ export const PROGRAMS: Program[] = [
             ],
           },
           {
-            period: '2교시',
+            period: '3·4교시',
             time: T2,
             title: '실습 — 정산·증빙 처리',
             goal: '정산 절차와 증빙 점검을 정확하게 수행한다.',
@@ -408,7 +408,7 @@ export const PROGRAMS: Program[] = [
             ],
           },
           {
-            period: '3교시',
+            period: '5·6교시',
             time: T3,
             title: '실습 — 재무 보고서 작성',
             goal: '집행 현황을 보고서로 종합한다.',
@@ -419,7 +419,7 @@ export const PROGRAMS: Program[] = [
             ],
           },
           {
-            period: '4교시',
+            period: '7·8교시',
             time: T4,
             title: '실습 — 회계 규정 Q&A 도우미',
             goal: '복잡한 규정을 빠르게 확인하는 업무 도우미를 만든다.',
@@ -460,7 +460,7 @@ export const PROGRAMS: Program[] = [
         themeEn: 'Research Design',
         sessions: [
           {
-            period: '1교시',
+            period: '1·2교시',
             time: T1,
             title: '연구 주제 구체화와 질문 설계',
             goal: '막연한 아이디어를 검증 가능한 연구 질문으로 다듬는다.',
@@ -471,7 +471,7 @@ export const PROGRAMS: Program[] = [
             ],
           },
           {
-            period: '2교시',
+            period: '3·4교시',
             time: T2,
             title: '실습 — 선행연구 탐색과 정리',
             goal: '선행연구를 빠르게 파악하고 연구 동향을 정리한다.',
@@ -482,7 +482,7 @@ export const PROGRAMS: Program[] = [
             ],
           },
           {
-            period: '3교시',
+            period: '5·6교시',
             time: T3,
             title: '실습 — 연구계획서 작성',
             goal: '연구계획서 핵심 구성요소를 초안으로 만든다.',
@@ -493,7 +493,7 @@ export const PROGRAMS: Program[] = [
             ],
           },
           {
-            period: '4교시',
+            period: '7·8교시',
             time: T4,
             title: '실습 — 연구윤리와 IRB 준비',
             goal: '연구윤리 요건과 IRB 서류 작성을 이해한다.',
@@ -512,7 +512,7 @@ export const PROGRAMS: Program[] = [
         themeEn: 'Experiment Support',
         sessions: [
           {
-            period: '1교시',
+            period: '1·2교시',
             time: T1,
             title: '실험 프로토콜 설계',
             goal: '재현 가능한 실험 절차를 체계적으로 설계한다.',
@@ -523,7 +523,7 @@ export const PROGRAMS: Program[] = [
             ],
           },
           {
-            period: '2교시',
+            period: '3·4교시',
             time: T2,
             title: '실습 — 실험 데이터 기록·관리',
             goal: '데이터를 일관되게 기록·관리하는 체계를 만든다.',
@@ -534,7 +534,7 @@ export const PROGRAMS: Program[] = [
             ],
           },
           {
-            period: '3교시',
+            period: '5·6교시',
             time: T3,
             title: '실습 — 분석 코드 작성과 디버깅',
             goal: 'AI로 분석 코드를 작성하고 오류를 해결한다.',
@@ -545,7 +545,7 @@ export const PROGRAMS: Program[] = [
             ],
           },
           {
-            period: '4교시',
+            period: '7·8교시',
             time: T4,
             title: '실습 — 결과 정리와 연구노트',
             goal: '실험 결과를 정리하고 다음 연구로 연결한다.',
