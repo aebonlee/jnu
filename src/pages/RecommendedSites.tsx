@@ -8,6 +8,7 @@ interface SiteItem {
   nameEn: string;
   url: string;
   icon: string;
+  iconStyle?: string; // 기본 fa-solid, 브랜드 로고는 fa-brands
   descKo: string;
   descEn: string;
   category: 'ai' | 'company';
@@ -36,7 +37,8 @@ const SITES: SiteItem[] = [
     name: 'Gemini',
     nameEn: 'Gemini',
     url: 'https://gemini.google.com',
-    icon: 'fa-sparkles',
+    icon: 'fa-google',
+    iconStyle: 'fa-brands',
     descKo: 'Google의 AI. 검색 연동, 이미지 분석, 멀티모달 기능을 제공합니다.',
     descEn: 'Google\'s AI with search integration, image analysis, and multimodal capabilities.',
     category: 'ai',
@@ -45,7 +47,8 @@ const SITES: SiteItem[] = [
     name: 'Copilot',
     nameEn: 'Copilot',
     url: 'https://copilot.microsoft.com',
-    icon: 'fa-windows',
+    icon: 'fa-microsoft',
+    iconStyle: 'fa-brands',
     descKo: 'Microsoft의 AI 코파일럿. Office 통합, 웹 검색, 이미지 생성을 지원합니다.',
     descEn: 'Microsoft\'s AI copilot with Office integration, web search, and image generation.',
     category: 'ai',
@@ -148,7 +151,7 @@ export default function RecommendedSites(): ReactElement {
                   className="recommended-card"
                 >
                   <div className="recommended-card-icon">
-                    <i className={`fa-solid ${site.icon}`} />
+                    <i className={`${site.iconStyle || 'fa-solid'} ${site.icon}`} />
                   </div>
                   <div className="recommended-card-content">
                     <h3>{isKo ? site.name : site.nameEn}</h3>
@@ -179,7 +182,7 @@ export default function RecommendedSites(): ReactElement {
                   className="recommended-card"
                 >
                   <div className="recommended-card-icon company">
-                    <i className={`fa-solid ${site.icon}`} />
+                    <i className={`${site.iconStyle || 'fa-solid'} ${site.icon}`} />
                   </div>
                   <div className="recommended-card-content">
                     <h3>{isKo ? site.name : site.nameEn}</h3>
