@@ -135,7 +135,7 @@ const Navbar = (): ReactElement => {
 
           <div className="nav-actions">
             {site.features.search && (
-              <button className="nav-search-btn" onClick={() => setShowSearch(true)} aria-label="Search">
+              <button className="nav-search-btn nav-tip" data-tip={language === 'ko' ? '검색' : 'Search'} onClick={() => setShowSearch(true)} aria-label="Search">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <circle cx="11" cy="11" r="8" />
                   <line x1="21" y1="21" x2="16.65" y2="16.65" />
@@ -143,7 +143,7 @@ const Navbar = (): ReactElement => {
               </button>
             )}
             {site.features.shop && (
-              <Link to="/cart" className="cart-icon-link" aria-label="Cart">
+              <Link to="/cart" className="cart-icon-link nav-tip" data-tip={language === 'ko' ? '장바구니' : 'Cart'} aria-label="Cart">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="cart-icon-svg">
                   <circle cx="9" cy="21" r="1" />
                   <circle cx="20" cy="21" r="1" />
@@ -152,12 +152,13 @@ const Navbar = (): ReactElement => {
                 {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
               </Link>
             )}
-            <button className="lang-switcher" onClick={toggleLanguage} aria-label={language === 'ko' ? 'Switch to English' : '한국어로 전환'}>
+            <button className="lang-switcher nav-tip" data-tip={language === 'ko' ? '언어 (한/영)' : 'Language (KR/EN)'} onClick={toggleLanguage} aria-label={language === 'ko' ? 'Switch to English' : '한국어로 전환'}>
               {language === 'ko' ? 'EN' : 'KR'}
             </button>
             <div className="color-picker-wrapper">
               <button
-                className="color-picker-btn"
+                className="color-picker-btn nav-tip"
+                data-tip={language === 'ko' ? '색상 테마' : 'Color theme'}
                 onClick={() => setShowColorPicker(!showColorPicker)}
                 aria-label="Color theme"
               >
@@ -187,7 +188,7 @@ const Navbar = (): ReactElement => {
                 </>
               )}
             </div>
-            <button className="theme-toggle" onClick={toggleTheme} aria-label="테마 전환" data-mode={mode}>
+            <button className="theme-toggle nav-tip" data-tip={language === 'ko' ? (mode === 'auto' ? '화면 모드 (자동)' : mode === 'light' ? '화면 모드 (라이트)' : '화면 모드 (다크)') : 'Display mode'} onClick={toggleTheme} aria-label="테마 전환" data-mode={mode}>
               {/* Light mode icon (sun) */}
               <svg className="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="12" cy="12" r="5" />
@@ -219,7 +220,7 @@ const Navbar = (): ReactElement => {
             {/* User Auth */}
             {isLoggedIn ? (
               <div className="nav-user-menu" ref={userMenuRef}>
-                <button className="nav-user-btn" onClick={() => setShowUserMenu(!showUserMenu)}>
+                <button className="nav-user-btn nav-tip" data-tip={language === 'ko' ? '내 메뉴' : 'My menu'} onClick={() => setShowUserMenu(!showUserMenu)}>
                   <span className="nav-user-avatar-placeholder">{userInitial}</span>
                 </button>
                 {showUserMenu && (
@@ -255,7 +256,7 @@ const Navbar = (): ReactElement => {
                 )}
               </div>
             ) : (
-              <Link to="/login" className="nav-login-btn">Login</Link>
+              <Link to="/login" className="nav-login-btn nav-tip" data-tip={language === 'ko' ? '로그인' : 'Sign in'}>Login</Link>
             )}
             <button
               className={`mobile-toggle ${isMobileMenuOpen ? 'active' : ''}`}

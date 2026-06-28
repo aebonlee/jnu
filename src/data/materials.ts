@@ -18,10 +18,10 @@ export interface MaterialItem {
 }
 
 export const MATERIAL_CATEGORIES: MaterialCategory[] = [
-  { id: 'ai-basics', nameKo: 'AI 기초', nameEn: 'AI Basics', icon: 'fa-robot', descKo: '생성형 AI의 기본 개념과 주요 서비스를 학습합니다.', descEn: 'Learn the fundamentals of generative AI and major services.' },
-  { id: 'document', nameKo: '문서 자동화', nameEn: 'Document Automation', icon: 'fa-file-lines', descKo: 'AI를 활용한 문서 작성 및 자동화를 학습합니다.', descEn: 'Learn document creation and automation with AI.' },
-  { id: 'admin', nameKo: '행정 업무', nameEn: 'Administration', icon: 'fa-briefcase', descKo: '행정 업무에 AI를 효과적으로 활용하는 방법을 학습합니다.', descEn: 'Learn how to effectively use AI in administrative tasks.' },
-  { id: 'prompt', nameKo: '프롬프트 엔지니어링', nameEn: 'Prompt Engineering', icon: 'fa-keyboard', descKo: '효과적인 프롬프트 작성 기법을 학습합니다.', descEn: 'Learn effective prompt writing techniques.' },
+  { id: 'foundation', nameKo: '기초·심화 자료', nameEn: 'Foundations', icon: 'fa-seedling', descKo: '생성형 AI 도구와 프롬프트 작성 기법 학습자료입니다.', descEn: 'Materials on generative AI tools and prompt-writing techniques.' },
+  { id: 'research-writing', nameKo: '데이터분석·논문작성 자료', nameEn: 'Data Analysis & Writing', icon: 'fa-chart-line', descKo: '데이터 분석과 문서·논문 작성에 필요한 학습자료입니다.', descEn: 'Materials for data analysis and academic/document writing.' },
+  { id: 'data-budget', nameKo: '데이터분석·예산회계 자료', nameEn: 'Data Analysis & Budget', icon: 'fa-coins', descKo: '엑셀·데이터 처리와 예산·회계 실무 학습자료입니다.', descEn: 'Materials for spreadsheet/data work and budgeting & accounting.' },
+  { id: 'research-lab', nameKo: '연구·실험지원 자료', nameEn: 'Research & Experiment', icon: 'fa-flask', descKo: '연구·실험 과정을 지원하는 업무 설계·프롬프트 학습자료입니다.', descEn: 'Materials supporting the research and experiment workflow.' },
 ];
 
 export const MATERIALS: MaterialItem[] = [
@@ -30,7 +30,7 @@ export const MATERIALS: MaterialItem[] = [
   // ═══════════════════════════════════════
   {
     id: 'ai-overview',
-    categoryId: 'ai-basics',
+    categoryId: 'foundation',
     nameKo: '생성형 AI 개요',
     nameEn: 'Generative AI Overview',
     type: 'guide',
@@ -115,7 +115,7 @@ Generative AI refers to artificial intelligence that can create new content such
   },
   {
     id: 'chatgpt-guide',
-    categoryId: 'ai-basics',
+    categoryId: 'foundation',
     nameKo: 'ChatGPT 활용법',
     nameEn: 'How to Use ChatGPT',
     type: 'guide',
@@ -193,7 +193,7 @@ ChatGPT is OpenAI's conversational AI service and the most widely used generativ
   },
   {
     id: 'claude-guide',
-    categoryId: 'ai-basics',
+    categoryId: 'foundation',
     nameKo: 'Claude 활용법',
     nameEn: 'How to Use Claude',
     type: 'guide',
@@ -276,7 +276,7 @@ Claude is Anthropic's AI assistant focused on **safety** and **accuracy**, with 
   },
   {
     id: 'gemini-guide',
-    categoryId: 'ai-basics',
+    categoryId: 'foundation',
     nameKo: 'Gemini 활용법',
     nameEn: 'How to Use Gemini',
     type: 'guide',
@@ -357,7 +357,7 @@ Gemini is Google DeepMind's multimodal AI with seamless Google ecosystem integra
   },
   {
     id: 'ai-comparison',
-    categoryId: 'ai-basics',
+    categoryId: 'foundation',
     nameKo: 'AI 서비스 비교',
     nameEn: 'AI Service Comparison',
     type: 'reference',
@@ -448,7 +448,7 @@ Gemini is Google DeepMind's multimodal AI with seamless Google ecosystem integra
   // ═══════════════════════════════════════
   {
     id: 'official-doc-guide',
-    categoryId: 'document',
+    categoryId: 'research-writing',
     nameKo: '공문서 작성 가이드',
     nameEn: 'Official Document Guide',
     type: 'guide',
@@ -544,7 +544,7 @@ Write a [document type].
   },
   {
     id: 'meeting-minutes',
-    categoryId: 'document',
+    categoryId: 'research-writing',
     nameKo: '회의록 정리 가이드',
     nameEn: 'Meeting Minutes Guide',
     type: 'template',
@@ -648,7 +648,7 @@ Use the structured template with: Overview, Agenda, Discussion, Decisions, Actio
   },
   {
     id: 'ppt-generation',
-    categoryId: 'document',
+    categoryId: 'research-writing',
     nameKo: 'PPT 자동 생성',
     nameEn: 'Auto PPT Generation',
     type: 'guide',
@@ -738,7 +738,7 @@ Use the structured template with: Overview, Agenda, Discussion, Decisions, Actio
   },
   {
     id: 'excel-automation',
-    categoryId: 'document',
+    categoryId: 'data-budget',
     nameKo: 'Excel 수식 자동화',
     nameEn: 'Excel Formula Automation',
     type: 'guide',
@@ -838,7 +838,7 @@ AI can write VBA macros for repetitive tasks like merging multiple Excel files.`
   // ═══════════════════════════════════════
   {
     id: 'hr-automation',
-    categoryId: 'admin',
+    categoryId: 'data-budget',
     nameKo: '인사 문서 자동화',
     nameEn: 'HR Document Automation',
     type: 'guide',
@@ -922,7 +922,7 @@ AI can write VBA macros for repetitive tasks like merging multiple Excel files.`
   },
   {
     id: 'data-analysis-basics',
-    categoryId: 'admin',
+    categoryId: 'data-budget',
     nameKo: '데이터 분석 기초',
     nameEn: 'Data Analysis Basics',
     type: 'guide',
@@ -1014,7 +1014,7 @@ AI can write VBA macros for repetitive tasks like merging multiple Excel files.`
   },
   {
     id: 'workflow-design',
-    categoryId: 'admin',
+    categoryId: 'research-lab',
     nameKo: '업무 워크플로우 설계',
     nameEn: 'Workflow Design',
     type: 'guide',
@@ -1117,7 +1117,7 @@ Compare investment costs (tool subscriptions, setup time) vs savings (hours save
   },
   {
     id: 'admin-prompt-library',
-    categoryId: 'admin',
+    categoryId: 'research-lab',
     nameKo: '업무용 프롬프트 모음',
     nameEn: 'Prompt Library',
     type: 'template',
@@ -1257,7 +1257,7 @@ Ready-to-use prompts organized by task type:
   // ═══════════════════════════════════════
   {
     id: 'rcf-framework',
-    categoryId: 'prompt',
+    categoryId: 'foundation',
     nameKo: 'RCF 프레임워크',
     nameEn: 'RCF Framework',
     type: 'guide',
@@ -1371,7 +1371,7 @@ Specify desired output structure, length, and style.
   },
   {
     id: 'role-based-prompt',
-    categoryId: 'prompt',
+    categoryId: 'foundation',
     nameKo: '역할 기반 프롬프트',
     nameEn: 'Role-Based Prompting',
     type: 'guide',
@@ -1467,7 +1467,7 @@ Ask AI to analyze from multiple viewpoints (faculty, student, administration).
   },
   {
     id: 'chain-of-thought',
-    categoryId: 'prompt',
+    categoryId: 'foundation',
     nameKo: '단계적 프롬프트 (Chain of Thought)',
     nameEn: 'Step-by-Step Prompting',
     type: 'guide',
@@ -1597,7 +1597,7 @@ Each step is reviewed before proceeding to the next.`,
   },
   {
     id: 'prompt-examples',
-    categoryId: 'prompt',
+    categoryId: 'research-lab',
     nameKo: '프롬프트 실전 예시',
     nameEn: 'Practical Prompt Examples',
     type: 'reference',

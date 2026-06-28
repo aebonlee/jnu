@@ -14,7 +14,7 @@ export default function LearningMaterials(): ReactElement {
   const isKo = language === 'ko';
 
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(() => {
-    const initial = routeCategory || MATERIAL_CATEGORIES[0]?.id || 'ai-basics';
+    const initial = routeCategory || MATERIAL_CATEGORIES[0]?.id || 'foundation';
     return new Set([initial]);
   });
   const [selectedItemId, setSelectedItemId] = useState<string | null>(null);

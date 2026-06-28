@@ -75,10 +75,10 @@ const site: SiteConfig = {
       path: '/materials',
       activePath: '/materials',
       dropdown: [
-        { path: '/materials/ai-basics', labelKey: 'site.nav.matAiBasics' },
-        { path: '/materials/document', labelKey: 'site.nav.matDocument' },
-        { path: '/materials/admin', labelKey: 'site.nav.matAdmin' },
-        { path: '/materials/prompt', labelKey: 'site.nav.matPrompt' },
+        { path: '/materials/foundation', labelKey: 'site.nav.matFoundation' },
+        { path: '/materials/research-writing', labelKey: 'site.nav.matResearchWriting' },
+        { path: '/materials/data-budget', labelKey: 'site.nav.matDataBudget' },
+        { path: '/materials/research-lab', labelKey: 'site.nav.matResearchLab' },
       ]
     },
     {
