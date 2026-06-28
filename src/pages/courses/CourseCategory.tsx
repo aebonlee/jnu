@@ -1,13 +1,16 @@
+import { useState } from 'react';
 import { useParams, useNavigate, Link, NavLink } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
 import SEOHead from '../../components/SEOHead';
 import { getProgramById, PROGRAMS } from '../../data/courses';
+import { MATERIALS } from '../../data/materials';
 import type { ReactElement } from 'react';
 
 export default function CourseCategory(): ReactElement {
   const { category } = useParams<{ category: string }>();
   const { language } = useLanguage();
   const navigate = useNavigate();
+  const [matOpen, setMatOpen] = useState(true);
 
   const program = getProgramById(category || '');
 
@@ -23,6 +26,7 @@ export default function CourseCategory(): ReactElement {
   }
 
   const totalSessions = program.curriculum.reduce((s, d) => s + d.sessions.length, 0);
+  const materials = MATERIALS.filter((m) => m.categoryId === program.id);
 
   return (
     <>
@@ -76,9 +80,34 @@ export default function CourseCategory(): ReactElement {
                 <NavLink end to={`/courses/${program.id}`} className="course-sidebar-link active">
                   <i className="fa-solid fa-list-check" /> {language === 'ko' ? '커리큘럼' : 'Curriculum'}
                 </NavLink>
-                <NavLink to={`/materials/${program.id}`} className="course-sidebar-link">
+
+                {/* 학습자료 — 드롭다운으로 해당 과목 자료 연결 */}
+                <button
+                  type="button"
+                  className={`course-sidebar-link course-sidebar-toggle${matOpen ? ' open' : ''}`}
+                  onClick={() => setMatOpen(!matOpen)}
+                  aria-expanded={matOpen}
+                >
                   <i className="fa-solid fa-folder-open" /> {language === 'ko' ? '학습자료' : 'Materials'}
-                </NavLink>
+                  <i className="fa-solid fa-chevron-down course-sidebar-chevron" />
+                </button>
+                {matOpen && (
+                  <div className="course-sidebar-sublist">
+                    {materials.map((m) => (
+                      <Link
+                        key={m.id}
+                        to={`/materials/${program.id}?m=${m.id}`}
+                        className="course-sidebar-link sub"
+                      >
+                        <i className="fa-regular fa-file-lines" /> {language === 'ko' ? m.nameKo : m.nameEn}
+                      </Link>
+                    ))}
+                    <Link to={`/materials/${program.id}`} className="course-sidebar-link sub more">
+                      <i className="fa-solid fa-arrow-right" /> {language === 'ko' ? '학습자료 전체보기' : 'View all materials'}
+                    </Link>
+                  </div>
+                )}
+
                 <NavLink to={`/community/${program.id}`} className="course-sidebar-link">
                   <i className="fa-solid fa-comments" /> {language === 'ko' ? '게시판' : 'Board'}
                 </NavLink>

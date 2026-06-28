@@ -803,3 +803,37 @@
   .course-sidebar-title { width: 100%; }
   .course-sidebar-nav { border-top: none; padding: 4px 0; }
 }
+
+/* 과정 사이드바: 학습자료 드롭다운 */
+.course-sidebar-toggle {
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+.course-sidebar-chevron {
+  margin-left: auto;
+  font-size: 11px;
+  transition: transform 0.2s ease;
+  color: var(--text-light) !important;
+}
+.course-sidebar-toggle.open .course-sidebar-chevron { transform: rotate(180deg); }
+.course-sidebar-sublist {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  margin: 2px 0 4px 10px;
+  padding-left: 8px;
+  border-left: 1px solid var(--border-light);
+}
+.course-sidebar-sublist .course-sidebar-link.sub {
+  padding: 7px 10px;
+  font-size: 12.5px;
+}
+.course-sidebar-link.sub.more {
+  color: var(--accent-dark);
+  font-weight: 600;
+}
+.course-sidebar-link.sub.more i { color: var(--accent-dark); }

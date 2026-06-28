@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
@@ -10,6 +10,7 @@ import type { ReactElement } from 'react';
 
 export default function LearningMaterials(): ReactElement {
   const { category: routeCategory } = useParams<{ category: string }>();
+  const [searchParams] = useSearchParams();
   const { language } = useLanguage();
   const isKo = language === 'ko';
 
@@ -25,6 +26,17 @@ export default function LearningMaterials(): ReactElement {
       setExpandedCategories(prev => new Set(prev).add(routeCategory));
     }
   }, [routeCategory]);
+
+  // 특정 자료 딥링크(?m=<id>)로 바로 열기
+  useEffect(() => {
+    const m = searchParams.get('m');
+    if (!m) return;
+    const item = MATERIALS.find(x => x.id === m);
+    if (!item) return;
+    setSelectedItemId(m);
+    setExpandedCategories(prev => new Set(prev).add(item.categoryId));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [searchParams]);
 
   const selectedItem = selectedItemId ? MATERIALS.find(m => m.id === selectedItemId) : null;
 
