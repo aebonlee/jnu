@@ -4,6 +4,7 @@ import { useLanguage } from '../../contexts/LanguageContext';
 import { useAuth } from '../../contexts/AuthContext';
 import { useToast } from '../../contexts/ToastContext';
 import SEOHead from '../../components/SEOHead';
+import PromptEvalNav from '../../components/PromptEvalNav';
 import { scoreCriteria } from './data/quiz-questions';
 import '../../styles/practice.css';
 
@@ -279,6 +280,7 @@ export default function PromptWorkshop() {
       <div className="workshop-layout">
         {/* Sidebar */}
         <aside className="workshop-sidebar">
+          <PromptEvalNav />
           <h3>{isKo ? '시나리오 선택' : 'Select Scenario'}</h3>
           <ul className="workshop-scenario-list">
             {SCENARIOS.map(s => (

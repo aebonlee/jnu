@@ -4,6 +4,7 @@ import { useLanguage } from '../../contexts/LanguageContext';
 import { useAuth } from '../../contexts/AuthContext';
 import { useToast } from '../../contexts/ToastContext';
 import SEOHead from '../../components/SEOHead';
+import PromptEvalNav from '../../components/PromptEvalNav';
 import { quizQuestions, evalQuestions, writeQuestions, scoreCriteria } from './data/quiz-questions';
 import { saveScore, getHistory, calcGrade } from '../../utils/practice';
 import '../../styles/practice.css';
@@ -145,6 +146,7 @@ export default function PromptPractice() {
 
       <div className="practice-layout">
         <aside className="practice-sidebar">
+          <PromptEvalNav />
           <h3>{isKo ? '실습 진행' : 'Progress'}</h3>
           <div className="practice-progress">
             <div className="practice-progress-bar">

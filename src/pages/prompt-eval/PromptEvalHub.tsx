@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
 import GuidePage from '../../components/GuidePage';
+import PromptEvalNav from '../../components/PromptEvalNav';
 import promptBasics from './data/prompt-basics';
 import promptEvaluation from './data/prompt-evaluation';
 import promptTechniques from './data/prompt-techniques';
@@ -19,6 +20,7 @@ export default function PromptEvalHub() {
         seoDescription="프롬프트 작성 기법, 평가 기준, 실전 예시 및 실습 가이드"
         path="/prompt-eval"
         dataFiles={[promptBasics, promptEvaluation, promptTechniques, promptExamples]}
+        sidebarHeader={<PromptEvalNav />}
         sidebarFooter={
           <>
             <Link to="/prompt-eval/workshop" className="guide-sidebar-cta workshop">

@@ -50,11 +50,11 @@ const site: SiteConfig = {
     license: false,
   },
 
-  // 기본 컬러셋 = academic(네이비+골드). 나머지는 후보 컬러셋
+  // 기본 컬러셋 = cnu(전남대 다크 그린). 나머지는 후보 컬러셋
   colors: [
-    { name: 'academic', color: '#C8A04A' }, // 네이비+골드 (기본)
+    { name: 'cnu', color: '#00553F' },       // 전남대 그린 (기본)
+    { name: 'academic', color: '#C8A04A' }, // 네이비+골드
     { name: 'research', color: '#14B8A6' },  // 딥네이비+틸
-    { name: 'cnu', color: '#00553F' },       // 전남대 그린
     { name: 'vibe', color: '#6D28D9' },      // 모던 바이올렛
   ],
 
@@ -64,16 +64,7 @@ const site: SiteConfig = {
     { path: '/courses/research-writing', activePath: '/courses/research-writing', labelKey: 'site.nav.progResearchWriting' },
     { path: '/courses/data-budget', activePath: '/courses/data-budget', labelKey: 'site.nav.progDataBudget' },
     { path: '/courses/research-lab', activePath: '/courses/research-lab', labelKey: 'site.nav.progResearchLab' },
-    {
-      labelKey: 'site.nav.promptPractice',
-      path: '/prompt-eval',
-      activePath: '/prompt-eval',
-      dropdown: [
-        { path: '/prompt-eval', labelKey: 'site.nav.promptLearn' },
-        { path: '/prompt-eval/practice', labelKey: 'site.nav.promptStep' },
-        { path: '/prompt-eval/workshop', labelKey: 'site.nav.promptEval' },
-      ]
-    },
+    { path: '/prompt-eval', activePath: '/prompt-eval', labelKey: 'site.nav.promptPractice' },
     { path: '/recommended', labelKey: 'site.nav.recommended' },
   ],
 

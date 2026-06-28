@@ -34,6 +34,7 @@ interface GuidePageProps {
   path: string;
   dataFiles: DataFile[];
   ctaBanner?: React.ReactNode;
+  sidebarHeader?: React.ReactNode;
   sidebarFooter?: React.ReactNode;
 }
 
@@ -52,7 +53,7 @@ const markdownComponents = {
   },
 };
 
-export default function GuidePage({ seoTitle, seoTitleEn, seoDescription, path, dataFiles, ctaBanner, sidebarFooter }: GuidePageProps) {
+export default function GuidePage({ seoTitle, seoTitleEn, seoDescription, path, dataFiles, ctaBanner, sidebarHeader, sidebarFooter }: GuidePageProps) {
   const { language } = useLanguage();
   const isKo = language === 'ko';
 
@@ -90,6 +91,7 @@ export default function GuidePage({ seoTitle, seoTitleEn, seoDescription, path, 
       />
       <div className="guide-layout">
         <aside className="guide-sidebar">
+          {sidebarHeader}
           <div className="guide-sidebar-title">{isKo ? '목차' : 'Contents'}</div>
           <ul className="guide-nav">
             {hasMultipleFiles ? (
