@@ -555,9 +555,154 @@
   margin-top: 16px;
 }
 
+/* ── Overview band (교육 특징) ── */
+.overview-band {
+  background: var(--hero-bg);
+  color: #fff;
+  padding: 92px 0;
+}
+.overview-grid {
+  display: grid;
+  grid-template-columns: 0.82fr 1.18fr;
+  gap: 64px;
+  align-items: start;
+}
+.overview-eyebrow {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 16px;
+  color: var(--accent-light);
+  margin-bottom: 16px;
+}
+.overview-eyebrow.accent-eyebrow { color: var(--accent-dark); }
+.overview-intro h2 {
+  font-size: 34px;
+  line-height: 1.32;
+  color: #fff;
+  white-space: pre-line;
+}
+.overview-intro p {
+  font-size: 15.5px;
+  line-height: 1.78;
+  color: rgba(255, 255, 255, 0.75);
+  margin-top: 22px;
+  max-width: 420px;
+}
+.overview-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.overview-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: var(--radius-lg);
+  padding: 26px;
+  transition: var(--transition-base);
+}
+.overview-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--accent);
+  transform: translateY(-4px);
+}
+.overview-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+.overview-no {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  color: var(--accent-light);
+}
+.overview-card-top i { font-size: 22px; color: var(--accent-light); }
+.overview-card h3 { font-size: 18px; color: #fff; margin-bottom: 8px; }
+.overview-card p {
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+/* ── 준비사항 ── */
+.prep-wrap {
+  background: var(--accent-soft);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-xl);
+  padding: 46px 50px;
+}
+.prep-head { margin-bottom: 28px; }
+.prep-head h2 { font-size: 30px; margin-bottom: 12px; }
+.prep-head p {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 700px;
+}
+.prep-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.prep-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  background: var(--card-bg);
+  border-radius: var(--radius-md);
+  padding: 20px 22px;
+}
+.prep-no {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--primary-blue);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 700;
+}
+.prep-title { font-size: 15.5px; font-weight: 600; color: var(--text-primary); }
+.prep-desc { font-size: 14px; color: var(--text-secondary); margin-top: 5px; line-height: 1.6; }
+
+/* ── 교육 안내 (info) ── */
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+}
+.info-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 30px 32px;
+}
+.info-kicker {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--accent-dark);
+  margin-bottom: 14px;
+}
+.info-row { padding: 13px 0; border-top: 1px solid var(--border-light); }
+.info-k { font-size: 13px; color: var(--text-light); font-weight: 500; }
+.info-v { font-size: 15.5px; color: var(--text-primary); font-weight: 600; margin-top: 4px; line-height: 1.5; }
+.info-cta { text-align: center; margin-top: 48px; }
+
 /* ── 반응형 ── */
 @media (max-width: 900px) {
   .program-grid { grid-template-columns: 1fr; }
+  .overview-grid { grid-template-columns: 1fr; gap: 36px; }
+  .info-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 620px) {
+  .overview-cards { grid-template-columns: 1fr; }
+  .prep-grid { grid-template-columns: 1fr; }
+  .prep-wrap { padding: 32px 24px; }
 }
 @media (max-width: 680px) {
   .program-hero-inner { flex-direction: column; gap: 18px; }
