@@ -28,7 +28,7 @@ export default function BoardWrite() {
     setLoading(true);
     try {
       const displayName = user?.user_metadata?.full_name || user?.email?.split('@')[0] || 'User';
-      await createPost({ board: board || 'free', category, title, content, authorId: user.id, authorName: displayName });
+      await createPost({ board: board || 'foundation', category, title, content, authorId: user.id, authorName: displayName });
       toast.success('Post created!');
       navigate(`/community/${board}`);
     } catch (err: any) {
