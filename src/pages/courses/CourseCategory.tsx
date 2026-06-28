@@ -172,7 +172,7 @@ export default function CourseCategory(): ReactElement {
                 <span className="curriculum-day-badge" style={{ background: program.color }}>{day.badge}</span>
                 <div>
                   <h2 className="curriculum-day-title">{day.theme}</h2>
-                  <span className="curriculum-day-sub">8{language === 'ko' ? '시간 · 8교시(50분)' : 'h · 8 periods (50min)'}</span>
+                  <span className="curriculum-day-sub">8{language === 'ko' ? '시간 · 4과목' : 'h · 4 modules'}</span>
                 </div>
               </div>
 
@@ -215,8 +215,8 @@ export default function CourseCategory(): ReactElement {
           ))}
 
           <div className="program-cta">
-            <button className="btn btn-accent btn-lg" onClick={() => navigate('/register')}>
-              <i className="fa-solid fa-user-plus" /> {language === 'ko' ? '수강 신청하기' : 'Enroll Now'}
+            <button className="btn btn-accent btn-lg" onClick={() => navigate('/login')}>
+              <i className="fa-solid fa-right-to-bracket" /> {language === 'ko' ? '로그인하고 학습 시작' : 'Log in to start'}
             </button>
             <button className="btn btn-outline" onClick={() => navigate('/courses')}>
               <i className="fa-solid fa-arrow-left" /> {language === 'ko' ? '전체 과정 보기' : 'All Programs'}

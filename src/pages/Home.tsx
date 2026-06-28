@@ -50,7 +50,7 @@ export default function Home(): ReactElement {
   const infoCards = [
     { kicker: 'Format', rows: [
       { k: isKo ? '구성' : 'Structure', v: isKo ? '과정당 2일 · 16시간' : '2 days · 16h / program' },
-      { k: isKo ? '하루 일정' : 'Per day', v: isKo ? '8시간 · 4교시' : '8h · 4 sessions' },
+      { k: isKo ? '하루 일정' : 'Per day', v: isKo ? '8시간 · 4과목' : '8h · 4 modules' },
       { k: isKo ? '비율' : 'Ratio', v: isKo ? '강의 20% · 실습 80%' : 'Lecture 20% · Practice 80%' },
     ] },
     { kicker: 'Who', rows: [
@@ -58,10 +58,10 @@ export default function Home(): ReactElement {
       { k: isKo ? '수준' : 'Level', v: isKo ? '입문~심화 4개 과정' : '4 programs, intro→advanced' },
       { k: isKo ? '플랫폼' : 'Platform', v: isKo ? '전남대GPT (타임리GPT 기반)' : 'CNU GPT (TimelyGPT-based)' },
     ] },
-    { kicker: 'Apply', rows: [
-      { k: isKo ? '신청' : 'Enroll', v: isKo ? '로그인 후 과정별 수강신청' : 'Log in & enroll per program' },
+    { kicker: 'Enrollment', rows: [
+      { k: isKo ? '수강 대상' : 'Who', v: isKo ? '학교 모집·배정 (별도 신청 없음)' : 'Recruited & assigned by the university' },
+      { k: isKo ? '접속' : 'Access', v: isKo ? '로그인 후 배정 과정 학습' : 'Log in to access your assigned program' },
       { k: isKo ? '문의' : 'Contact', v: `${site.company.phone}` },
-      { k: isKo ? '이메일' : 'Email', v: `${site.company.email}` },
     ] },
   ];
 
@@ -260,7 +260,7 @@ export default function Home(): ReactElement {
           </div>
           <div className="info-cta" data-aos="fade-up">
             <button className="btn btn-accent btn-lg" onClick={() => navigate('/courses')}>
-              <i className="fa-solid fa-graduation-cap" /> {isKo ? '과정 선택하고 신청하기' : 'Choose a program & enroll'}
+              <i className="fa-solid fa-graduation-cap" /> {isKo ? '과정 살펴보기' : 'Explore programs'}
             </button>
           </div>
         </div>
