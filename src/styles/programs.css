@@ -826,7 +826,6 @@
   gap: 1px;
   margin: 2px 0 4px 10px;
   padding-left: 8px;
-  border-left: 1px solid var(--border-light);
 }
 .course-sidebar-sublist .course-sidebar-link.sub {
   padding: 7px 10px;
