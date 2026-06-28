@@ -6,7 +6,8 @@
 .hero-ed {
   position: relative;
   background: var(--bg-light-gray);
-  padding: 72px 0 64px;
+  /* 고정 네비게이션(--nav-height) 높이만큼 상단 여백 확보 */
+  padding: calc(var(--nav-height) + 48px) 0 64px;
   overflow: hidden;
   border-bottom: 1px solid var(--border-light);
 }
@@ -358,7 +359,8 @@
 /* ── 과정 상세 헤더 ── */
 .program-hero {
   background: var(--bg-light-gray);
-  padding: 56px 0 40px;
+  /* 고정 네비게이션 높이만큼 상단 여백 확보 */
+  padding: calc(var(--nav-height) + 36px) 0 40px;
 }
 .program-hero-inner {
   display: flex;
