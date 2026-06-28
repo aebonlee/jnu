@@ -1,7 +1,6 @@
 import { useLanguage } from '../contexts/LanguageContext';
 import { useNavigate } from 'react-router-dom';
 import SEOHead from '../components/SEOHead';
-import site from '../config/site';
 import { COURSE_CATEGORIES } from '../data/courses';
 import useCountUp from '../hooks/useCountUp';
 import useAOS from '../hooks/useAOS';
@@ -58,10 +57,10 @@ export default function Home(): ReactElement {
       { k: isKo ? '수준' : 'Level', v: isKo ? '입문~심화 4개 과정' : '4 programs, intro→advanced' },
       { k: isKo ? '플랫폼' : 'Platform', v: isKo ? '전남대GPT (타임리GPT 기반)' : 'CNU GPT (TimelyGPT-based)' },
     ] },
-    { kicker: 'Enrollment', rows: [
-      { k: isKo ? '수강 대상' : 'Who', v: isKo ? '학교 모집·배정 (별도 신청 없음)' : 'Recruited & assigned by the university' },
-      { k: isKo ? '접속' : 'Access', v: isKo ? '로그인 후 배정 과정 학습' : 'Log in to access your assigned program' },
-      { k: isKo ? '문의' : 'Contact', v: `${site.company.phone}` },
+    { kicker: 'Class', rows: [
+      { k: isKo ? '담당 교수' : 'Instructors', v: isKo ? '이애본, 정동엽' : 'Aebon Lee, Dongyeop Jeong' },
+      { k: isKo ? '자료열람' : 'Access', v: isKo ? '회원가입·로그인 후' : 'After sign-up & login' },
+      { k: isKo ? '문의' : 'Contact', v: 'aebon@hs.ac.kr' },
     ] },
   ];
 
