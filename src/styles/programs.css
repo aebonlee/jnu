@@ -926,3 +926,72 @@
 .pe-nav-link:hover { background: var(--bg-light-gray); color: var(--primary-blue); }
 .pe-nav-link.active { background: var(--primary-light); color: var(--primary-blue); font-weight: 600; }
 .pe-nav-link.active i { color: var(--primary-blue); }
+
+/* ── 실습 · 따라하기 (hands-on labs) ── */
+.handson-head { margin-bottom: 24px; }
+.handson-intro {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-top: 6px;
+}
+.lab-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 24px 26px;
+  margin-bottom: 22px;
+  box-shadow: var(--shadow-sm);
+}
+.lab-card-head {
+  border-left: 3px solid var(--primary-blue);
+  padding-left: 14px;
+  margin-bottom: 18px;
+}
+.lab-title { font-size: 20px; margin-bottom: 8px; }
+.lab-meta {
+  display: flex;
+  gap: 16px;
+  font-size: 13px;
+  color: var(--text-light);
+  margin-bottom: 8px;
+}
+.lab-meta i { margin-right: 5px; color: var(--accent-dark); }
+.lab-scenario { font-size: 14.5px; color: var(--text-secondary); line-height: 1.65; }
+
+.lab-steps { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 16px; }
+.lab-step { display: flex; gap: 14px; }
+.lab-step-num {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: var(--font-heading);
+}
+.lab-step-body { min-width: 0; flex: 1; }
+.lab-step-title { font-size: 15.5px; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
+.lab-step-detail { font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 10px; }
+.lab-step-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  font-size: 13px;
+  color: var(--accent-dark);
+  font-weight: 600;
+  margin-top: 8px;
+}
+.lab-result {
+  margin-top: 18px;
+  padding: 12px 16px;
+  background: var(--accent-soft);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.lab-result i { color: var(--accent-dark); margin-right: 7px; }

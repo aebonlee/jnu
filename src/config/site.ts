@@ -65,6 +65,7 @@ const site: SiteConfig = {
     { path: '/courses/data-budget', activePath: '/courses/data-budget', labelKey: 'site.nav.progDataBudget' },
     { path: '/courses/research-lab', activePath: '/courses/research-lab', labelKey: 'site.nav.progResearchLab' },
     { path: '/prompt-eval', activePath: '/prompt-eval', labelKey: 'site.nav.promptPractice' },
+    { path: '/appendix', activePath: '/appendix', labelKey: 'site.nav.appendix' },
     { path: '/recommended', labelKey: 'site.nav.recommended' },
   ],
 

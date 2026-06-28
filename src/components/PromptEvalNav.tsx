@@ -24,7 +24,7 @@ export default function PromptEvalNav(): ReactElement {
         onClick={() => setOpen(!open)}
         aria-expanded={open}
       >
-        <i className="fa-solid fa-keyboard" /> {isKo ? '프롬프트 실습' : 'Prompt Lab'}
+        <i className="fa-solid fa-keyboard" /> {isKo ? '프롬프트 학습' : 'Prompt Learning'}
         <i className="fa-solid fa-chevron-down pe-nav-chevron" />
       </button>
       {open && (

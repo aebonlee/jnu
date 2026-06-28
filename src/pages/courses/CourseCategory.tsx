@@ -7,6 +7,7 @@ import { useLanguage } from '../../contexts/LanguageContext';
 import SEOHead from '../../components/SEOHead';
 import { getProgramById, PROGRAMS } from '../../data/courses';
 import { MATERIALS } from '../../data/materials';
+import { getHandsOn } from '../../data/handsOn';
 import type { ReactElement } from 'react';
 
 export default function CourseCategory(): ReactElement {
@@ -15,6 +16,7 @@ export default function CourseCategory(): ReactElement {
   const navigate = useNavigate();
   const [matOpen, setMatOpen] = useState(true);
   const [selectedMatId, setSelectedMatId] = useState<string | null>(null);
+  const [showLab, setShowLab] = useState(false);
 
   const program = getProgramById(category || '');
 
@@ -31,9 +33,11 @@ export default function CourseCategory(): ReactElement {
 
   const totalSessions = program.curriculum.reduce((s, d) => s + d.sessions.length, 0);
   const materials = MATERIALS.filter((m) => m.categoryId === program.id);
+  const labs = getHandsOn(program.id);
   const selectedMat = selectedMatId ? materials.find((m) => m.id === selectedMatId) : null;
-  const openMaterial = (id: string) => { setSelectedMatId(id); window.scrollTo({ top: 0, behavior: 'smooth' }); };
-  const showCurriculum = () => { setSelectedMatId(null); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+  const openMaterial = (id: string) => { setSelectedMatId(id); setShowLab(false); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+  const openLab = () => { setShowLab(true); setSelectedMatId(null); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+  const showCurriculum = () => { setSelectedMatId(null); setShowLab(false); window.scrollTo({ top: 0, behavior: 'smooth' }); };
 
   return (
     <>
@@ -86,11 +90,21 @@ export default function CourseCategory(): ReactElement {
                 <span className="course-sidebar-label">{language === 'ko' ? '과정 메뉴' : 'Course Menu'}</span>
                 <button
                   type="button"
-                  className={`course-sidebar-link${!selectedMat ? ' active' : ''}`}
+                  className={`course-sidebar-link${!selectedMat && !showLab ? ' active' : ''}`}
                   onClick={showCurriculum}
                 >
                   <i className="fa-solid fa-list-check" /> {language === 'ko' ? '커리큘럼' : 'Curriculum'}
                 </button>
+
+                {labs.length > 0 && (
+                  <button
+                    type="button"
+                    className={`course-sidebar-link${showLab ? ' active' : ''}`}
+                    onClick={openLab}
+                  >
+                    <i className="fa-solid fa-laptop-code" /> {language === 'ko' ? '실습 · 따라하기' : 'Hands-on Labs'}
+                  </button>
+                )}
 
                 {/* 학습자료 — 드롭다운으로 해당 과목 자료 연결(같은 페이지 내 표시) */}
                 <button
@@ -125,7 +139,7 @@ export default function CourseCategory(): ReactElement {
                 </Link>
               </nav>
 
-              {!selectedMat && (
+              {!selectedMat && !showLab && (
               <nav className="course-sidebar-nav">
                 <span className="course-sidebar-label">{language === 'ko' ? '커리큘럼 바로가기' : 'Jump to'}</span>
                 {program.curriculum.map((day) => (
@@ -147,9 +161,51 @@ export default function CourseCategory(): ReactElement {
             </div>
           </aside>
 
-          {/* ── 오른쪽 본문: 자료 선택 시 인라인 표시, 아니면 커리큘럼 ── */}
+          {/* ── 오른쪽 본문: 따라하기 / 학습자료 / 커리큘럼 ── */}
           <div className="course-content">
-          {selectedMat ? (
+          {showLab ? (
+            <div className="handson">
+              <button type="button" className="material-inline-back" onClick={showCurriculum}>
+                <i className="fa-solid fa-arrow-left" /> {language === 'ko' ? '커리큘럼으로' : 'Back to curriculum'}
+              </button>
+              <div className="handson-head">
+                <div className="material-inline-eyebrow" style={{ color: program.color }}>
+                  <i className="fa-solid fa-laptop-code" /> {language === 'ko' ? program.nameKo : program.nameEn} · {language === 'ko' ? '실습 따라하기' : 'Hands-on'}
+                </div>
+                <h2 className="material-inline-title">{language === 'ko' ? '실습 · 따라하기' : 'Hands-on Labs'}</h2>
+                <p className="handson-intro">{language === 'ko'
+                  ? '전남대GPT를 켜고 아래 랩을 순서대로 따라 해보세요. 각 단계의 예시 프롬프트를 그대로 입력하면 됩니다.'
+                  : 'Open CNU GPT and follow each lab. Paste the example prompts as-is.'}</p>
+              </div>
+
+              {labs.map((lab) => (
+                <article key={lab.id} className="lab-card">
+                  <div className="lab-card-head" style={{ borderColor: program.color }}>
+                    <h3 className="lab-title">{lab.title}</h3>
+                    <div className="lab-meta">
+                      <span><i className="fa-solid fa-signal" /> {lab.level}</span>
+                      <span><i className="fa-regular fa-clock" /> {lab.minutes}</span>
+                    </div>
+                    <p className="lab-scenario">{lab.scenario}</p>
+                  </div>
+                  <ol className="lab-steps">
+                    {lab.steps.map((s, si) => (
+                      <li key={si} className="lab-step">
+                        <span className="lab-step-num" style={{ background: program.color }}>{si + 1}</span>
+                        <div className="lab-step-body">
+                          <div className="lab-step-title">{s.title}</div>
+                          <p className="lab-step-detail">{s.detail}</p>
+                          {s.prompt && <pre className="practice-prompt"><code>{s.prompt}</code></pre>}
+                          {s.check && <div className="lab-step-check"><i className="fa-solid fa-circle-check" /> {s.check}</div>}
+                        </div>
+                      </li>
+                    ))}
+                  </ol>
+                  <div className="lab-result"><i className="fa-solid fa-flag-checkered" /> {lab.result}</div>
+                </article>
+              ))}
+            </div>
+          ) : selectedMat ? (
             <article className="material-inline">
               <button type="button" className="material-inline-back" onClick={showCurriculum}>
                 <i className="fa-solid fa-arrow-left" /> {language === 'ko' ? '커리큘럼으로' : 'Back to curriculum'}

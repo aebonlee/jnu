@@ -26,6 +26,7 @@ const OrderHistory = lazy(() => import('../pages/OrderHistory'));
 const CourseCatalog = lazy(() => import('../pages/courses/CourseCatalog'));
 const CourseCategory = lazy(() => import('../pages/courses/CourseCategory'));
 const LearningMaterials = lazy(() => import('../pages/materials/LearningMaterials'));
+const Appendix = lazy(() => import('../pages/appendix/Appendix'));
 const About = lazy(() => import('../pages/About'));
 
 // AI 도구
@@ -81,6 +82,9 @@ const PublicLayout = (): ReactElement => {
             {/* 학습자료 */}
             <Route path="/materials" element={<LearningMaterials />} />
             <Route path="/materials/:category" element={<LearningMaterials />} />
+
+            {/* 부록 */}
+            <Route path="/appendix" element={<Appendix />} />
 
             {/* AI 도구 */}
             <Route path="/tools" element={<AIToolsPage />} />
