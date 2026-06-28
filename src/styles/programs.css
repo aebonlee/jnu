@@ -837,3 +837,40 @@
   font-weight: 600;
 }
 .course-sidebar-link.sub.more i { color: var(--accent-dark); }
+
+/* 과정 페이지 내 학습자료 인라인 표시 */
+.material-inline {
+  background: var(--card-bg);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 32px 36px;
+  box-shadow: var(--shadow-sm);
+}
+.material-inline-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  padding: 0;
+  margin-bottom: 18px;
+}
+.material-inline-back:hover { color: var(--primary-blue); }
+.material-inline-eyebrow {
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+}
+.material-inline-eyebrow i { margin-right: 6px; }
+.material-inline-title {
+  font-size: 28px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--border-light);
+}

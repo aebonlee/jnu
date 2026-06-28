@@ -1,5 +1,8 @@
 import { useState } from 'react';
-import { useParams, useNavigate, Link, NavLink } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 import { useLanguage } from '../../contexts/LanguageContext';
 import SEOHead from '../../components/SEOHead';
 import { getProgramById, PROGRAMS } from '../../data/courses';
@@ -11,6 +14,7 @@ export default function CourseCategory(): ReactElement {
   const { language } = useLanguage();
   const navigate = useNavigate();
   const [matOpen, setMatOpen] = useState(true);
+  const [selectedMatId, setSelectedMatId] = useState<string | null>(null);
 
   const program = getProgramById(category || '');
 
@@ -27,6 +31,9 @@ export default function CourseCategory(): ReactElement {
 
   const totalSessions = program.curriculum.reduce((s, d) => s + d.sessions.length, 0);
   const materials = MATERIALS.filter((m) => m.categoryId === program.id);
+  const selectedMat = selectedMatId ? materials.find((m) => m.id === selectedMatId) : null;
+  const openMaterial = (id: string) => { setSelectedMatId(id); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+  const showCurriculum = () => { setSelectedMatId(null); window.scrollTo({ top: 0, behavior: 'smooth' }); };
 
   return (
     <>
@@ -77,11 +84,15 @@ export default function CourseCategory(): ReactElement {
 
               <nav className="course-sidebar-nav">
                 <span className="course-sidebar-label">{language === 'ko' ? '과정 메뉴' : 'Course Menu'}</span>
-                <NavLink end to={`/courses/${program.id}`} className="course-sidebar-link active">
+                <button
+                  type="button"
+                  className={`course-sidebar-link${!selectedMat ? ' active' : ''}`}
+                  onClick={showCurriculum}
+                >
                   <i className="fa-solid fa-list-check" /> {language === 'ko' ? '커리큘럼' : 'Curriculum'}
-                </NavLink>
+                </button>
 
-                {/* 학습자료 — 드롭다운으로 해당 과목 자료 연결 */}
+                {/* 학습자료 — 드롭다운으로 해당 과목 자료 연결(같은 페이지 내 표시) */}
                 <button
                   type="button"
                   className={`course-sidebar-link course-sidebar-toggle${matOpen ? ' open' : ''}`}
@@ -94,13 +105,14 @@ export default function CourseCategory(): ReactElement {
                 {matOpen && (
                   <div className="course-sidebar-sublist">
                     {materials.map((m) => (
-                      <Link
+                      <button
                         key={m.id}
-                        to={`/materials/${program.id}?m=${m.id}`}
-                        className="course-sidebar-link sub"
+                        type="button"
+                        className={`course-sidebar-link sub${selectedMatId === m.id ? ' active' : ''}`}
+                        onClick={() => openMaterial(m.id)}
                       >
                         <i className="fa-regular fa-file-lines" /> {language === 'ko' ? m.nameKo : m.nameEn}
-                      </Link>
+                      </button>
                     ))}
                     <Link to={`/materials/${program.id}`} className="course-sidebar-link sub more">
                       <i className="fa-solid fa-arrow-right" /> {language === 'ko' ? '학습자료 전체보기' : 'View all materials'}
@@ -108,11 +120,12 @@ export default function CourseCategory(): ReactElement {
                   </div>
                 )}
 
-                <NavLink to={`/community/${program.id}`} className="course-sidebar-link">
+                <Link to={`/community/${program.id}`} className="course-sidebar-link">
                   <i className="fa-solid fa-comments" /> {language === 'ko' ? '게시판' : 'Board'}
-                </NavLink>
+                </Link>
               </nav>
 
+              {!selectedMat && (
               <nav className="course-sidebar-nav">
                 <span className="course-sidebar-label">{language === 'ko' ? '커리큘럼 바로가기' : 'Jump to'}</span>
                 {program.curriculum.map((day) => (
@@ -121,6 +134,7 @@ export default function CourseCategory(): ReactElement {
                   </a>
                 ))}
               </nav>
+              )}
 
               <nav className="course-sidebar-nav">
                 <span className="course-sidebar-label">{language === 'ko' ? '다른 과정' : 'Other Programs'}</span>
@@ -133,8 +147,25 @@ export default function CourseCategory(): ReactElement {
             </div>
           </aside>
 
-          {/* ── 오른쪽 본문(기존 커리큘럼) ── */}
+          {/* ── 오른쪽 본문: 자료 선택 시 인라인 표시, 아니면 커리큘럼 ── */}
           <div className="course-content">
+          {selectedMat ? (
+            <article className="material-inline">
+              <button type="button" className="material-inline-back" onClick={showCurriculum}>
+                <i className="fa-solid fa-arrow-left" /> {language === 'ko' ? '커리큘럼으로' : 'Back to curriculum'}
+              </button>
+              <div className="material-inline-eyebrow" style={{ color: program.color }}>
+                <i className="fa-solid fa-folder-open" /> {language === 'ko' ? program.nameKo : program.nameEn} · {language === 'ko' ? '학습자료' : 'Materials'}
+              </div>
+              <h2 className="material-inline-title">{language === 'ko' ? selectedMat.nameKo : selectedMat.nameEn}</h2>
+              <div className="markdown-body">
+                <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
+                  {language === 'ko' ? selectedMat.contentKo : selectedMat.contentEn}
+                </ReactMarkdown>
+              </div>
+            </article>
+          ) : (
+          <>
           {program.curriculum.map((day) => (
             <div key={day.day} id={`day-${day.day}`} className="curriculum-day">
               <div className="curriculum-day-head">
@@ -191,6 +222,8 @@ export default function CourseCategory(): ReactElement {
               <i className="fa-solid fa-arrow-left" /> {language === 'ko' ? '전체 과정 보기' : 'All Programs'}
             </button>
           </div>
+          </>
+          )}
           </div>
         </div>
       </section>
