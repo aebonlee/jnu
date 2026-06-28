@@ -672,3 +672,33 @@
     .nav-tip::after, .nav-tip::before { display: none; }
     .navbar .container { max-width: 100%; }
 }
+
+/* 개인 메뉴 내 색상 테마 선택 행 */
+.dropdown-color-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 16px;
+}
+.dropdown-color-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    color: var(--text-primary);
+}
+.dropdown-color-label svg {
+    width: 18px;
+    height: 18px;
+    color: var(--text-secondary);
+    flex-shrink: 0;
+}
+.dropdown-color-dots {
+    display: inline-flex;
+    gap: 7px;
+}
+.dropdown-color-dots .color-dot {
+    width: 18px;
+    height: 18px;
+}

@@ -720,3 +720,86 @@
     padding-bottom: 12px;
   }
 }
+
+/* ── 과정 상세: 좌측 사이드바 레이아웃 ── */
+.course-layout {
+  display: grid;
+  grid-template-columns: 248px 1fr;
+  gap: 40px;
+  align-items: start;
+}
+.course-sidebar {
+  position: sticky;
+  top: calc(var(--nav-height) + 20px);
+}
+.course-sidebar-inner {
+  background: var(--card-bg);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+  box-shadow: var(--shadow-sm);
+}
+.course-sidebar-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--text-primary);
+  line-height: 1.35;
+  padding-bottom: 14px;
+  margin-bottom: 8px;
+  border-bottom: 2px solid var(--primary-blue);
+}
+.course-sidebar-title i { font-size: 18px; flex-shrink: 0; }
+.course-sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 0;
+  border-top: 1px solid var(--border-light);
+}
+.course-sidebar-nav:first-of-type { border-top: none; }
+.course-sidebar-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  padding: 4px 10px 8px;
+}
+.course-sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: var(--transition-base);
+}
+.course-sidebar-link i { width: 16px; text-align: center; color: var(--text-light); }
+.course-sidebar-link:hover {
+  background: var(--bg-light-gray);
+  color: var(--primary-blue);
+}
+.course-sidebar-link:hover i { color: var(--accent-dark); }
+.course-sidebar-link.active {
+  background: var(--primary-light);
+  color: var(--primary-blue);
+  font-weight: 600;
+}
+.course-sidebar-link.active i { color: var(--primary-blue); }
+.course-sidebar-link.sub { font-size: 13px; color: var(--text-light); }
+.course-content { min-width: 0; }
+
+@media (max-width: 900px) {
+  .course-layout { grid-template-columns: 1fr; gap: 20px; }
+  .course-sidebar { position: static; }
+  .course-sidebar-inner { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+  .course-sidebar-title { width: 100%; }
+  .course-sidebar-nav { border-top: none; padding: 4px 0; }
+}

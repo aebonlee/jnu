@@ -1,7 +1,7 @@
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link, NavLink } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
 import SEOHead from '../../components/SEOHead';
-import { getProgramById } from '../../data/courses';
+import { getProgramById, PROGRAMS } from '../../data/courses';
 import type { ReactElement } from 'react';
 
 export default function CourseCategory(): ReactElement {
@@ -60,11 +60,54 @@ export default function CourseCategory(): ReactElement {
         </div>
       </section>
 
-      {/* Curriculum */}
+      {/* Curriculum with left sidebar */}
       <section className="section">
-        <div className="container">
+        <div className="container course-layout">
+          {/* ── 왼쪽 과정 메뉴 ── */}
+          <aside className="course-sidebar">
+            <div className="course-sidebar-inner">
+              <div className="course-sidebar-title" style={{ borderColor: program.color }}>
+                <i className={`fa-solid ${program.icon}`} style={{ color: program.color }} />
+                <span>{language === 'ko' ? program.nameKo : program.nameEn}</span>
+              </div>
+
+              <nav className="course-sidebar-nav">
+                <span className="course-sidebar-label">{language === 'ko' ? '과정 메뉴' : 'Course Menu'}</span>
+                <NavLink end to={`/courses/${program.id}`} className="course-sidebar-link active">
+                  <i className="fa-solid fa-list-check" /> {language === 'ko' ? '커리큘럼' : 'Curriculum'}
+                </NavLink>
+                <NavLink to={`/materials/${program.id}`} className="course-sidebar-link">
+                  <i className="fa-solid fa-folder-open" /> {language === 'ko' ? '학습자료' : 'Materials'}
+                </NavLink>
+                <NavLink to={`/community/${program.id}`} className="course-sidebar-link">
+                  <i className="fa-solid fa-comments" /> {language === 'ko' ? '게시판' : 'Board'}
+                </NavLink>
+              </nav>
+
+              <nav className="course-sidebar-nav">
+                <span className="course-sidebar-label">{language === 'ko' ? '커리큘럼 바로가기' : 'Jump to'}</span>
+                {program.curriculum.map((day) => (
+                  <a key={day.day} href={`#day-${day.day}`} className="course-sidebar-link sub">
+                    <i className="fa-regular fa-calendar" /> {day.badge} — {day.theme.split(' — ')[0]}
+                  </a>
+                ))}
+              </nav>
+
+              <nav className="course-sidebar-nav">
+                <span className="course-sidebar-label">{language === 'ko' ? '다른 과정' : 'Other Programs'}</span>
+                {PROGRAMS.filter((p) => p.id !== program.id).map((p) => (
+                  <Link key={p.id} to={`/courses/${p.id}`} className="course-sidebar-link sub">
+                    <i className={`fa-solid ${p.icon}`} /> {language === 'ko' ? p.nameKo : p.nameEn}
+                  </Link>
+                ))}
+              </nav>
+            </div>
+          </aside>
+
+          {/* ── 오른쪽 본문(기존 커리큘럼) ── */}
+          <div className="course-content">
           {program.curriculum.map((day) => (
-            <div key={day.day} className="curriculum-day">
+            <div key={day.day} id={`day-${day.day}`} className="curriculum-day">
               <div className="curriculum-day-head">
                 <span className="curriculum-day-badge" style={{ background: program.color }}>{day.badge}</span>
                 <div>
@@ -118,6 +161,7 @@ export default function CourseCategory(): ReactElement {
             <button className="btn btn-outline" onClick={() => navigate('/courses')}>
               <i className="fa-solid fa-arrow-left" /> {language === 'ko' ? '전체 과정 보기' : 'All Programs'}
             </button>
+          </div>
           </div>
         </div>
       </section>

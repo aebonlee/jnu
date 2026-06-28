@@ -134,7 +134,7 @@ const Navbar = (): ReactElement => {
           </ul>
 
           <div className="nav-actions">
-            {site.features.search && (
+            {!isLoggedIn && site.features.search && (
               <button className="nav-search-btn nav-tip" data-tip={language === 'ko' ? '검색' : 'Search'} onClick={() => setShowSearch(true)} aria-label="Search">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <circle cx="11" cy="11" r="8" />
@@ -152,9 +152,12 @@ const Navbar = (): ReactElement => {
                 {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
               </Link>
             )}
+            {!isLoggedIn && (
             <button className="lang-switcher nav-tip" data-tip={language === 'ko' ? '언어 (한/영)' : 'Language (KR/EN)'} onClick={toggleLanguage} aria-label={language === 'ko' ? 'Switch to English' : '한국어로 전환'}>
               {language === 'ko' ? 'EN' : 'KR'}
             </button>
+            )}
+            {!isLoggedIn && (
             <div className="color-picker-wrapper">
               <button
                 className="color-picker-btn nav-tip"
@@ -188,6 +191,8 @@ const Navbar = (): ReactElement => {
                 </>
               )}
             </div>
+            )}
+            {!isLoggedIn && (
             <button className="theme-toggle nav-tip" data-tip={language === 'ko' ? (mode === 'auto' ? '화면 모드 (자동)' : mode === 'light' ? '화면 모드 (라이트)' : '화면 모드 (다크)') : 'Display mode'} onClick={toggleTheme} aria-label="테마 전환" data-mode={mode}>
               {/* Light mode icon (sun) */}
               <svg className="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -217,6 +222,7 @@ const Navbar = (): ReactElement => {
                 <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
               </svg>
             </button>
+            )}
             {/* User Auth */}
             {isLoggedIn ? (
               <div className="nav-user-menu" ref={userMenuRef}>
@@ -245,6 +251,40 @@ const Navbar = (): ReactElement => {
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="9"/><path d="M14.8 9a2.5 2.5 0 0 0-2.3-1.5c-1.4 0-2.5.9-2.5 2s1.1 2 2.5 2 2.5.9 2.5 2-1.1 2-2.5 2A2.5 2.5 0 0 1 9.2 16"/><line x1="12" y1="6" x2="12" y2="7.5"/><line x1="12" y1="16.5" x2="12" y2="18"/></svg>
                       {language === 'ko' ? '토큰 충전' : 'Token Top-up'}
                     </Link>
+                    <div className="divider" />
+                    {site.features.search && (
+                      <button className="dropdown-menu-item" onClick={() => { setShowSearch(true); setShowUserMenu(false); }}>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                        {language === 'ko' ? '검색' : 'Search'}
+                      </button>
+                    )}
+                    <button className="dropdown-menu-item" onClick={toggleLanguage}>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                      {language === 'ko' ? '언어 — 한국어 / English' : 'Language — 한국어 / English'}
+                    </button>
+                    <button className="dropdown-menu-item" onClick={toggleTheme}>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                      {language === 'ko'
+                        ? `화면 모드 — ${mode === 'auto' ? '자동' : mode === 'light' ? '라이트' : '다크'}`
+                        : `Display — ${mode}`}
+                    </button>
+                    <div className="dropdown-color-row">
+                      <span className="dropdown-color-label">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="13.5" cy="6.5" r="1.5"/><circle cx="17.5" cy="10.5" r="1.5"/><circle cx="8.5" cy="7.5" r="1.5"/><circle cx="6.5" cy="12" r="1.5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.93 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.04-.24-.3-.39-.65-.39-1.04 0-.83.67-1.5 1.5-1.5H16c3.31 0 6-2.69 6-6 0-5.17-4.5-9-10-9z"/></svg>
+                        {language === 'ko' ? '색상 테마' : 'Color theme'}
+                      </span>
+                      <span className="dropdown-color-dots">
+                        {site.colors.map((c) => (
+                          <button
+                            key={c.name}
+                            className={`color-dot${colorTheme === c.name ? ' active' : ''}`}
+                            style={{ background: c.color }}
+                            onClick={() => setColorTheme(c.name)}
+                            aria-label={`${c.name} theme`}
+                          />
+                        ))}
+                      </span>
+                    </div>
                     {isAdmin && (
                       <a href={site.parentSite.url + '/admin'} className="dropdown-menu-item" target="_blank" rel="noopener noreferrer">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>

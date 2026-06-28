@@ -58,58 +58,26 @@ const site: SiteConfig = {
     { name: 'vibe', color: '#6D28D9' },      // 모던 바이올렛
   ],
 
-  // 4개 과정명을 각각 상단 메뉴로 (각 메뉴 = 커리큘럼·학습자료·게시판)
+  // 4개 과정명을 각각 상단 메뉴(링크)로 — 과정 내부는 좌측 사이드바로 이동
   menuItems: [
+    { path: '/courses/foundation', activePath: '/courses/foundation', labelKey: 'site.nav.progFoundation' },
+    { path: '/courses/research-writing', activePath: '/courses/research-writing', labelKey: 'site.nav.progResearchWriting' },
+    { path: '/courses/data-budget', activePath: '/courses/data-budget', labelKey: 'site.nav.progDataBudget' },
+    { path: '/courses/research-lab', activePath: '/courses/research-lab', labelKey: 'site.nav.progResearchLab' },
     {
-      labelKey: 'site.nav.progFoundation',
-      path: '/courses/foundation',
-      activePath: '/courses/foundation',
-      dropdown: [
-        { path: '/courses/foundation', labelKey: 'nav.curriculum' },
-        { path: '/materials/foundation', labelKey: 'site.nav.materials' },
-        { path: '/community/foundation', labelKey: 'nav.board' },
-      ]
-    },
-    {
-      labelKey: 'site.nav.progResearchWriting',
-      path: '/courses/research-writing',
-      activePath: '/courses/research-writing',
-      dropdown: [
-        { path: '/courses/research-writing', labelKey: 'nav.curriculum' },
-        { path: '/materials/research-writing', labelKey: 'site.nav.materials' },
-        { path: '/community/research-writing', labelKey: 'nav.board' },
-      ]
-    },
-    {
-      labelKey: 'site.nav.progDataBudget',
-      path: '/courses/data-budget',
-      activePath: '/courses/data-budget',
-      dropdown: [
-        { path: '/courses/data-budget', labelKey: 'nav.curriculum' },
-        { path: '/materials/data-budget', labelKey: 'site.nav.materials' },
-        { path: '/community/data-budget', labelKey: 'nav.board' },
-      ]
-    },
-    {
-      labelKey: 'site.nav.progResearchLab',
-      path: '/courses/research-lab',
-      activePath: '/courses/research-lab',
-      dropdown: [
-        { path: '/courses/research-lab', labelKey: 'nav.curriculum' },
-        { path: '/materials/research-lab', labelKey: 'site.nav.materials' },
-        { path: '/community/research-lab', labelKey: 'nav.board' },
-      ]
-    },
-    {
-      labelKey: 'site.nav.toolbox',
+      labelKey: 'site.nav.aiTools',
       path: '/tools',
       activePath: '/tools',
       dropdown: [
-        { path: '/tools', labelKey: 'site.nav.aiTools' },
-        { path: '/prompt-eval/practice', labelKey: 'site.nav.promptPractice' },
-        { path: '/recommended', labelKey: 'site.nav.recommended' },
+        { path: '/tools/syllabus', labelKey: 'site.nav.syllabus' },
+        { path: '/tools/rubric', labelKey: 'site.nav.rubric' },
+        { path: '/tools/assignment', labelKey: 'site.nav.assignment' },
+        { path: '/tools/feedback', labelKey: 'site.nav.feedback' },
+        { path: '/tools/evaluator', labelKey: 'site.nav.evaluator' },
       ]
     },
+    { path: '/prompt-eval/practice', labelKey: 'site.nav.promptPractice' },
+    { path: '/recommended', labelKey: 'site.nav.recommended' },
   ],
 
   footerLinks: [
