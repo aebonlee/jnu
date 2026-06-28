@@ -124,7 +124,6 @@ export default function Home(): ReactElement {
                   {COURSE_CATEGORIES.map((p) => (
                     <li key={p.id}>
                       <span className="hero-card-name">{isKo ? p.nameKo : p.nameEn}</span>
-                      <span className="hero-card-dur">{p.duration}</span>
                     </li>
                   ))}
                 </ul>

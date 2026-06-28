@@ -609,17 +609,20 @@
    상단 메뉴 너비 확대 + 아이콘 풍선도움말(툴팁)
    ============================================ */
 
-/* 상단 메뉴 컨테이너 너비 확대 (긴 학습자료 라벨 수용) */
+/* 상단 메뉴 컨테이너 너비 확대 (4개 과정명 + 도구 수용) */
 .navbar .container {
     max-width: 1480px;
 }
 .nav-menu {
-    gap: 2px;
+    gap: 0;
+    flex-wrap: nowrap;
 }
 .nav-link {
-    padding: 12px 16px;
+    padding: 11px 13px;
     font-size: 14.5px;
+    white-space: nowrap;
 }
+.nav-link::after { left: 13px; right: 13px; }
 
 /* 풍선도움말(tooltip) — 네비 우측 아이콘 공통 */
 .nav-tip {
