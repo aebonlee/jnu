@@ -69,7 +69,8 @@ const site: SiteConfig = {
       path: '/prompt-eval',
       activePath: '/prompt-eval',
       dropdown: [
-        { path: '/prompt-eval/practice', labelKey: 'site.nav.promptPractice' },
+        { path: '/prompt-eval', labelKey: 'site.nav.promptLearn' },
+        { path: '/prompt-eval/practice', labelKey: 'site.nav.promptStep' },
         { path: '/prompt-eval/workshop', labelKey: 'site.nav.promptEval' },
       ]
     },
