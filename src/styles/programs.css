@@ -829,8 +829,18 @@
   padding-left: 8px;
 }
 .course-sidebar-sublist .course-sidebar-link.sub {
-  padding: 7px 10px;
+  padding: 7px 8px;
   font-size: 12.5px;
+  border-radius: 0;
+}
+.course-sidebar-sublist .course-sidebar-link.sub:hover {
+  background: transparent;
+  color: var(--primary-blue);
+}
+.course-sidebar-sublist .course-sidebar-link.sub.active {
+  background: transparent;
+  color: var(--primary-blue);
+  font-weight: 600;
 }
 .course-sidebar-link.sub.more {
   color: var(--accent-dark);
