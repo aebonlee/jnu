@@ -511,26 +511,24 @@ html[data-color="vibe"] {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 16px 8px 40px;
+  padding: 7px 4px 7px 30px;
   border: none;
   background: transparent;
   cursor: pointer;
   font-size: 13px;
   text-align: left;
   color: var(--text-light);
-  border-radius: 6px;
-  transition: background 0.15s, color 0.15s;
+  transition: color 0.15s;
   width: 100%;
 }
 
 .sidebar-subitem:hover {
-  background: var(--bg-alt);
   color: var(--text);
 }
 
 .sidebar-subitem.active {
-  background: var(--primary);
-  color: #fff;
+  color: var(--primary);
+  font-weight: 600;
 }
 
 .sidebar-subitem i {
