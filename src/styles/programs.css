@@ -775,12 +775,16 @@
   align-items: center;
   gap: 10px;
   padding: 9px 12px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
   border-radius: var(--radius-sm);
   font-size: 14px;
   font-weight: 500;
   color: var(--text-secondary);
   text-decoration: none;
   transition: var(--transition-base);
+  width: 100%;
 }
 .course-sidebar-link i { width: 16px; text-align: center; color: var(--text-light); }
 .course-sidebar-link:hover {
