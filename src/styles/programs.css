@@ -785,8 +785,9 @@
   text-decoration: none;
   transition: var(--transition-base);
   width: 100%;
+  text-align: left;
 }
-.course-sidebar-link i { width: 16px; text-align: center; color: var(--text-light); }
+.course-sidebar-link i { width: 16px; text-align: center; color: var(--text-light); flex-shrink: 0; }
 .course-sidebar-link:hover {
   background: var(--bg-light-gray);
   color: var(--primary-blue);
@@ -836,7 +837,12 @@
   padding: 7px 8px;
   font-size: 12.5px;
   border-radius: 0;
+  align-items: flex-start;      /* 2줄일 때 아이콘을 첫 줄에 맞춤 */
+  line-height: 1.4;
+  letter-spacing: -0.03em;      /* 자간 축소로 컴팩트하게 */
+  word-break: keep-all;         /* 한글 단어 단위 줄바꿈 */
 }
+.course-sidebar-sublist .course-sidebar-link.sub i { margin-top: 2px; }
 .course-sidebar-sublist .course-sidebar-link.sub:hover {
   background: transparent;
   color: var(--primary-blue);
