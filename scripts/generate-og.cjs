@@ -1,7 +1,7 @@
 /*
  * OG 이미지 생성기 — 전남대학교(JNU) 생성형 AI 교육
  * 실행: node scripts/generate-og.cjs
- * 출력: public/og-image.png (1200x630)
+ * 출력: public/og-jnu.png (1200x630)
  */
 const fs = require('fs');
 const path = require('path');
@@ -100,7 +100,7 @@ async function main() {
   ctx.fillText('jnu.dreamitbiz.com', W - PAD, H - 56);
   ctx.textAlign = 'left';
 
-  const out = path.join(__dirname, '../public/og-image.png');
+  const out = path.join(__dirname, '../public/og-jnu.png');
   fs.writeFileSync(out, canvas.toBuffer('image/png'));
   console.log('✓ OG 이미지 생성 완료 (font:', FONT + '):', out);
 }
