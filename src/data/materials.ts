@@ -731,88 +731,70 @@ AI can write VBA macros for repetitive tasks like merging multiple Excel files.`
   //  행정 업무
   // ═══════════════════════════════════════
   {
-    id: 'hr-automation',
+    id: 'budget-accounting',
     categoryId: 'data-budget',
-    nameKo: '인사 문서 자동화',
-    nameEn: 'HR Document Automation',
+    nameKo: '예산·회계 실무 가이드',
+    nameEn: 'Budget & Accounting Guide',
     type: 'guide',
-    contentKo: `## AI를 활용한 인사 문서 자동화
+    contentKo: `## AI를 활용한 예산·회계 실무
 
-### 채용공고 작성
+예산 편성부터 정산·증빙, 재무 보고, 회계 규정 확인까지 AI로 효율화합니다. (Day 2 커리큘럼 연계)
 
+### 1. 예산 편성
 \`\`\`
-전남대학교 AI교육센터에서 연구원을 채용하는 공고문을 작성해주세요.
-
-채용 정보:
-- 직위: 연구원 (계약직, 1년)
-- 분야: 인공지능/교육공학
-- 인원: 1명
-- 자격요건: 석사 이상, AI 관련 연구 경험
-- 우대사항: Python 프로그래밍, LLM 활용 경험
-- 근무조건: 주 40시간, 전남대학교 내 근무
-- 접수기간: 2024.12.01 ~ 12.31
-- 제출서류: 이력서, 자기소개서, 연구실적목록
-
-공식적이고 전문적인 톤으로, 대학교 채용공고 양식에 맞게 작성해주세요.
+다음 사업의 예산안을 항목별로 편성해줘.
+- 사업명/기간/총액: ...
+- 항목: 인건비·운영비·재료비·여비 등 표준 분류로
+- 각 항목의 산출근거를 표로 정리해줘
 \`\`\`
 
-### 교육 안내문 작성
-
+### 2. 정산 & 증빙
 \`\`\`
-전남대학교 전 교직원 대상 AI 리터러시 교육 안내문을 작성해주세요.
-
-교육 정보:
-- 교육명: 2024 생성형 AI 활용 역량 강화 교육
-- 대상: 전임교원, 비전임교원, 직원, 조교
-- 일정: 2024년 12월 매주 화/목 14:00-17:00
-- 장소: AI융합교육관 201호
-- 내용: AI 기초, 프롬프트 엔지니어링, 업무 자동화
-- 신청: 포털시스템 → 교육신청
-- 문의: AI교육센터 (062-530-XXXX)
-
-안내문에 교육 수료 시 혜택(수료증 발급, 업적평가 반영)도 포함해주세요.
+아래 지출 내역의 정산표를 만들어줘.
+- 항목별 집행액 vs 예산액, 집행률(%)
+- 필요한 증빙서류(세금계산서/영수증/거래명세서) 체크리스트
+[지출 내역 붙여넣기]
 \`\`\`
 
-### 업무평가서 작성 보조
-
+### 3. 재무 보고서
 \`\`\`
-다음 직원의 업무 데이터를 바탕으로 업무평가서 초안을 작성해주세요.
-
-직원 정보:
-- 소속: 교무처 학사지원팀
-- 직급: 주무관
-
-주요 실적:
-1. 학사 시스템 AI 챗봇 도입 프로젝트 관리 (완료)
-2. 수강신청 매뉴얼 개편 (학생 만족도 20% 향상)
-3. 학적 데이터 정비 (오류율 5% → 0.5%)
-4. 신입생 OT 프로그램 기획 및 운영
-
-평가 항목: 업무수행능력, 적극성, 협업능력, 전문성 발전
-각 항목별 5점 척도 평가와 종합 의견을 작성해주세요.
+아래 데이터로 사업 결산 보고서 초안을 작성해줘.
+- 예산 대비 집행 현황(표)
+- 주요 집행 내용 요약, 잔액 및 사유
 \`\`\`
 
-### 자주 사용하는 인사 문서 프롬프트
+### 4. 회계 규정 Q&A 도우미
+\`\`\`
+다음 상황이 회계 규정상 가능한지 검토해줘.
+- 상황: [예: 연구비로 노트북 구입 가능 여부]
+- 관련 규정 조항·근거와 대안을 함께 제시
+(규정 원문을 첨부하면 정확도가 올라갑니다)
+\`\`\`
 
-| 문서 유형 | 프롬프트 키워드 |
-|----------|---------------|
-| 채용공고 | "채용공고 작성, 자격요건, 우대사항, 접수방법" |
-| 교육안내 | "교육 안내문, 일정, 대상, 신청방법, 혜택" |
-| 업무평가 | "업무평가서, 실적 기반, 5점 척도, 종합의견" |
-| 인수인계 | "인수인계서, 업무목록, 진행현황, 유의사항" |
-| 출장보고 | "출장보고서, 일정, 방문기관, 성과, 후속조치" |`,
-    contentEn: `## HR Document Automation with AI
+### 추천 도구
+- **ChatGPT/Claude**: 표 계산·문서 초안
+- **Excel**: 집계·집행률 계산
+- **전남대GPT**: 교내 실습 환경
 
-### Common HR Documents
-1. **Job Postings**: Provide position details, qualifications, and format requirements
-2. **Training Announcements**: Include schedule, target audience, benefits
-3. **Performance Reviews**: Provide achievement data for AI to draft evaluations
-4. **Handover Documents**: Task lists, status, and important notes
+### 주의사항
+**Do**: 규정 원문을 첨부해 검토, 산출근거·집행률 재확인
+**Don't**: AI 답변만 믿고 규정 인용 금지(환각 가능), 민감 회계정보 무단 입력 금지`,
+    contentEn: `## AI-Assisted Budgeting & Accounting
 
-### Tips
-- Always provide specific data and context
-- Review AI outputs for accuracy and policy compliance
-- Never input sensitive personal information`,
+### 1. Budgeting
+Ask AI to build an itemized budget (labor/operations/materials/travel) with justification tables.
+
+### 2. Settlement & Evidence
+Generate a settlement table (spent vs budget, execution rate) and a required-documents checklist.
+
+### 3. Financial Reports
+Draft a project closing report: budget-vs-execution table, summary, remaining balance and reasons.
+
+### 4. Accounting Rules Q&A
+Describe a situation and ask whether it is allowed under the rules, with cited clauses and alternatives (attach the rulebook for accuracy).
+
+### Do / Don't
+**Do**: attach source rules, re-verify figures. **Don't**: cite rules from AI alone (hallucination risk), input sensitive financial data.`,
   },
   {
     id: 'data-analysis-basics',
@@ -907,243 +889,115 @@ AI can write VBA macros for repetitive tasks like merging multiple Excel files.`
 - Correlation: "Analyze relationship between variables"`,
   },
   {
-    id: 'workflow-design',
+    id: 'research-design',
     categoryId: 'research-lab',
-    nameKo: '업무 워크플로우 설계',
-    nameEn: 'Workflow Design',
+    nameKo: '연구 설계 가이드',
+    nameEn: 'Research Design Guide',
     type: 'guide',
-    contentKo: `## AI 기반 업무 워크플로우 설계
+    contentKo: `## AI를 활용한 연구 설계
 
-### 자동화 대상 업무 식별
+연구 주제 구체화, 선행연구 탐색, 연구계획서 작성을 지원합니다. (Day 1 커리큘럼 연계)
 
-업무 자동화의 첫 단계는 **반복적이고 규칙적인 업무**를 식별하는 것입니다.
-
-#### 자동화 적합도 평가 기준
-
-| 기준 | 높음 (자동화 적합) | 낮음 (수동 유지) |
-|------|-------------------|-----------------|
-| **반복성** | 매주/매일 반복 | 비정기적 |
-| **규칙성** | 명확한 규칙 존재 | 판단력 필요 |
-| **데이터 형식** | 정형화된 데이터 | 비정형 데이터 |
-| **소요 시간** | 2시간 이상/회 | 30분 미만/회 |
-| **오류 가능성** | 수작업 오류 빈번 | 오류 발생 적음 |
-
-### 대학 행정 자동화 사례
-
-#### 1. 수강신청 문의 응대 자동화
+### 1. 연구질문 구체화
 \`\`\`
-현재 프로세스:
-  학생 문의 → 담당자 확인 → 수동 답변 → 평균 30분/건
-
-AI 자동화 프로세스:
-  학생 문의 → AI 챗봇 1차 응대 → 해결 불가 시 담당자 연결
-  예상 효과: 70% 문의 자동 처리, 담당자 업무 시간 60% 절감
+아래 관심 주제를 연구 가능한 질문으로 다듬어줘.
+- 관심 주제: ...
+- FINER/PICO 기준으로 구체화해 후보 질문 3개 제시
+- 각 질문의 독립·종속 변수를 명시해줘
 \`\`\`
 
-#### 2. 강의평가 결과 보고서 자동화
+### 2. 선행연구 탐색·정리
 \`\`\`
-현재 프로세스:
-  데이터 추출 → Excel 정리 → 차트 생성 → 보고서 작성 → 3일/회
-
-AI 자동화 프로세스:
-  데이터 추출 → AI 자동 분석/시각화/보고서 생성 → 검토
-  예상 효과: 작업 시간 3일 → 2시간, 분석 품질 향상
+아래 주제의 선행연구 동향을 정리해줘 (첨부 논문 기반).
+- 핵심 이론·주요 발견·연구공백을 표로
+- 국문/영문 검색 키워드 조합도 제안
 \`\`\`
 
-#### 3. 회의 후속 업무 자동화
+### 3. 연구계획서 작성
 \`\`\`
-현재 프로세스:
-  회의 → 수기 기록 → 회의록 작성 → 액션아이템 추적 (수동)
-
-AI 자동화 프로세스:
-  회의 녹음 → AI 전사/정리 → 자동 액션아이템 추출 → 리마인더
-  예상 효과: 회의록 작성 시간 90% 절감, 후속조치 이행률 향상
+다음 정보로 연구계획서 초안을 작성해줘.
+- 연구질문/목적, 배경, 방법(설계·표본·측정), 일정
+- 기대효과와 한계 포함
 \`\`\`
 
-### ROI 계산 방법
+### 추천 도구
+- **RISS·Google Scholar**: 문헌 탐색
+- **ChatGPT/Claude**: 정리·초안
+- **NotebookLM**: 여러 논문 기반 Q&A
 
-\`\`\`
-AI 자동화 ROI 계산:
+### 주의사항
+**Do**: 인용·수치는 원문과 대조 검증
+**Don't**: 표절, 존재하지 않는 논문(환각) 인용 금지`,
+    contentEn: `## AI-Assisted Research Design
 
-투자 비용:
-- AI 도구 구독: $20/월 × 12개월 = $240/년
-- 초기 설정 시간: 8시간 × 시급 = ???
+### 1. Refine Research Questions
+Turn a topic into researchable questions (FINER/PICO), with variables specified.
 
-절감 효과:
-- 자동화 전 소요시간: 주 10시간
-- 자동화 후 소요시간: 주 2시간
-- 절감 시간: 주 8시간 × 52주 = 416시간/년
-- 시급 환산: 416시간 × 시급 = ???
+### 2. Literature Review
+Summarize prior work from attached papers (theories, findings, gaps) and suggest search keywords.
 
-ROI = (절감 효과 - 투자 비용) / 투자 비용 × 100%
-\`\`\`
+### 3. Research Proposal
+Draft a proposal: question, background, method (design/sample/measures), timeline, expected impact and limits.
 
-### 워크플로우 설계 프롬프트
+### Tools
+RISS, Google Scholar, ChatGPT/Claude, NotebookLM.
 
-\`\`\`
-다음 업무의 AI 자동화 워크플로우를 설계해주세요.
-
-업무명: [업무명]
-현재 프로세스: [단계별 설명]
-소요 시간: [현재 소요 시간]
-빈도: [주/월/분기]
-사용 도구: [현재 사용 도구]
-
-다음을 포함해주세요:
-1. 현재 vs 개선 프로세스 비교
-2. 필요한 AI 도구 추천
-3. 단계별 구현 방법
-4. 예상 효과 (시간 절감, 품질 향상)
-5. 구현 일정 및 주의사항
-\`\`\``,
-    contentEn: `## AI Workflow Design
-
-### Identifying Automation Candidates
-Evaluate tasks based on: repetitiveness, rule-based nature, data format, time consumption, error frequency.
-
-### University Administration Examples
-1. Student inquiry chatbot (70% auto-resolution)
-2. Course evaluation report automation (3 days → 2 hours)
-3. Meeting follow-up automation (90% time savings)
-
-### ROI Calculation
-Compare investment costs (tool subscriptions, setup time) vs savings (hours saved × hourly rate).`,
+### Do / Don't
+**Do**: verify citations against sources. **Don't**: plagiarize or cite hallucinated papers.`,
   },
   {
-    id: 'admin-prompt-library',
+    id: 'experiment-protocol',
     categoryId: 'research-lab',
-    nameKo: '업무용 프롬프트 모음',
-    nameEn: 'Prompt Library',
-    type: 'template',
-    contentKo: `## 행정 업무용 프롬프트 라이브러리
+    nameKo: '실험 프로토콜 & 데이터 관리 가이드',
+    nameEn: 'Experiment Protocol & Data Management Guide',
+    type: 'guide',
+    contentKo: `## AI를 활용한 실험 설계와 데이터 관리
 
-업무 상황별로 바로 사용할 수 있는 프롬프트 모음입니다.
+실험 프로토콜 설계와 실험 데이터의 체계적 기록·관리를 지원합니다. (Day 2 커리큘럼 연계)
 
-### 문서 작성
-
-#### 1. 공지사항 작성
+### 1. 실험 프로토콜 설계
 \`\`\`
-전남대학교 [부서명]에서 [대상]에게 보내는 공지사항을 작성해주세요.
-제목: [공지 제목]
-내용: [핵심 전달 사항]
-기간: [관련 기간]
-문의처: [담당자, 연락처]
-톤: 공식적이면서 친절한 문체
+다음 실험의 프로토콜을 단계별로 설계해줘.
+- 실험 목적/가설: ...
+- 변수(독립·종속·통제), 재료·장비
+- 절차(순서), 반복 횟수, 예상 위험요소와 대응
 \`\`\`
 
-#### 2. 이메일 답변 초안
+### 2. 실험 데이터 기록 체계
 \`\`\`
-다음 이메일에 대한 답변 초안을 작성해주세요.
-원본 이메일: [이메일 내용 붙여넣기]
-답변 방향: [핵심 답변 내용]
-톤: 정중하고 전문적인
-\`\`\`
-
-#### 3. 보고서 요약
-\`\`\`
-다음 보고서의 핵심 내용을 1페이지로 요약해주세요.
-포함 항목: 목적, 주요 성과, 수치 데이터, 향후 계획
-형식: 글머리 기호 사용, 핵심 수치는 굵은 글씨로 강조
-[보고서 전문 붙여넣기]
+아래 실험의 데이터 기록용 표(스키마)를 설계해줘.
+- 측정 변수·단위·측정 시점
+- 메타데이터(조건·일시·담당자) 컬럼 포함
+- 결측/이상치 기록 규칙 제안
 \`\`\`
 
-### 데이터 처리
+### 3. 데이터 관리 원칙
+- **파일 명명 규칙**: 날짜_실험명_버전 (예: 20260702_assayA_v1)
+- **버전관리·백업**: 3-2-1 원칙(사본3·매체2·오프사이트1)
+- **원자료 보존**: raw 데이터는 별도 보관, 사본으로 작업
 
-#### 4. 엑셀 수식 요청
-\`\`\`
-[데이터 설명]에 대한 Excel 수식을 만들어주세요.
-입력 데이터: [셀 범위, 데이터 유형]
-원하는 결과: [계산 내용]
-조건: [필터링/조건 설명]
-\`\`\`
+### 추천 도구
+- **전자연구노트(ELN)**, **Excel/Google Sheets**, **ChatGPT/Claude**
 
-#### 5. 데이터 정리
-\`\`\`
-다음 데이터를 정리해주세요.
-[데이터 붙여넣기]
-정리 방향:
-- 중복 제거
-- 형식 통일 (날짜: YYYY-MM-DD, 전화번호: 010-XXXX-XXXX)
-- 빈 값 표시
-- 정렬: [정렬 기준]
-\`\`\`
+### 주의사항
+**Do**: 원자료(raw)는 읽기전용 보관, 메타데이터 필수 기록
+**Don't**: 원자료 직접 수정, 미공개 실험데이터 AI 무단 업로드 금지`,
+    contentEn: `## AI-Assisted Experiment Protocol & Data Management
 
-### 기획/분석
+### 1. Protocol Design
+Design a step-by-step protocol: purpose/hypothesis, variables, materials, procedure, replicates, risks.
 
-#### 6. 사업계획서 초안
-\`\`\`
-[사업명] 사업계획서 초안을 작성해주세요.
-목적: [사업 목적]
-대상: [대상 그룹]
-기간: [사업 기간]
-예산: [총 예산 규모]
-포함 항목: 추진 배경, 목표, 세부 계획, 기대 효과, 예산안
-\`\`\`
+### 2. Data Recording Schema
+Design a recording table: measured variables/units/timepoints, metadata columns, missing/outlier rules.
 
-#### 7. 설문지 설계
-\`\`\`
-[조사 주제]에 대한 설문지를 설계해주세요.
-대상: [응답 대상]
-문항 수: [원하는 문항 수]
-유형: 5점 리커트 척도 위주, 서술형 2-3문항 포함
-포함 주제: [세부 주제 나열]
-\`\`\`
+### 3. Data Management
+File naming, version control, 3-2-1 backup, and raw-data preservation.
 
-#### 8. SWOT 분석
-\`\`\`
-[분석 대상]에 대한 SWOT 분석을 수행해주세요.
-배경 정보: [관련 정보 제공]
-각 항목별 3-5개의 요인을 도출하고,
-SO/WO/ST/WT 전략을 각 2개씩 제안해주세요.
-\`\`\`
+### Tools
+Electronic lab notebook, Excel/Sheets, ChatGPT/Claude.
 
-### 커뮤니케이션
-
-#### 9. 회의 안건 정리
-\`\`\`
-다음 내용을 바탕으로 회의 안건을 정리해주세요.
-[관련 내용/이슈 나열]
-형식: 안건별 제목, 배경, 논의사항, 예상 소요시간
-회의 시간: [총 회의 시간]에 맞게 조절
-\`\`\`
-
-#### 10. 축사/인사말 작성
-\`\`\`
-[행사명]에서 [직위]가 하는 [축사/인사말]을 작성해주세요.
-행사 성격: [행사 설명]
-참석 대상: [참석자]
-시간: [인사말 시간] 분 분량
-포함 내용: [핵심 메시지]
-톤: 격식체, 따뜻하면서도 격려하는 톤
-\`\`\`
-
-### 활용 팁
-
-1. **[대괄호]** 안의 내용을 실제 업무 내용으로 교체하여 사용
-2. 결과가 만족스럽지 않으면 "더 공식적으로", "더 간결하게" 등으로 수정 요청
-3. 자주 사용하는 프롬프트는 메모장에 저장하여 재활용
-4. 민감한 개인정보는 반드시 제거 후 입력`,
-    contentEn: `## Administrative Prompt Library
-
-Ready-to-use prompts organized by task type:
-
-### Document Writing
-- Announcements, email replies, report summaries
-
-### Data Processing
-- Excel formulas, data cleaning
-
-### Planning/Analysis
-- Business plans, survey design, SWOT analysis
-
-### Communication
-- Meeting agendas, speeches/greetings
-
-### Usage Tips
-- Replace [brackets] with actual content
-- Request tone adjustments as needed
-- Save frequently used prompts
-- Remove sensitive data before input`,
+### Do / Don't
+**Do**: keep raw data read-only, always record metadata. **Don't**: edit raw data, upload unpublished data to AI.`,
   },
 
   // ═══════════════════════════════════════
@@ -1490,155 +1344,61 @@ Break large tasks into sequential prompts:
 Each step is reviewed before proceeding to the next.`,
   },
   {
-    id: 'prompt-examples',
+    id: 'analysis-code-ethics',
     categoryId: 'research-lab',
-    nameKo: '프롬프트 실전 예시',
-    nameEn: 'Practical Prompt Examples',
-    type: 'reference',
-    contentKo: `## 프롬프트 실전 예시 모음
+    nameKo: '분석 코드 & 연구윤리 가이드',
+    nameEn: 'Analysis Code & Research Ethics Guide',
+    type: 'guide',
+    contentKo: `## AI를 활용한 분석 코드 작성과 연구윤리
 
-### 교수학습 분야
+분석 코드 작성·디버깅, 연구노트 정리, 연구윤리·IRB 준비를 지원합니다.
 
-#### 1. 학습목표 작성
+### 1. 분석 코드 작성
 \`\`\`
-"인공지능 개론" 교과목의 학습목표(CLO)를 작성해주세요.
-블룸의 분류학 개정판을 기반으로, 행동동사를 사용하여
-측정 가능한 형태로 5개 작성해주세요.
-대상: 비전공 학부생 (3학년)
-\`\`\`
-
-#### 2. 토론 주제 생성
-\`\`\`
-"AI 윤리" 수업에서 사용할 토론 주제 5개를 생성해주세요.
-조건:
-- 찬반이 나뉠 수 있는 주제
-- 실제 사례 기반
-- 학생들이 관심가질 만한 주제
-- 각 주제별 핵심 논점 2가지 포함
+아래 분석을 Python(pandas) 코드로 작성해줘.
+- 데이터: [구조 설명]
+- 분석: [예: 집단별 평균 비교 t-검정 + 시각화]
+- 주석은 한글로, 재현 가능하게
 \`\`\`
 
-#### 3. 퀴즈 문항 출제
+### 2. 코드 디버깅
 \`\`\`
-다음 내용을 바탕으로 퀴즈 문항 10개를 출제해주세요.
-[학습 내용 붙여넣기]
-
-문항 구성:
-- 객관식 5문항 (5지선다, 정답 표시)
-- OX 문항 3문항 (해설 포함)
-- 단답형 2문항 (모범답안 포함)
-난이도: 중 (핵심 개념 이해 수준)
+아래 코드에서 [에러 메시지] 오류가 나. 원인과 수정안을 설명해줘.
+[코드 붙여넣기]
 \`\`\`
 
-#### 4. 수업 활동 설계
+### 3. 연구노트 정리
 \`\`\`
-"데이터 시각화" 주제로 2시간짜리 실습 수업을 설계해주세요.
-포함 요소:
-- 도입 활동 (10분): 동기 유발
-- 개념 설명 (20분): 핵심 이론
-- 실습 활동 (60분): 단계별 실습
-- 정리 (30분): 발표 및 피드백
-준비물과 사전 설정 사항도 포함해주세요.
+오늘 실험/분석 로그를 연구노트 형식으로 정리해줘.
+- 목적 · 방법 · 결과 · 다음 단계
 \`\`\`
 
-#### 5. 학생 피드백 작성
+### 4. 연구윤리 & IRB 준비
 \`\`\`
-다음 학생의 과제물에 대한 피드백을 작성해주세요.
-[과제 내용 붙여넣기]
-
-피드백 원칙:
-- 긍정적인 점 2가지를 먼저 언급
-- 개선이 필요한 부분을 구체적으로 지적
-- 개선 방향을 제안
-- 격려하는 마무리
-- 200자 내외
+아래 연구의 IRB 심의 준비를 도와줘.
+- 연구개요, 대상자·동의 절차, 개인정보 보호 방안
+- 심의 유형(면제/신속/정규) 판단 근거 제시
 \`\`\`
 
-### 연구 분야
+### 주의사항 (중요)
+- AI 생성 코드는 **반드시 실행·검증**, 결과 수치 재확인
+- 연구대상자 개인정보·미공개 데이터 AI 입력 금지
+- **AI 사용 사실을 연구윤리 정책에 따라 명시**`,
+    contentEn: `## AI-Assisted Analysis Code & Research Ethics
 
-#### 6. 논문 초록 작성
-\`\`\`
-다음 연구 내용을 바탕으로 학술 논문 초록을 작성해주세요.
-연구 주제: [주제]
-연구 방법: [방법]
-주요 결과: [결과]
-형식: 배경-목적-방법-결과-결론 구조, 300단어 이내
-학술지: [학술지명] 투고용
-\`\`\`
+### 1. Writing Analysis Code
+Ask AI for reproducible Python (pandas) code with comments for your described analysis.
 
-#### 7. 문헌 검토 정리
-\`\`\`
-다음 5편의 논문을 비교 분석해주세요.
-[논문 제목 및 초록 나열]
+### 2. Debugging
+Paste code and the error; ask for the cause and a fix.
 
-분석 항목:
-- 연구 목적
-- 연구 방법
-- 주요 결과
-- 한계점
-- 본 연구와의 관련성
-표 형식으로 정리해주세요.
-\`\`\`
+### 3. Research Notes
+Turn today's log into a research note: purpose, method, results, next steps.
 
-### 행정 분야
+### 4. Ethics & IRB
+Prepare IRB materials: overview, consent, privacy protection, and review-type rationale.
 
-#### 8. 예산안 작성
-\`\`\`
-"2025년 AI 교육 프로그램" 예산안을 작성해주세요.
-총 예산: 3,000만원
-항목:
-- 강사료, 교재비, 실습환경 구축, 홍보, 운영비
-- 각 항목별 금액과 산출 근거 포함
-- 표 형식으로 정리
-\`\`\`
-
-#### 9. 행사 기획안
-\`\`\`
-전남대학교 "AI 교육 워크숍" 행사 기획안을 작성해주세요.
-일시: 2024년 12월 20일 (금) 09:00-17:00
-장소: AI융합교육관 대강당
-대상: 교수자 50명
-프로그램: 기조강연, 분과세션 3개, 실습, 네트워킹
-예산: 500만원
-\`\`\`
-
-#### 10. 정책 제안서
-\`\`\`
-전남대학교에 "AI 리터러시 필수 교육" 정책을 제안하는 문서를 작성해주세요.
-포함 내용:
-- 필요성 (국내외 동향, 타대학 사례)
-- 교육 대상 및 방법
-- 운영 체계
-- 기대 효과
-- 단계별 추진 일정 (1~3차년도)
-\`\`\`
-
-### 활용 가이드
-
-1. 위 예시를 그대로 복사하여 사용할 수 있습니다.
-2. **[대괄호]** 안의 내용을 실제 데이터로 교체하세요.
-3. 결과가 만족스럽지 않으면 조건을 추가하거나 수정하세요.
-4. 좋은 결과가 나온 프롬프트는 반드시 저장해두세요.`,
-    contentEn: `## Practical Prompt Examples
-
-### Teaching & Learning
-1. Learning objectives (CLO) with Bloom's taxonomy
-2. Discussion topics with pros/cons
-3. Quiz questions (multiple choice, T/F, short answer)
-4. Lesson plan design with activities
-5. Student feedback writing
-
-### Research
-6. Abstract writing
-7. Literature review comparison table
-
-### Administration
-8. Budget proposals
-9. Event planning
-10. Policy proposals
-
-### Tips
-- Copy and customize the templates
-- Add conditions if results aren't satisfactory
-- Save successful prompts for reuse`,
+### Do / Don't (Important)
+**Do**: run and verify AI-generated code, re-check figures. **Don't**: input participants' personal or unpublished data; disclose AI use per policy.`,
   },
 ];
