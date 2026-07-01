@@ -447,294 +447,188 @@ Gemini is Google DeepMind's multimodal AI with seamless Google ecosystem integra
   //  문서 자동화
   // ═══════════════════════════════════════
   {
-    id: 'official-doc-guide',
+    id: 'research-data-analysis',
     categoryId: 'research-writing',
-    nameKo: '공문서 작성 가이드',
-    nameEn: 'Official Document Guide',
+    nameKo: '연구 데이터 분석 가이드',
+    nameEn: 'Research Data Analysis Guide',
     type: 'guide',
-    contentKo: `## AI를 활용한 공문서 작성
+    contentKo: `## AI를 활용한 연구 데이터 분석
 
-대학 행정에서 공문서 작성은 빈번하지만 시간이 많이 소요되는 업무입니다. AI를 활용하면 초안 작성 시간을 크게 단축할 수 있습니다.
+연구 데이터의 전처리부터 기술통계·가설검정까지, AI로 분석 과정을 효율화하는 방법입니다. (Day 1 커리큘럼 연계)
 
-### 공문서 작성 프롬프트 공식
+### 1. 데이터 전처리
+결측치·이상치 처리, 형 변환·스케일링은 분석의 첫 단계입니다.
 
 \`\`\`
-[문서 유형]을 작성해주세요.
-
-- 발신: [발신 부서/기관명]
-- 수신: [수신 부서/기관명]
-- 제목: [문서 제목]
-- 주요 내용: [핵심 전달 사항]
-- 톤앤매너: 공식적, 격식체
-- 형식: 대학교 공문서 양식
+다음 데이터의 전처리 방안을 제안해줘.
+- 결측치: 변수별 결측 비율과 처리 방법(삭제/대치) 추천
+- 이상치: IQR 기준 탐지 및 처리 방안
+- 변수별 형 변환/정규화 필요 여부
+[데이터 상단 20행 붙여넣기]
 \`\`\`
 
-### 문서 유형별 프롬프트 예시
-
-#### 1. 협조 공문
+### 2. 기술통계
 \`\`\`
-전남대학교 교무처에서 각 학과로 보내는 협조 공문을 작성해주세요.
-
-제목: 2024학년도 2학기 강의평가 시행 협조 요청
-내용:
-- 강의평가 기간: 2024.12.2 ~ 12.13
-- 대상: 전 학과 개설 교과목
-- 참여율 목표: 80% 이상
-- 각 학과에서 학생 참여 독려 요청
-형식: 대학 내부 공문서 양식
+첨부 데이터의 기술통계표를 작성해줘.
+- 연속형: 평균·표준편차·중앙값·최소/최대
+- 범주형: 빈도·비율
+- 표로 정리하고 특이점을 해석해줘
 \`\`\`
 
-#### 2. 보고서
-\`\`\`
-전남대학교 AI교육센터의 연간 사업 보고서를 작성해주세요.
+### 3. 가설검정 설계
+연구질문에 맞는 검정(t-검정·ANOVA·카이제곱·상관/회귀)을 선택합니다.
 
-포함 항목:
-1. 사업 개요 (목적, 기간, 예산)
-2. 추진 실적 (교육 횟수, 참여 인원, 만족도)
-3. 성과 분석 (정량적/정성적)
-4. 향후 계획
-데이터: 교육 12회, 참여자 500명, 만족도 4.5/5.0
+\`\`\`
+연구질문: [예: 교육 전·후 점수 차이가 유의한가?]
+데이터 구조: [집단 수, 표본 크기, 변수 척도]
+적절한 통계 검정을 추천하고, 가정(정규성·등분산성) 확인 방법과 함께 설명해줘.
 \`\`\`
 
-#### 3. 제안서
-\`\`\`
-전남대학교에 "생성형 AI 교수학습 지원 프로그램" 도입을 제안하는 문서를 작성해주세요.
+### 추천 도구
+- **ChatGPT(Advanced Data Analysis)/Claude**: CSV 업로드 → 분석·차트 자동
+- **전남대GPT**: 교내 실습 환경
 
-포함 사항:
-- 프로그램 필요성 (현황 분석)
-- 프로그램 구성 (대상별 맞춤 교육)
-- 기대 효과 (정량적 목표)
-- 소요 예산 및 일정
-- 타 대학 사례 참고
-\`\`\`
+### 주의사항
+**Do**: 통계 결과를 원자료로 재확인, 검정 가정 위배 여부 점검
+**Don't**: 개인정보·미공개 연구데이터 무단 업로드, 결과 맹신`,
+    contentEn: `## AI-Assisted Research Data Analysis
 
-### 작성 시 주의사항
+### 1. Data Preprocessing
+Handle missing values (drop/impute), outliers (IQR), and scaling before analysis.
 
-**해야 할 것 (Do)**:
-- AI 초안을 반드시 검토하고 수정
-- 기관 고유의 서식과 용어에 맞게 조정
-- 수치와 날짜는 직접 확인 후 입력
-- 결재라인에 맞는 경어체 사용
+### 2. Descriptive Statistics
+Ask AI to summarize continuous (mean/SD/median) and categorical (frequency) variables in a table.
 
-**하지 말아야 할 것 (Don't)**:
-- AI 생성물을 그대로 제출하지 않기
-- 민감한 개인정보(주민번호 등)를 AI에 입력하지 않기
-- AI가 생성한 법적 조항이나 규정을 검증 없이 인용하지 않기
-- 기밀 문서 내용을 AI에 입력하지 않기`,
-    contentEn: `## AI-Assisted Official Document Writing
+### 3. Hypothesis Testing
+Describe your research question and data structure; let AI recommend the right test (t-test/ANOVA/chi-square/regression) and how to check assumptions.
 
-### Prompt Formula
-\`\`\`
-Write a [document type].
-- From: [department]
-- To: [recipient]
-- Subject: [title]
-- Key content: [main points]
-- Tone: Formal, official
-\`\`\`
+### Tools
+ChatGPT (Advanced Data Analysis), Claude, or JNU GPT for in-class practice.
 
-### Document Types
-1. **Cooperation Letters**: Internal requests between departments
-2. **Reports**: Annual/quarterly performance reports
-3. **Proposals**: New program proposals with budget and timeline
-
-### Do's and Don'ts
-**Do**: Review AI drafts, adjust to institutional format, verify facts
-**Don't**: Submit without review, input sensitive data, cite unverified regulations`,
+### Do / Don't
+**Do**: verify results against raw data, check test assumptions. **Don't**: upload personal or unpublished data, trust results blindly.`,
   },
   {
-    id: 'meeting-minutes',
+    id: 'data-visualization',
     categoryId: 'research-writing',
-    nameKo: '회의록 정리 가이드',
-    nameEn: 'Meeting Minutes Guide',
-    type: 'template',
-    contentKo: `## AI를 활용한 회의록 작성
+    nameKo: '데이터 시각화 & 결과 해석 가이드',
+    nameEn: 'Data Visualization & Interpretation Guide',
+    type: 'guide',
+    contentKo: `## AI를 활용한 데이터 시각화와 결과 해석
 
-### 회의록 작성 워크플로우
+분석 결과를 효과적으로 시각화하고, 논문에 쓸 수 있게 해석하는 방법입니다. (Day 1 커리큘럼 연계)
 
-1. **녹음**: 회의 내용을 녹음 (스마트폰 또는 노트북)
-2. **음성→텍스트 변환**: AI 도구로 텍스트 변환
-3. **구조화**: AI로 주요 안건, 결정사항, 액션아이템 추출
-4. **검토 및 보완**: 내용 확인 후 최종 정리
+### 1. 목적별 차트 선택
+| 목적 | 권장 차트 |
+|------|-----------|
+| 집단 간 비교 | 막대그래프(오차막대) |
+| 두 변수 관계 | 산점도 + 추세선 |
+| 분포 확인 | 히스토그램·박스플롯 |
+| 시간 변화 | 선그래프 |
 
-### 음성 인식 도구
-
-| 도구 | 한국어 | 가격 | 특징 |
-|------|--------|------|------|
-| **네이버 클로바노트** | ★★★★★ | 무료/유료 | 한국어 최적화, 화자 분리 |
-| **Otter.ai** | ★★☆☆☆ | $16.99/월 | 영어 최강, 실시간 전사 |
-| **다글로** | ★★★★★ | 유료 | 한국어 특화, 요약 기능 |
-| **Whisper (OpenAI)** | ★★★★☆ | 무료 | 오픈소스, 다국어 지원 |
-
-### AI 회의록 정리 프롬프트
-
+### 2. 시각화 생성 프롬프트
 \`\`\`
-다음은 회의 녹취록입니다. 아래 형식으로 회의록을 정리해주세요.
-
-[회의록 형식]
-1. 회의 개요 (일시, 장소, 참석자)
-2. 주요 안건 (번호별 정리)
-3. 논의 내용 (안건별 핵심 발언 요약)
-4. 결정 사항 (확정된 내용)
-5. 액션 아이템 (담당자, 기한 포함)
-6. 다음 회의 일정
-
-[녹취록]
-(여기에 녹취록 붙여넣기)
+첨부 데이터로 다음 시각화를 만들어줘.
+- 집단별 평균 비교: 막대그래프(오차막대 포함)
+- 두 변수 관계: 산점도 + 추세선
+- 분포: 히스토그램 또는 박스플롯
+각 그래프에 제목·축 라벨(한글)을 넣고, 해석 코멘트도 함께 작성해줘.
 \`\`\`
 
-### 회의록 템플릿
-
-\`\`\`markdown
-# 회의록
-
-## 회의 개요
-- **회의명**:
-- **일시**: 2024년 월 일 (요일) 00:00 ~ 00:00
-- **장소**:
-- **참석자**:
-- **작성자**:
-
-## 주요 안건
-1.
-2.
-3.
-
-## 논의 내용
-### 안건 1:
--
-
-### 안건 2:
--
-
-## 결정 사항
-| 번호 | 내용 | 비고 |
-|------|------|------|
-| 1 |  |  |
-| 2 |  |  |
-
-## 액션 아이템
-| 번호 | 내용 | 담당자 | 기한 |
-|------|------|--------|------|
-| 1 |  |  |  |
-| 2 |  |  |  |
-
-## 다음 회의
-- **일시**:
-- **안건**:
+### 3. 결과를 논문 문장으로
+\`\`\`
+아래 분석 결과를 논문 '결과' 서술 문장으로 바꿔줘.
+- 수치: [예: t(38)=2.41, p=.021]
+- APA 스타일, 과장 없는 객관적 서술로
 \`\`\`
 
-### 효율적인 회의록 작성 팁
+### 추천 도구
+- **ChatGPT/Claude**: 데이터 업로드 → 차트 생성·해석
+- **Datawrapper·Flourish**: 웹 기반 인터랙티브 시각화
+- **Excel·matplotlib**: 기본 정적 차트
 
-1. **실시간 기록**: 클로바노트로 회의 중 실시간 전사
-2. **핵심 태그**: 중요한 결정 시점에 "결정사항" 태그 추가
-3. **빠른 배포**: AI 정리 후 30분 내에 참석자에게 공유
-4. **후속 관리**: 액션아이템은 다음 회의 시작 시 점검`,
-    contentEn: `## AI-Powered Meeting Minutes
+### 주의사항
+**Do**: 축 범위·표본 수를 명시해 오해 방지
+**Don't**: 축을 왜곡하거나 오해를 유발하는 그래프 사용 금지`,
+    contentEn: `## AI-Assisted Data Visualization & Interpretation
 
-### Workflow
-1. Record the meeting
-2. Convert speech to text using AI tools
-3. Structure with AI: agenda, decisions, action items
-4. Review and finalize
+### 1. Choose the Right Chart
+Bar (group comparison), scatter+trendline (relationship), histogram/boxplot (distribution), line (time).
 
-### Speech-to-Text Tools
-- **Clova Note**: Best for Korean, free tier available
-- **Otter.ai**: Best for English, real-time transcription
-- **Whisper (OpenAI)**: Open-source, multilingual
+### 2. Generate Visuals
+Ask AI to create titled, labeled charts from your data with interpretation notes.
 
-### Meeting Minutes Template
-Use the structured template with: Overview, Agenda, Discussion, Decisions, Action Items, Next Meeting.`,
+### 3. Turn Results into Prose
+Provide statistics (e.g., t(38)=2.41, p=.021) and ask for APA-style objective result sentences.
+
+### Tools
+ChatGPT/Claude, Datawrapper, Flourish, Excel, matplotlib.
+
+### Do / Don't
+**Do**: state axis ranges and sample sizes. **Don't**: use distorted or misleading axes.`,
   },
   {
-    id: 'ppt-generation',
+    id: 'paper-writing',
     categoryId: 'research-writing',
-    nameKo: 'PPT 자동 생성',
-    nameEn: 'Auto PPT Generation',
+    nameKo: 'AI 논문작성 가이드',
+    nameEn: 'AI Academic Writing Guide',
     type: 'guide',
-    contentKo: `## AI로 프레젠테이션 자동 제작
+    contentKo: `## AI를 활용한 학술 논문 작성
 
-### AI PPT 생성 도구 비교
+문헌 검토부터 IMRaD 초안, 영문 교정, 초록·투고까지 논문 작성 전 과정을 지원합니다. (Day 2 커리큘럼 연계)
 
-| 도구 | 가격 | 한국어 | 특징 |
-|------|------|--------|------|
-| **Gamma** | 무료/Pro $10/월 | O | 가장 완성도 높은 AI PPT |
-| **Canva AI** | 무료/Pro $12.99/월 | O | 디자인 템플릿 풍부 |
-| **SlidesGPT** | 무료 | O | ChatGPT 기반, 간편 |
-| **Beautiful.ai** | $12/월 | △ | 자동 레이아웃 |
-| **Tome** | 무료/Pro $16/월 | O | 스토리텔링 중심 |
-
-### Gamma AI 활용법 (추천)
-
-#### 단계별 가이드
-
-1. **접속**: [gamma.app](https://gamma.app) → 구글 계정 로그인
-2. **새 프레젠테이션 생성**: "Generate" 클릭
-3. **프롬프트 입력**:
-
+### 1. 문헌 검토 & 연구 위치잡기
 \`\`\`
-전남대학교 생성형 AI 교육 프로그램 소개 프레젠테이션을 만들어주세요.
-
-슬라이드 구성:
-1. 표지: 프로그램명, 전남대학교 로고 위치
-2. 목차
-3. AI 교육의 필요성 (통계 데이터 포함)
-4. 프로그램 개요 (대상: 교수자, 직원, 조교)
-5. 교육과정 소개 (교수자 4과목, 직원 4과목, 조교 3과목)
-6. AI 도구 실습 내용 (5개 도구)
-7. 기대 효과
-8. 일정 및 신청 방법
-9. Q&A
-
-스타일: 전문적, 깔끔한 디자인, 파란색 계열
+아래 논문 PDF들을 기반으로 선행연구를 정리해줘.
+- 연구질문·방법·주요결과·한계를 표로 비교
+- 연구 공백(gap)과 본 연구의 기여점을 제안
+[논문 PDF 2~3편 첨부]
 \`\`\`
 
-4. **AI 생성 결과 확인**: 슬라이드별 내용과 디자인 검토
-5. **수정**: 텍스트 편집, 이미지 교체, 레이아웃 조정
-6. **내보내기**: PPT/PDF 다운로드
-
-#### 수정 프롬프트
-
+### 2. IMRaD 구조 초안
 \`\`\`
-3번 슬라이드에 다음 통계를 추가해주세요:
-- 대학교 AI 도입률: 78% (2024년 기준)
-- AI 활용 교수 비율: 45%
-- 학생 AI 활용 만족도: 4.2/5.0
+다음 연구를 IMRaD(서론·방법·결과·논의) 구조로 초안 작성해줘.
+- 주제/가설: ...
+- 방법: ...
+- 결과 요약: ...
+각 섹션은 핵심 문장 위주로, 근거 없는 서술은 넣지 마.
 \`\`\`
 
-### Canva AI 활용법
+### 3. 영문 교정 & 학술 문체
+\`\`\`
+다음 문단을 학술 영어로 교정해줘.
+- 문법·관사·시제 교정
+- 적절한 hedging(단정 완화) 표현 사용
+- 변경 사항을 목록으로 요약
+[문단 붙여넣기]
+\`\`\`
 
-1. [canva.com](https://canva.com) 접속 → 프레젠테이션 선택
-2. "Magic Design" 기능으로 주제 입력
-3. AI가 추천하는 템플릿 중 선택
-4. "Magic Write"로 슬라이드별 텍스트 자동 생성
-5. "Magic Image"로 관련 이미지 생성/삽입
+### 4. 초록·키워드·투고 준비
+\`\`\`
+본문을 바탕으로 250단어 이내 영문 초록과 키워드 5개를 작성해줘.
+구조: 배경 · 목적 · 방법 · 결과 · 결론
+\`\`\`
 
-### 효과적인 PPT 프롬프트 작성 팁
+### 연구윤리 주의 (중요)
+- AI 사용 사실을 **저널·학교 정책에 따라 명시**
+- **환각(허위 인용)** 방지 — 인용·수치는 반드시 원문과 대조 검증
+- 미공개 데이터·타인 저작물 무단 입력 금지`,
+    contentEn: `## AI-Assisted Academic Writing
 
-1. **구조 명시**: 슬라이드 수와 각 슬라이드의 목적을 명확히
-2. **데이터 제공**: 포함할 수치, 통계 데이터를 미리 정리
-3. **스타일 지정**: 컬러, 폰트, 분위기 등 디자인 방향 제시
-4. **청중 명시**: 누구에게 발표하는지 알려주면 톤 조절 가능`,
-    contentEn: `## AI Presentation Generation
+### 1. Literature Review
+Upload paper PDFs; ask AI to compare research questions, methods, results, and limitations, then identify the gap and your contribution.
 
-### Top Tools
-- **Gamma**: Best overall AI PPT tool (gamma.app)
-- **Canva AI**: Rich design templates
-- **SlidesGPT**: Simple ChatGPT-based generation
+### 2. IMRaD Draft
+Provide topic, method, and result summary; ask for an IMRaD draft with core sentences only (no unsupported claims).
 
-### Gamma Step-by-Step
-1. Visit gamma.app and sign in
-2. Click "Generate" for new presentation
-3. Enter detailed prompt with slide structure
-4. Review and edit generated slides
-5. Export as PPT/PDF
+### 3. English Proofreading
+Ask AI to correct grammar/articles/tense, apply appropriate hedging, and list the changes.
 
-### Tips
-- Specify slide count and purpose for each
-- Provide data/statistics to include
-- Describe desired style and color scheme
-- Mention your audience for tone adjustment`,
+### 4. Abstract & Submission
+Generate a <=250-word abstract (background, purpose, method, results, conclusion) and 5 keywords.
+
+### Research Ethics (Important)
+Disclose AI use per journal policy; verify all citations/numbers against sources (avoid hallucinations); never input unpublished or third-party data.`,
   },
   {
     id: 'excel-automation',
