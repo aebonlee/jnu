@@ -11,7 +11,7 @@ interface SiteItem {
   iconStyle?: string; // 기본 fa-solid, 브랜드 로고는 fa-brands
   descKo: string;
   descEn: string;
-  category: 'ai' | 'company';
+  category: 'ai' | 'research' | 'company';
 }
 
 const SITES: SiteItem[] = [
@@ -70,6 +70,15 @@ const SITES: SiteItem[] = [
     category: 'ai',
   },
   {
+    name: 'RISS 학술연구정보서비스',
+    nameEn: 'RISS (Research Information Sharing Service)',
+    url: 'https://www.riss.kr',
+    icon: 'fa-book-open',
+    descKo: '국내외 학위논문·학술지·참고문헌을 검색하고 원문을 확보합니다.',
+    descEn: 'Search and access domestic/international dissertations, journals, and references.',
+    category: 'research',
+  },
+  {
     name: 'DreamIT Biz',
     nameEn: 'DreamIT Biz',
     url: 'https://www.dreamitbiz.com',
@@ -113,6 +122,7 @@ export default function RecommendedSites(): ReactElement {
   useAOS();
 
   const aiSites = SITES.filter(s => s.category === 'ai');
+  const researchSites = SITES.filter(s => s.category === 'research');
   const companySites = SITES.filter(s => s.category === 'company');
 
   return (
@@ -164,8 +174,39 @@ export default function RecommendedSites(): ReactElement {
             </div>
           </div>
 
-          {/* Company Sites */}
+          {/* Research / Papers */}
           <div className="recommended-section" data-aos="fade-up" data-aos-delay="100">
+            <h2 className="recommended-section-title">
+              <i className="fa-solid fa-book-open" />
+              {isKo ? '연구·논문' : 'Research & Papers'}
+            </h2>
+            <div className="recommended-grid">
+              {researchSites.map(site => (
+                <a
+                  key={site.url}
+                  href={site.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="recommended-card"
+                >
+                  <div className="recommended-card-icon">
+                    <i className={`${site.iconStyle || 'fa-solid'} ${site.icon}`} />
+                  </div>
+                  <div className="recommended-card-content">
+                    <h3>{isKo ? site.name : site.nameEn}</h3>
+                    <p>{isKo ? site.descKo : site.descEn}</p>
+                    <span className="recommended-card-url">
+                      {site.url.replace('https://', '')}
+                      <i className="fa-solid fa-arrow-up-right-from-square" />
+                    </span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Company Sites */}
+          <div className="recommended-section" data-aos="fade-up" data-aos-delay="200">
             <h2 className="recommended-section-title">
               <i className="fa-solid fa-globe" />
               {isKo ? '관련 사이트' : 'Related Sites'}
