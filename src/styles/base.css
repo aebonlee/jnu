@@ -1,7 +1,7 @@
 /* ============================================
-   CNU 전남대학교 생성형 AI 교육
+   JNU 전남대학교 생성형 AI 교육
    Design Renewal v6 — Academic (Navy + Gold)
-   기본 컬러셋: academic. 후보군: research / cnu / vibe
+   기본 컬러셋: academic. 후보군: research / jnu / vibe
    ============================================ */
 
 * {
@@ -88,8 +88,8 @@ html[data-color="research"] {
     --highlight-gradient: linear-gradient(135deg, #5EEAD4 0%, #14B8A6 50%, #CFFAF2 100%);
 }
 
-/* 전남대 그린 (CNU Green + Navy) */
-html[data-color="cnu"] {
+/* 전남대 그린 (JNU Green + Navy) */
+html[data-color="jnu"] {
     --primary-blue: #00553F;
     --primary-blue-dark: #003B2C;
     --primary-blue-light: #2E7D66;

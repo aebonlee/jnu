@@ -222,7 +222,7 @@ export const translations: Record<string, Record<string, unknown>> = {
       noCreations: '아직 생성물이 없습니다.',
     },
 
-    // ─── CNU 전용 키 ───
+    // ─── JNU 전용 키 ───
     site: {
       nav: {
         professor: '교수자 맞춤 과정',
@@ -252,7 +252,7 @@ export const translations: Record<string, Record<string, unknown>> = {
         recommended: '추천사이트',
       },
       home: {
-        title: 'CNU AI Education',
+        title: 'JNU AI Education',
         subtitle: '전남대학교 생성형 AI 교육 플랫폼',
         welcome: '전남대학교 교수자·직원·조교를 위한 AI 교육',
         description: '생성형 AI를 활용한 교수학습 혁신을 위한 맞춤형 교육 프로그램',
@@ -291,7 +291,7 @@ export const translations: Record<string, Record<string, unknown>> = {
       blog: 'Blog'
     },
     footer: {
-      tagline: 'AI Education Platform for CNU Faculty, Staff & Teaching Assistants',
+      tagline: 'AI Education Platform for JNU Faculty, Staff & Teaching Assistants',
       companyInfo: 'Company Info',
       contact: 'Contact',
       quickLinks: 'Quick Links'
@@ -495,7 +495,7 @@ export const translations: Record<string, Record<string, unknown>> = {
       noCreations: 'No creations yet.',
     },
 
-    // ─── CNU Site-specific keys ───
+    // ─── JNU Site-specific keys ───
     site: {
       nav: {
         professor: 'Faculty Courses',
@@ -525,13 +525,13 @@ export const translations: Record<string, Record<string, unknown>> = {
         recommended: 'Recommended',
       },
       home: {
-        title: 'CNU AI Education',
-        subtitle: 'CNU Generative AI Education Platform',
-        welcome: 'AI Education for CNU Faculty, Staff & TAs',
+        title: 'JNU AI Education',
+        subtitle: 'JNU Generative AI Education Platform',
+        welcome: 'AI Education for JNU Faculty, Staff & TAs',
         description: 'Customized AI education programs for teaching innovation',
-        heroTitle: 'CNU · Chonnam National University GPT',
+        heroTitle: 'JNU · Chonnam National University GPT',
         heroHighlight: 'Hands-on Generative AI Training',
-        heroDesc: 'Four programs powered by CNU GPT (TimelyGPT-based) — 2 days / 16 hours each, packed with practice cases you can apply right away.',
+        heroDesc: 'Four programs powered by JNU GPT (TimelyGPT-based) — 2 days / 16 hours each, packed with practice cases you can apply right away.',
         heroCTA: 'View Courses',
         heroSecondaryCTA: 'Try AI Tools',
         coursesTitle: '4 Specialized Programs',

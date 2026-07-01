@@ -26,20 +26,20 @@ export default function Home(): ReactElement {
   const isKo = language === 'ko';
   const marqueeWords = (isKo
     ? '전남대GPT · 프롬프트 · 데이터분석 · 논문작성 · 예산회계 · 연구지원 · 실습 · 평가하기'
-    : 'CNU GPT · Prompts · Data Analysis · Writing · Budget · Research · Practice · Evaluation'
+    : 'JNU GPT · Prompts · Data Analysis · Writing · Budget · Research · Practice · Evaluation'
   ).split(' · ');
 
   // 교육 특징 (Overview band)
   const features = [
     { no: '01', icon: 'fa-laptop-code', title: isKo ? '실습 중심' : 'Hands-on', desc: isKo ? '강의는 최소, 실습은 최대. 모든 교시에 전남대GPT에 바로 입력하는 예시 프롬프트를 제공합니다.' : 'Minimal lecture, maximum practice — every session ships ready-to-use prompts.' },
-    { no: '02', icon: 'fa-shield-halved', title: isKo ? '전남대GPT 기반' : 'On CNU GPT', desc: isKo ? '교내 전용 플랫폼 전남대GPT(타임리GPT 기반)에서 진행해 보안 걱정 없이 실무 데이터로 실습합니다.' : 'Runs on the secure campus platform CNU GPT (TimelyGPT-based).' },
+    { no: '02', icon: 'fa-shield-halved', title: isKo ? '전남대GPT 기반' : 'On JNU GPT', desc: isKo ? '교내 전용 플랫폼 전남대GPT(타임리GPT 기반)에서 진행해 보안 걱정 없이 실무 데이터로 실습합니다.' : 'Runs on the secure campus platform JNU GPT (TimelyGPT-based).' },
     { no: '03', icon: 'fa-bullseye', title: isKo ? '직무 맞춤' : 'Role-specific', desc: isKo ? '기초·심화부터 데이터분석·논문작성·예산회계·연구지원까지 직무별 4개 과정으로 설계했습니다.' : 'Four role-specific programs from foundations to research support.' },
     { no: '04', icon: 'fa-clipboard-check', title: isKo ? '결과 평가하기' : 'Evaluate results', desc: isKo ? '만든 산출물을 AI로 평가·개선하는 ‘평가하기’ 실습으로 학습을 완성합니다.' : 'Close the loop by evaluating and improving your outputs with AI.' },
   ];
 
   // 교육 전 준비사항 (Before You Come)
   const prep = [
-    { no: '1', title: isKo ? '전남대GPT 계정' : 'CNU GPT account', desc: isKo ? '교내 계정으로 전남대GPT 로그인이 되는지 미리 확인해 주세요.' : 'Confirm you can log in to CNU GPT with your campus account.' },
+    { no: '1', title: isKo ? '전남대GPT 계정' : 'JNU GPT account', desc: isKo ? '교내 계정으로 전남대GPT 로그인이 되는지 미리 확인해 주세요.' : 'Confirm you can log in to JNU GPT with your campus account.' },
     { no: '2', title: isKo ? '노트북 지참' : 'Bring a laptop', desc: isKo ? '실습용 노트북을 지참하세요. 크롬(Chrome) 브라우저 사용을 권장합니다.' : 'Bring a laptop; Chrome browser recommended.' },
     { no: '3', title: isKo ? '내 업무·연구 자료' : 'Your own material', desc: isKo ? '실제로 다뤄볼 본인 업무 문서나 연구 데이터를 1~2건 준비하면 효과가 큽니다.' : 'Prepare 1–2 real work/research files to practice on.' },
     { no: '4', title: isKo ? '사전 설문' : 'Pre-survey', desc: isKo ? '직무와 관심 분야 사전 설문에 응답하면 과정이 맞춤형으로 운영됩니다.' : 'Complete the short pre-survey so we can tailor the session.' },
@@ -53,9 +53,9 @@ export default function Home(): ReactElement {
       { k: isKo ? '비율' : 'Ratio', v: isKo ? '강의 20% · 실습 80%' : 'Lecture 20% · Practice 80%' },
     ] },
     { kicker: 'Who', rows: [
-      { k: isKo ? '대상' : 'Audience', v: isKo ? '전남대 교직원·연구자·대학원생' : 'CNU faculty, staff & grad students' },
+      { k: isKo ? '대상' : 'Audience', v: isKo ? '전남대 교직원·연구자·대학원생' : 'JNU faculty, staff & grad students' },
       { k: isKo ? '수준' : 'Level', v: isKo ? '입문~심화 4개 과정' : '4 programs, intro→advanced' },
-      { k: isKo ? '플랫폼' : 'Platform', v: isKo ? '전남대GPT (타임리GPT 기반)' : 'CNU GPT (TimelyGPT-based)' },
+      { k: isKo ? '플랫폼' : 'Platform', v: isKo ? '전남대GPT (타임리GPT 기반)' : 'JNU GPT (TimelyGPT-based)' },
     ] },
     { kicker: 'Class', rows: [
       { k: isKo ? '담당 교수' : 'Instructors', v: isKo ? '이애본, 정동엽' : 'Aebon Lee, Dongyeop Jeong' },
@@ -75,17 +75,17 @@ export default function Home(): ReactElement {
           <div className="hero-ed-grid">
             <div className="hero-ed-main">
               <div className="hero-ed-eyebrow" data-aos="fade-up">
-                <span>{isKo ? '전남대학교 · 2026 · 전남대GPT 실습 교육' : 'Chonnam National University · 2026 · CNU GPT'}</span>
+                <span>{isKo ? '전남대학교 · 2026 · 전남대GPT 실습 교육' : 'Chonnam National University · 2026 · JNU GPT'}</span>
               </div>
               <h1 className="hero-ed-title" data-aos="fade-up" data-aos-delay="50">
-                {isKo ? '전남대GPT로 배우는' : 'Learn with CNU GPT'}<br />
+                {isKo ? '전남대GPT로 배우는' : 'Learn with JNU GPT'}<br />
                 <span className="accent">{isKo ? '생성형 AI 실무' : 'Hands-on Generative AI'}</span><br />
                 <span className="accent">{isKo ? '4개 과정 · 각 16시간' : '4 Programs · 16 Hours Each'}</span>
               </h1>
               <p className="hero-ed-lead" data-aos="fade-up" data-aos-delay="100">
                 {isKo
                   ? '전남대GPT(타임리GPT 기반)로 배우는 실습 중심 생성형 AI 교육. 기초·심화부터 데이터분석·논문작성·예산회계·연구지원까지, 각 과정 2일 16시간 동안 예시 프롬프트로 직접 따라 하고 결과를 평가하며 익힙니다.'
-                  : 'Hands-on generative AI training on CNU GPT (TimelyGPT-based). From foundations to data analysis, writing, budgeting, and research — 2 days / 16 hours per program, with ready-to-use prompts and evaluation practice.'}
+                  : 'Hands-on generative AI training on JNU GPT (TimelyGPT-based). From foundations to data analysis, writing, budgeting, and research — 2 days / 16 hours per program, with ready-to-use prompts and evaluation practice.'}
               </p>
               <div className="hero-ed-actions" data-aos="fade-up" data-aos-delay="150">
                 <button className="btn btn-primary btn-lg" onClick={() => navigate('/courses')}>
@@ -117,7 +117,7 @@ export default function Home(): ReactElement {
                 </div>
               </div>
               <div className="hero-ed-card">
-                <div className="hero-ed-card-eyebrow">2026 · CNU GPT Programs</div>
+                <div className="hero-ed-card-eyebrow">2026 · JNU GPT Programs</div>
                 <div className="hero-ed-card-title">{isKo ? '4개 과정 · 각 2일 16시간' : 'Four Programs · 16h each'}</div>
                 <ul className="hero-ed-card-list">
                   {COURSE_CATEGORIES.map((p) => (

@@ -2,8 +2,8 @@ import { supabase } from './supabase';
 
 export async function getPosts({ board, category, search, limit }: { board?: string; category?: string; search?: string; limit?: number } = {}) {
   let query = supabase
-    .from('cnu_posts')
-    .select('*, comment_count:cnu_comments(count)')
+    .from('jnu_posts')
+    .select('*, comment_count:jnu_comments(count)')
     .order('created_at', { ascending: false });
 
   if (board) query = query.eq('board', board);
@@ -24,10 +24,10 @@ export async function getPosts({ board, category, search, limit }: { board?: str
 }
 
 export async function getPostById(id: number) {
-  try { await supabase.rpc('increment_cnu_view_count', { post_id: Number(id) }); } catch { /* ignore */ }
+  try { await supabase.rpc('increment_jnu_view_count', { post_id: Number(id) }); } catch { /* ignore */ }
 
   const { data: post, error } = await supabase
-    .from('cnu_posts')
+    .from('jnu_posts')
     .select('*')
     .eq('id', id)
     .single();
@@ -35,7 +35,7 @@ export async function getPostById(id: number) {
   if (error) throw error;
 
   const { data: comments } = await supabase
-    .from('cnu_comments')
+    .from('jnu_comments')
     .select('*')
     .eq('post_id', id)
     .order('created_at', { ascending: true });
@@ -47,7 +47,7 @@ export async function createPost({ board, category, title, content, authorId, au
   board: string; category: string; title: string; content: string; authorId: string; authorName: string;
 }) {
   const { data, error } = await supabase
-    .from('cnu_posts')
+    .from('jnu_posts')
     .insert({ author_id: authorId, author_name: authorName, board, category, title, content })
     .select()
     .single();
@@ -56,7 +56,7 @@ export async function createPost({ board, category, title, content, authorId, au
 }
 
 export async function deletePost(id: number) {
-  const { error } = await supabase.from('cnu_posts').delete().eq('id', id);
+  const { error } = await supabase.from('jnu_posts').delete().eq('id', id);
   if (error) throw error;
 }
 
@@ -64,7 +64,7 @@ export async function createComment({ postId, body, authorId, authorName }: {
   postId: number; body: string; authorId: string; authorName: string;
 }) {
   const { data, error } = await supabase
-    .from('cnu_comments')
+    .from('jnu_comments')
     .insert({ post_id: postId, author_id: authorId, author_name: authorName, body })
     .select()
     .single();
@@ -73,15 +73,15 @@ export async function createComment({ postId, body, authorId, authorName }: {
 }
 
 export async function deleteComment(id: number) {
-  const { error } = await supabase.from('cnu_comments').delete().eq('id', id);
+  const { error } = await supabase.from('jnu_comments').delete().eq('id', id);
   if (error) throw error;
 }
 
 export async function getPostStats() {
   const [postsRes, commentsRes, viewsRes] = await Promise.all([
-    supabase.from('cnu_posts').select('id', { count: 'exact', head: true }),
-    supabase.from('cnu_comments').select('id', { count: 'exact', head: true }),
-    supabase.from('cnu_posts').select('view_count'),
+    supabase.from('jnu_posts').select('id', { count: 'exact', head: true }),
+    supabase.from('jnu_comments').select('id', { count: 'exact', head: true }),
+    supabase.from('jnu_posts').select('view_count'),
   ]);
   const totalViews = (viewsRes.data || []).reduce((sum, p) => sum + (p.view_count || 0), 0);
   return { posts: postsRes.count ?? 0, comments: commentsRes.count ?? 0, views: totalViews };

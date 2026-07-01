@@ -21,7 +21,7 @@ export default function CourseCatalog(): ReactElement {
           <h1>{language === 'ko' ? '교육과정' : 'Courses'}</h1>
           <p>{language === 'ko'
             ? '전남대GPT(타임리GPT 기반)로 배우는 4개 과정 · 각 2일 16시간 · 실습 중심'
-            : 'Four programs powered by CNU GPT (TimelyGPT-based) — 2 days / 16 hours each, hands-on.'}</p>
+            : 'Four programs powered by JNU GPT (TimelyGPT-based) — 2 days / 16 hours each, hands-on.'}</p>
         </div>
       </section>
 

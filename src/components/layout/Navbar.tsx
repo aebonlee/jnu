@@ -77,14 +77,17 @@ const Navbar = (): ReactElement => {
       <div className="container">
         <div className="nav-wrapper">
           <div className="logo">
-            <Link to="/">
-              <h1>
-                {site.brand.parts.map((part, i) => (
-                  <span key={i} className={part.className}>
-                    {part.text}
-                  </span>
-                ))}
-              </h1>
+            <Link to="/" aria-label="전남대학교 생성형 AI 교육 홈">
+              <img
+                className="logo-img logo-img-light"
+                src="/logo-jnu.png"
+                alt="전남대학교 생성형 AI 교육"
+              />
+              <img
+                className="logo-img logo-img-dark"
+                src="/logo-jnu-dark.png"
+                alt="전남대학교 생성형 AI 교육"
+              />
             </Link>
           </div>
 

@@ -70,7 +70,7 @@ export default function CourseCategory(): ReactElement {
             <i className="fa-solid fa-shield-halved" />
             <span>{language === 'ko'
               ? '본 과정은 교내 전용 플랫폼 전남대GPT(타임리GPT 기반)에서 진행되며, 모든 실습은 예시 프롬프트로 직접 따라 할 수 있습니다.'
-              : 'This program runs on the campus platform CNU GPT (TimelyGPT-based); every practice includes a ready-to-use prompt.'}</span>
+              : 'This program runs on the campus platform JNU GPT (TimelyGPT-based); every practice includes a ready-to-use prompt.'}</span>
           </div>
         </div>
       </section>
@@ -175,7 +175,7 @@ export default function CourseCategory(): ReactElement {
                 <h2 className="material-inline-title">{language === 'ko' ? '실습 · 따라하기' : 'Hands-on Labs'}</h2>
                 <p className="handson-intro">{language === 'ko'
                   ? '전남대GPT를 켜고 아래 랩을 순서대로 따라 해보세요. 각 단계의 예시 프롬프트를 그대로 입력하면 됩니다.'
-                  : 'Open CNU GPT and follow each lab. Paste the example prompts as-is.'}</p>
+                  : 'Open JNU GPT and follow each lab. Paste the example prompts as-is.'}</p>
               </div>
 
               {labs.map((lab) => (

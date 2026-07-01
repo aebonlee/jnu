@@ -14,7 +14,7 @@ export default function About(): ReactElement {
 
       <section className="page-header">
         <div className="container">
-          <h1>{language === 'ko' ? '전남대학교 생성형 AI 교육' : 'CNU Generative AI Education'}</h1>
+          <h1>{language === 'ko' ? '전남대학교 생성형 AI 교육' : 'JNU Generative AI Education'}</h1>
           <p>{language === 'ko'
             ? '교수자·직원·조교를 위한 맞춤형 AI 교육 프로그램'
             : 'Customized AI education program for faculty, staff, and TAs'}</p>

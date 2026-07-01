@@ -26,7 +26,7 @@ export default {
       contentEn: `A path to keep learning after the course ends.
 
 **Stage 1 — Foundations**
-1. Give CNU GPT one daily task (polish an email, summarize, etc.).
+1. Give JNU GPT one daily task (polish an email, summarize, etc.).
 2. Go through Prompt Learning: Learn → Practice → Evaluate.
 3. Save good prompts as your own templates.
 
@@ -68,7 +68,7 @@ export default {
 - **Budget/accounting:** budgeting & settlement, reading rules, financial reports
 - **Research/experiments:** research questions, IRB, protocols & reproducibility, lab notes
 
-> Ask CNU GPT to "make a 30-minute beginner study plan" for any topic.`,
+> Ask JNU GPT to "make a 30-minute beginner study plan" for any topic.`,
     },
     {
       title: '혼자서도 잘 하는 연습법',

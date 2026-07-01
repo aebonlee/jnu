@@ -16,7 +16,7 @@ const getTimeBasedTheme = (): 'light' | 'dark' => {
   return (hour >= 6 && hour < 18) ? 'light' : 'dark';
 };
 
-const COLOR_THEMES: ColorTheme[] = ['cnu', 'academic', 'research', 'vibe'];
+const COLOR_THEMES: ColorTheme[] = ['jnu', 'academic', 'research', 'vibe'];
 
 /** cookie 읽기 */
 const getCookie = (name: string): string | null => {
@@ -51,7 +51,7 @@ export const ThemeProvider = ({ children }: ThemeProviderProps): ReactElement =>
 
   const [colorTheme, setColorTheme] = useState<ColorTheme>(() => {
     const saved = getCookie('colorTheme');
-    return (COLOR_THEMES as string[]).includes(saved ?? '') ? (saved as ColorTheme) : 'cnu';
+    return (COLOR_THEMES as string[]).includes(saved ?? '') ? (saved as ColorTheme) : 'jnu';
   });
 
   // Resolve theme from mode (+ time tick for auto)

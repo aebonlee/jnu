@@ -1,4 +1,4 @@
-# CNU 사이트 개편 (2026-06)
+# JNU 사이트 개편 (2026-06)
 
 전남대학교 생성형 AI 교육 사이트를 **전남대GPT(타임리GPT 기반) 실습 중심 교육 플랫폼**으로 개편.
 
@@ -20,7 +20,7 @@
 ## 2. 디자인 — 네이비 + 골드 아카데믹
 
 - 기본 컬러셋 `academic`: 네이비 `#1A2B4A` + 골드 `#C8A04A` + 아이보리 `#FBF9F4`, serif 제목(Noto Serif KR).
-- 후보 컬러셋(상단 컬러 스위처에서 선택): `research`(딥네이비+틸), `cnu`(전남대 그린), `vibe`(모던 바이올렛).
+- 후보 컬러셋(상단 컬러 스위처에서 선택): `research`(딥네이비+틸), `jnu`(전남대 그린), `vibe`(모던 바이올렛).
 - 토큰: `src/styles/base.css`(:root + data-color), `dark-mode.css`, `site.css`. `--accent` 계열 추가.
 - `ColorTheme` 타입과 `ThemeContext`, `site.colors` 동기화.
 
@@ -37,4 +37,4 @@
 
 ## 배포
 
-`npm run build` 통과. 배포는 수동 `npm run deploy`(gh-pages) — 커스텀 도메인 `cnu.dreamitbiz.com`.
+`npm run build` 통과. 배포는 수동 `npm run deploy`(gh-pages) — 커스텀 도메인 `jnu.dreamitbiz.com`.

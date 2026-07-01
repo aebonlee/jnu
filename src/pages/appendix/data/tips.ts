@@ -88,7 +88,7 @@ export default {
 - Review AI-made text/code for accuracy and plagiarism.
 - Follow your venue's AI-use guidelines; disclose when required.
 - Check copyright/license of generated images/materials.
-- CNU GPT is campus-only and safer, but still minimize sensitive data.`,
+- JNU GPT is campus-only and safer, but still minimize sensitive data.`,
     },
   ],
 };

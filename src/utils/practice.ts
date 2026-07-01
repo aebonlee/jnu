@@ -1,6 +1,6 @@
 import { supabase } from './supabase';
 
-const TABLE = 'cnu_practice_scores';
+const TABLE = 'jnu_practice_scores';
 
 export async function saveScore({ userId, userName, quizScore, evalScore, writeScore, totalScore, grade, detail }: {
   userId: string;

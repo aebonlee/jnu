@@ -28,8 +28,8 @@ export default {
 | Term | Plain explanation |
 |------|-------------------|
 | **Generative AI** | AI that *creates* new text, images, or code. |
-| **LLM** | Large Language Model — the "brain" behind ChatGPT, Claude, CNU GPT. |
-| **CNU GPT** | Campus-only AI platform for CNU members, based on TimelyGPT. |
+| **LLM** | Large Language Model — the "brain" behind ChatGPT, Claude, JNU GPT. |
+| **JNU GPT** | Campus-only AI platform for JNU members, based on TimelyGPT. |
 | **Prompt** | The instruction/question you give the AI. |
 | **Token** | Smallest unit the AI processes; basis for usage/billing. |
 | **Hallucination** | When AI confidently makes up false facts — always verify. |
@@ -104,7 +104,7 @@ export default {
 | **Settlement/evidence** | Reporting spent budget with receipts. |
 | **Execution rate** | Share of budget actually spent vs planned. |
 
-> Stuck on a term? Ask CNU GPT to "explain this so a new staff member understands."`,
+> Stuck on a term? Ask JNU GPT to "explain this so a new staff member understands."`,
     },
   ],
 };

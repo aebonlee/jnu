@@ -40,6 +40,20 @@
     letter-spacing: -0.5px;
 }
 
+/* 전남대(JNU) 시그니처 로고 */
+.logo-img {
+    height: 40px;
+    width: auto;
+    display: block;
+}
+.logo-img-dark { display: none; }
+[data-theme="dark"] .logo-img-light { display: none; }
+[data-theme="dark"] .logo-img-dark { display: block; }
+
+@media (max-width: 600px) {
+    .logo-img { height: 32px; }
+}
+
 .brand-dream { color: var(--primary-blue); }
 .brand-it { color: var(--text-primary); }
 .brand-biz { color: var(--primary-blue-dark); }

@@ -1,5 +1,5 @@
 /* ============================================
-   CNU (전남대학교 생성형 AI 교육) - 사이트 전용 스타일
+   JNU (전남대학교 생성형 AI 교육) - 사이트 전용 스타일
    ============================================ */
 
 /* ─── Site Variable Aliases ─── */
@@ -17,7 +17,7 @@ html[data-color="research"] {
   --primary-light: rgba(15, 42, 74, 0.07);
   --accent-soft: rgba(20, 184, 166, 0.12);
 }
-html[data-color="cnu"] {
+html[data-color="jnu"] {
   --primary-light: rgba(0, 85, 63, 0.07);
   --accent-soft: rgba(200, 160, 74, 0.12);
 }

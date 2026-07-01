@@ -1,6 +1,6 @@
 /**
  * ============================================================
- *  CNU 전남대학교 생성형 AI 교육 — 과정/커리큘럼 데이터
+ *  JNU 전남대학교 생성형 AI 교육 — 과정/커리큘럼 데이터
  *  플랫폼: 전남대GPT (타임리GPT 기반)
  *  구성: 4개 과정 × 각 2일(16시간), 실습 위주
  * ============================================================
@@ -66,7 +66,7 @@ export const PROGRAMS: Program[] = [
     nameEn: 'Generative AI — Foundations & Advanced',
     tagline: '전남대GPT 첫걸음부터 실무 자동화까지',
     descKo: '전남대GPT(타임리GPT 기반)를 처음 다루는 분도 2일이면 실무에 바로 쓸 수 있도록, 기초 개념과 프롬프트 작성부터 파일·데이터 활용과 맞춤형 GPT 제작까지 실습 중심으로 익힙니다.',
-    descEn: 'From first login to workflow automation — a hands-on, two-day journey through CNU GPT (TimelyGPT-based).',
+    descEn: 'From first login to workflow automation — a hands-on, two-day journey through JNU GPT (TimelyGPT-based).',
     audience: '전남대 교직원·연구자 누구나 (입문 권장)',
     duration: '2일 · 16시간',
     level: '입문 → 심화',

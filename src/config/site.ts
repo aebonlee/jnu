@@ -1,18 +1,18 @@
 /**
  * ============================================================
- *  CNU (전남대학교 생성형 AI 교육) 사이트 설정
+ *  JNU (전남대학교 생성형 AI 교육) 사이트 설정
  * ============================================================
  */
 
 import type { SiteConfig } from '../types';
 
 const site: SiteConfig = {
-  id: 'cnu',
-  name: 'CNU AI Education',
+  id: 'jnu',
+  name: 'JNU AI Education',
   nameKo: '전남대학교 생성형 AI 교육',
   description: '전남대GPT(타임리GPT 기반)로 배우는 전남대학교 실습 중심 생성형 AI 교육 — 기초·심화, 데이터분석&논문작성, 데이터분석&예산회계, 연구&실험지원 4개 과정',
-  url: 'https://cnu.dreamitbiz.com',
-  dbPrefix: 'cnu_',
+  url: 'https://jnu.dreamitbiz.com',
+  dbPrefix: 'jnu_',
 
   parentSite: {
     name: 'DreamIT Biz',
@@ -21,7 +21,7 @@ const site: SiteConfig = {
 
   brand: {
     parts: [
-      { text: 'CNU', className: 'brand-dream' },
+      { text: 'JNU', className: 'brand-dream' },
       { text: ' AI', className: 'brand-it' },
       { text: ' -Edu', className: 'brand-biz' }
     ]
@@ -50,9 +50,9 @@ const site: SiteConfig = {
     license: false,
   },
 
-  // 기본 컬러셋 = cnu(전남대 다크 그린). 나머지는 후보 컬러셋
+  // 기본 컬러셋 = jnu(전남대 다크 그린). 나머지는 후보 컬러셋
   colors: [
-    { name: 'cnu', color: '#00553F' },       // 전남대 그린 (기본)
+    { name: 'jnu', color: '#00553F' },       // 전남대 그린 (기본)
     { name: 'academic', color: '#C8A04A' }, // 네이비+골드
     { name: 'research', color: '#14B8A6' },  // 딥네이비+틸
     { name: 'vibe', color: '#6D28D9' },      // 모던 바이올렛

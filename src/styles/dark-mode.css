@@ -42,7 +42,7 @@
     --highlight-gradient: linear-gradient(135deg, #99F6E4 0%, #5EEAD4 50%, #DCFAF4 100%);
 }
 
-[data-theme="dark"][data-color="cnu"] {
+[data-theme="dark"][data-color="jnu"] {
     --primary-blue: #4FAE8E;
     --primary-blue-dark: #2E8A6C;
     --primary-blue-light: #84D4B8;
