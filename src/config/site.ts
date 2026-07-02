@@ -80,7 +80,6 @@ const site: SiteConfig = {
     { name: 'DreamIT Biz (본사이트)', url: 'https://www.dreamitbiz.com' },
     { name: '대학교육 AI', url: 'https://university.dreamitbiz.com' },
     { name: '교수학습 AI 도구', url: 'https://teaching.dreamitbiz.com' },
-    { name: 'AI 프롬프트 가이드', url: 'https://ai-prompt.dreamitbiz.com' },
   ]
 };
 
