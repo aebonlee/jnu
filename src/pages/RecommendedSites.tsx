@@ -12,6 +12,7 @@ interface SiteItem {
   descKo: string;
   descEn: string;
   category: 'ai' | 'research' | 'company';
+  tags?: string[];
 }
 
 const SITES: SiteItem[] = [
@@ -77,6 +78,57 @@ const SITES: SiteItem[] = [
     descKo: '국내외 학위논문·학술지·참고문헌을 검색하고 원문을 확보합니다.',
     descEn: 'Search and access domestic/international dissertations, journals, and references.',
     category: 'research',
+    tags: ['문헌', '검색'],
+  },
+  {
+    name: '논문 작성 자료 보드',
+    nameEn: 'Paper Writing Board',
+    url: 'https://padlet.com/aebon/paper25',
+    icon: 'fa-clipboard-list',
+    descKo: '논문 작성에 필요한 참고 자료·템플릿·사례를 한곳에 모은 패들렛 보드(paper25).',
+    descEn: 'A Padlet board gathering references, templates, and examples for paper writing (paper25).',
+    category: 'research',
+    tags: ['Padlet', '자료 모음', '논문'],
+  },
+  {
+    name: 'DreamIT Research · 조사방법론',
+    nameEn: 'DreamIT Research · Methodology',
+    url: 'https://research.dreamitbiz.com',
+    icon: 'fa-magnifying-glass-chart',
+    descKo: '연구설계·표본추출·측정·설문조사·실험연구·질적연구·연구윤리까지 사회과학 조사방법론 학습.',
+    descEn: 'Social science research methodology: design, sampling, measurement, surveys, experiments, qualitative research, ethics.',
+    category: 'research',
+    tags: ['조사방법론', '연구설계', '연구윤리'],
+  },
+  {
+    name: 'DreamIT Statistics · 통계학',
+    nameEn: 'DreamIT Statistics',
+    url: 'https://statistics.dreamitbiz.com',
+    icon: 'fa-chart-column',
+    descKo: '기술통계·확률론·추론통계·가설검정·회귀분석·분산분석·베이지안까지 체계적으로 학습.',
+    descEn: 'Systematic statistics: descriptive, probability, inference, hypothesis testing, regression, ANOVA, Bayesian.',
+    category: 'research',
+    tags: ['통계학', '가설검정', '회귀분석'],
+  },
+  {
+    name: 'DreamIT 프레젠테이션',
+    nameEn: 'DreamIT Presentation',
+    url: 'https://presentation.dreamitbiz.com',
+    icon: 'fa-file-powerpoint',
+    descKo: 'PPT·스피치·시각디자인·스토리텔링과 미리캔버스·캔바·파워포인트 등 발표 도구 활용법.',
+    descEn: 'Presentation skills: PPT, speech, visual design, storytelling, and tools like Canva and PowerPoint.',
+    category: 'research',
+    tags: ['발표', '시각자료', '스토리텔링'],
+  },
+  {
+    name: 'AI Literacy · AI 리터러시',
+    nameEn: 'AI Literacy',
+    url: 'https://ai-literacy.dreamitbiz.com',
+    icon: 'fa-lightbulb',
+    descKo: 'AI 기초·활용·윤리·미래를 다루는 AI 시대 필수 교양 학습 플랫폼.',
+    descEn: 'Essential AI-era literacy platform covering AI basics, applications, ethics, and the future.',
+    category: 'research',
+    tags: ['AI 교양', '활용', '윤리'],
   },
   {
     name: 'DreamIT Biz',
@@ -173,6 +225,13 @@ export default function RecommendedSites(): ReactElement {
                   <div className="recommended-card-content">
                     <h3>{isKo ? site.name : site.nameEn}</h3>
                     <p>{isKo ? site.descKo : site.descEn}</p>
+                    {site.tags && site.tags.length > 0 && (
+                      <div className="recommended-card-tags">
+                        {site.tags.map((t) => (
+                          <span className="rc-tag" key={t}>{t}</span>
+                        ))}
+                      </div>
+                    )}
                     <span className="recommended-card-url">
                       {site.url.replace('https://', '')}
                       <i className="fa-solid fa-arrow-up-right-from-square" />
@@ -204,6 +263,13 @@ export default function RecommendedSites(): ReactElement {
                   <div className="recommended-card-content">
                     <h3>{isKo ? site.name : site.nameEn}</h3>
                     <p>{isKo ? site.descKo : site.descEn}</p>
+                    {site.tags && site.tags.length > 0 && (
+                      <div className="recommended-card-tags">
+                        {site.tags.map((t) => (
+                          <span className="rc-tag" key={t}>{t}</span>
+                        ))}
+                      </div>
+                    )}
                     <span className="recommended-card-url">
                       {site.url.replace('https://', '')}
                       <i className="fa-solid fa-arrow-up-right-from-square" />
@@ -235,6 +301,13 @@ export default function RecommendedSites(): ReactElement {
                   <div className="recommended-card-content">
                     <h3>{isKo ? site.name : site.nameEn}</h3>
                     <p>{isKo ? site.descKo : site.descEn}</p>
+                    {site.tags && site.tags.length > 0 && (
+                      <div className="recommended-card-tags">
+                        {site.tags.map((t) => (
+                          <span className="rc-tag" key={t}>{t}</span>
+                        ))}
+                      </div>
+                    )}
                     <span className="recommended-card-url">
                       {site.url.replace('https://', '')}
                       <i className="fa-solid fa-arrow-up-right-from-square" />

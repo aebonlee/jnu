@@ -101,6 +101,23 @@ html[data-color="vibe"] {
   margin-bottom: 8px;
 }
 
+.recommended-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+.rc-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent-dark);
+  background: var(--accent-soft);
+  border-radius: 999px;
+  padding: 2px 9px;
+  line-height: 1.5;
+}
+
 .recommended-card-url {
   font-size: 12px;
   color: var(--primary-blue);
