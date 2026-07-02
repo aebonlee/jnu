@@ -5,6 +5,7 @@ import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import { useLanguage } from '../../contexts/LanguageContext';
 import SEOHead from '../../components/SEOHead';
+import PromptBlock from '../../components/PromptBlock';
 import { getProgramById, PROGRAMS } from '../../data/courses';
 import { MATERIALS } from '../../data/materials';
 import { getHandsOn } from '../../data/handsOn';
@@ -244,7 +245,7 @@ export default function CourseCategory(): ReactElement {
                         <div className="lab-step-body">
                           <div className="lab-step-title">{s.title}</div>
                           <p className="lab-step-detail">{s.detail}</p>
-                          {s.prompt && <pre className="practice-prompt"><code>{s.prompt}</code></pre>}
+                          {s.prompt && <PromptBlock text={s.prompt} />}
                           {s.check && <div className="lab-step-check"><i className="fa-solid fa-circle-check" /> {s.check}</div>}
                         </div>
                       </li>
@@ -308,7 +309,7 @@ export default function CourseCategory(): ReactElement {
                               <span className="practice-num" style={{ background: program.color }}>{pi + 1}</span>
                               {pc.scenario}
                             </div>
-                            <pre className="practice-prompt"><code>{pc.prompt}</code></pre>
+                            <PromptBlock text={pc.prompt} />
                           </div>
                         ))}
                       </div>

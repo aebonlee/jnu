@@ -609,10 +609,35 @@
   font-size: 13px;
   line-height: 1.65;
   white-space: pre-wrap;
-  word-break: keep-all;
-  overflow-wrap: break-word;
-  overflow-x: auto;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  overflow-x: hidden;
 }
+
+/* 프롬프트 복사 버튼 */
+.prompt-block { position: relative; }
+.prompt-block .practice-prompt { padding-top: 40px; }
+.prompt-copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 11px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #E8EEF8;
+  background: rgba(255, 255, 255, 0.13);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: var(--transition-base);
+}
+.prompt-copy-btn:hover { background: rgba(255, 255, 255, 0.24); }
+.prompt-copy-btn.copied { background: rgba(94, 201, 150, 0.28); border-color: rgba(94, 201, 150, 0.5); }
+.prompt-copy-btn i { font-size: 11px; }
 .practice-prompt code {
   font-family: 'D2Coding', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
   background: none;
