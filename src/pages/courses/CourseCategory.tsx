@@ -50,21 +50,22 @@ export default function CourseCategory(): ReactElement {
       <section className="program-hero" style={{ borderBottom: `3px solid ${program.color}` }}>
         <div className="container">
           <div className="program-hero-inner">
-            <div className="program-hero-icon" style={{ background: program.color }}>
-              <i className={`fa-solid ${program.icon}`} />
-            </div>
-            <div className="program-hero-text">
+            <div className="program-hero-id">
+              <div className="program-hero-icon" style={{ background: program.color }}>
+                <i className={`fa-solid ${program.icon}`} />
+              </div>
               <div className="program-hero-head">
                 <div className="eyebrow">Program {String(program.order).padStart(2, '0')} · {program.duration}</div>
                 <h1>{language === 'ko' ? program.nameKo : program.nameEn}</h1>
                 <p className="program-hero-tagline">{program.tagline}</p>
               </div>
-              <div className="program-hero-detail">
-              <p className="program-hero-desc">{language === 'ko' ? program.descKo : program.descEn}</p>
+            </div>
+
+            <div className="program-hero-aside">
               <div className="program-hero-meta">
-                <span><i className="fa-solid fa-user-check" /> {program.audience}</span>
-                <span><i className="fa-solid fa-layer-group" /> {totalSessions}{language === 'ko' ? '개 실습 교시' : ' sessions'}</span>
-                <span><i className="fa-solid fa-signal" /> {program.level}</span>
+                <span className="meta-chip"><i className="fa-solid fa-user-check" /> {program.audience}</span>
+                <span className="meta-chip"><i className="fa-solid fa-layer-group" /> {totalSessions}{language === 'ko' ? '개 실습 교시' : ' sessions'}</span>
+                <span className="meta-chip"><i className="fa-solid fa-signal" /> {program.level}</span>
               </div>
 
               {program.instructors && program.instructors.some((ins) => ins.padlet) && (
@@ -78,6 +79,7 @@ export default function CourseCategory(): ReactElement {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="padlet-btn"
+                        style={{ background: program.color }}
                       >
                         <i className="fa-solid fa-clipboard-list" />
                         {language === 'ko'
@@ -88,7 +90,6 @@ export default function CourseCategory(): ReactElement {
                     ))}
                 </div>
               )}
-              </div>
             </div>
           </div>
 

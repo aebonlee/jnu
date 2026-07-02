@@ -362,86 +362,107 @@
   /* 고정 네비게이션 높이만큼 상단 여백 확보 (컴팩트) */
   padding: calc(var(--nav-height) + 16px) 0 20px;
 }
+/* ── 컴팩트 히어로: 좌(아이덴티티) / 우(메타·패들렛) ── */
 .program-hero-inner {
   display: flex;
-  gap: 18px;
   align-items: center;
+  justify-content: space-between;
+  gap: 28px 40px;
+  flex-wrap: wrap;
+}
+.program-hero-id {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-width: 0;
 }
 .program-hero-icon {
   flex-shrink: 0;
-  width: 54px;
-  height: 54px;
-  border-radius: var(--radius-md);
+  width: 62px;
+  height: 62px;
+  border-radius: 18px;
   display: grid;
   place-items: center;
   color: #fff;
-  font-size: 24px;
-  box-shadow: var(--shadow-md);
+  font-size: 27px;
+  box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.28);
 }
-/* 타이틀(좌) + 상세(우) 2열 배치로 높이 축소 */
-.program-hero-text {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  align-items: center;
-  gap: 32px;
-}
-.program-hero-head { flex: 0 0 38%; min-width: 0; }
-.program-hero-detail { flex: 1; min-width: 0; }
-.program-hero-text h1 { font-size: 24px; margin-bottom: 3px; }
+.program-hero-head { min-width: 0; }
+.program-hero-head .eyebrow { margin-bottom: 5px; }
+.program-hero-head h1 { font-size: 26px; line-height: 1.18; margin: 0 0 5px; }
 .program-hero-tagline {
-  font-size: 14.5px;
+  font-size: 15px;
   font-weight: 600;
   color: var(--primary-blue);
-  margin-bottom: 0;
+  margin: 0;
 }
-.program-hero-desc {
-  font-size: 13px;
-  color: var(--text-secondary);
-  line-height: 1.5;
-  margin-bottom: 10px;
+
+/* 우측 정보 패널 */
+.program-hero-aside {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+  padding-left: 40px;
+  border-left: 1px solid var(--border-light);
 }
 .program-hero-meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 16px;
+  justify-content: flex-end;
+  gap: 8px;
+}
+.meta-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  background: var(--card-bg);
+  border: 1px solid var(--border-light);
+  border-radius: 999px;
   font-size: 12.5px;
+  font-weight: 500;
   color: var(--text-secondary);
+  white-space: nowrap;
 }
-@media (max-width: 820px) {
-  .program-hero-text { flex-direction: column; align-items: flex-start; gap: 12px; }
-  .program-hero-head { flex: none; }
-}
-.program-hero-meta i { margin-right: 6px; color: var(--accent-dark); }
+.meta-chip i { color: var(--accent-dark); font-size: 12px; }
 
 /* 타이틀 영역 패들렛 버튼 */
 .program-hero-padlets {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 18px;
+  justify-content: flex-end;
+  gap: 8px;
 }
 .padlet-btn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 9px 16px;
+  padding: 8px 15px;
   border-radius: 999px;
   background: var(--primary-blue);
   color: #fff;
-  font-size: 13.5px;
+  font-size: 13px;
   font-weight: 600;
   text-decoration: none;
   border: 1px solid transparent;
+  box-shadow: 0 4px 12px -4px rgba(0, 0, 0, 0.3);
   transition: var(--transition-base);
 }
-.padlet-btn:hover {
-  background: var(--primary-blue-dark);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
+.padlet-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 18px -5px rgba(0, 0, 0, 0.4); filter: brightness(1.06); }
+.padlet-btn .padlet-btn-ext { font-size: 10px; opacity: 0.75; }
+
+@media (max-width: 860px) {
+  .program-hero-inner { flex-direction: column; align-items: flex-start; gap: 18px; }
+  .program-hero-aside { align-items: flex-start; padding-left: 0; border-left: none; width: 100%; }
+  .program-hero-meta, .program-hero-padlets { justify-content: flex-start; }
 }
-.padlet-btn .padlet-btn-ext { font-size: 11px; opacity: 0.8; }
-[data-theme="dark"] .padlet-btn { background: var(--primary-blue); color: #fff; }
+
+/* 다크모드 히어로 — --bg-light-gray가 data-color 오버라이드로 밝게 남아 제목이 안 보이는 문제 보정 */
+[data-theme="dark"] .program-hero { background: #12181f; }
+[data-theme="dark"] .meta-chip { background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.14); }
+[data-theme="dark"] .program-hero-aside { border-left-color: rgba(255, 255, 255, 0.12); }
+[data-theme="dark"] .program-platform-note { background: rgba(255, 255, 255, 0.04); color: var(--text-secondary); }
 
 .program-platform-note {
   display: flex;
