@@ -452,61 +452,177 @@ Gemini is Google DeepMind's multimodal AI with seamless Google ecosystem integra
     nameKo: '연구 데이터 분석 가이드',
     nameEn: 'Research Data Analysis Guide',
     type: 'guide',
-    contentKo: `## AI를 활용한 연구 데이터 분석
+    contentKo: `## 연구 데이터 분석 완전 가이드
 
-연구 데이터의 전처리부터 기술통계·가설검정까지, AI로 분석 과정을 효율화하는 방법입니다. (Day 1 커리큘럼 연계)
+Day 1(데이터분석, 8시간) 전 과정을 아우르는 심화 자료입니다. 연구 설계·표본에서 출발해 전처리·기술통계·추론통계·검정 선택·재현가능성까지 다루며, 각 단계에 AI 활용 프롬프트와 파이썬 코드 요청 예시를 제공합니다.
 
-### 1. 데이터 전처리
-결측치·이상치 처리, 형 변환·스케일링은 분석의 첫 단계입니다.
+---
+
+## 1. 변수와 측정 척도
+
+분석 방법은 변수의 **측정 척도**에 의해 결정됩니다.
+
+| 척도 | 성질 | 예시 | 중심경향 | 대표 통계 |
+|------|------|------|----------|-----------|
+| 명목(nominal) | 분류만 | 성별, 학과 | 최빈값 | 빈도·카이제곱 |
+| 서열(ordinal) | 순서 있음 | 리커트 만족도 | 중앙값 | 순위상관·비모수 |
+| 등간(interval) | 간격 동일, 절대영 없음 | 온도(℃), 표준점수 | 평균 | t·ANOVA·상관 |
+| 비율(ratio) | 절대영 있음 | 시간, 점수, 소득 | 평균 | 모든 모수통계 |
+
+**핵심**: 서열척도(리커트)를 등간처럼 평균 낼지는 논쟁적입니다. 항목 수가 많고(5점 이상) 합산척도(composite)일 때 관례적으로 모수통계를 적용합니다.
+
+---
+
+## 2. 표본 설계와 표본 크기
+
+- **모집단 → 표집틀 → 표본**: 표집틀이 모집단을 대표하지 못하면 표집오차 발생.
+- **확률표집**: 단순무작위·계통·층화(stratified)·군집(cluster). **비확률표집**: 편의·눈덩이(일반화 제한).
+- **검정력 분석(power analysis)**: 연구 설계 단계에서 필요 표본 크기를 산정합니다. 네 요소가 상호 결정됩니다 — 효과크기, 유의수준(α=.05), 검정력(1−β=.80 권장), 표본 크기.
 
 \`\`\`
-다음 데이터의 전처리 방안을 제안해줘.
-- 결측치: 변수별 결측 비율과 처리 방법(삭제/대치) 추천
-- 이상치: IQR 기준 탐지 및 처리 방안
-- 변수별 형 변환/정규화 필요 여부
-[데이터 상단 20행 붙여넣기]
+독립표본 t-검정을 계획 중이야. 예상 효과크기 Cohen's d=0.5(중간), α=.05, 검정력 .80일 때
+집단당 필요한 표본 크기를 계산해줘. statsmodels 또는 G*Power 기준으로 근거와 함께 설명해줘.
 \`\`\`
 
-### 2. 기술통계
+---
+
+## 3. 데이터 전처리
+
+### 3.1 결측치(missing data)
+결측 **메커니즘**을 먼저 진단해야 처리법이 정당화됩니다.
+- **MCAR**(완전무작위결측): 결측이 어떤 변수와도 무관 → 완전제거해도 편향 적음
+- **MAR**(무작위결측): 관측된 다른 변수로 설명 가능 → 대치(imputation) 권장
+- **MNAR**(비무작위결측): 결측 자체가 값과 관련 → 민감도 분석 필요
+
+처리법: 완전제거(listwise/pairwise), 단일대치(평균·중앙·최빈), 회귀대치, **다중대치(MICE)**, KNN 대치. 단일 평균대치는 분산을 축소시키므로 지양하고, 결측률이 높으면 다중대치를 권장합니다.
+
+### 3.2 이상치(outliers)
+- 일변량: **IQR 규칙**(Q1−1.5×IQR 미만 / Q3+1.5×IQR 초과), z-score(절댓값 3 초과)
+- 다변량: **마할라노비스 거리**(카이제곱 임계값과 비교)
+- 처리 원칙: 삭제보다 **원인 규명** 우선(입력오류 vs 진짜 극단값). 윈저라이징(winsorizing)·변환도 대안.
+
+### 3.3 변환·인코딩
+- 표준화(z-score), 정규화(min-max), 왜도 완화(로그·제곱근·Box-Cox), 범주형 더미/원-핫 인코딩
+
+\`\`\`
+첨부한 데이터의 전처리 계획을 세워줘.
+1) 변수별 결측률과 추정 결측 메커니즘(MCAR/MAR/MNAR) 판단 근거
+2) 권장 대치 방법과 이유
+3) IQR·z-score 기준 이상치 탐지 결과와 처리 방안
+4) 왜도가 큰 변수의 변환 제안
+pandas 코드와 함께 단계별로 제시해줘.
+\`\`\`
+
+---
+
+## 4. 기술통계와 분포 진단
+
+- **중심경향**: 평균·중앙값·최빈값 (분포가 치우치면 중앙값이 대표성 높음)
+- **산포**: 분산·표준편차·범위·IQR·변동계수(CV = SD/M, 단위 다른 변수 비교)
+- **분포 형태**: 왜도(skewness, 0=대칭), 첨도(kurtosis)
+- **정규성 검정**: Shapiro-Wilk(표본<50 권장), Kolmogorov-Smirnov, 그리고 **Q-Q plot** 시각 확인. 표본이 크면 사소한 이탈도 유의하게 나오므로 그래프와 병행 판단.
+
 \`\`\`
 첨부 데이터의 기술통계표를 작성해줘.
-- 연속형: 평균·표준편차·중앙값·최소/최대
-- 범주형: 빈도·비율
-- 표로 정리하고 특이점을 해석해줘
+- 연속형: n·평균·표준편차·중앙값·최소/최대·왜도·첨도
+- 범주형: 빈도·백분율
+- Shapiro-Wilk 정규성 검정 결과와 Q-Q plot 해석
+- 표로 정리하고, 정규성 위배 변수는 별도 표시해줘.
 \`\`\`
 
-### 3. 가설검정 설계
-연구질문에 맞는 검정(t-검정·ANOVA·카이제곱·상관/회귀)을 선택합니다.
+---
+
+## 5. 추론통계와 가설검정 논리
+
+- **가설**: 귀무가설(H0, 차이 없음) vs 대립가설(H1). 단측/양측 선택은 사전 이론에 근거.
+- **오류**: 1종 오류(α, 참인 H0 기각) / 2종 오류(β, 거짓 H0 채택). 검정력 = 1−β.
+- **p-value 해석**: "H0가 참일 때 관측된 결과 이상이 나올 확률". *효과의 크기나 중요도가 아님*. p<.05를 진리로 삼는 태도와 p-hacking(유의성 낚기)을 경계.
+- **효과크기 필수 보고**: Cohen's d(평균차), η²/부분η²(분산설명), r(상관), Odds Ratio(로지스틱).
+- **신뢰구간(95% CI)**: 점추정 + 불확실성을 함께 제시.
+- **다중비교 보정**: 여러 검정 동시 수행 시 Bonferroni(보수적) 또는 Benjamini-Hochberg(FDR).
+
+---
+
+## 6. 통계 검정 선택 가이드
+
+연구질문 → 변수 척도·집단 수·대응 여부·가정 충족을 따져 결정합니다.
+
+| 상황 | 모수 검정 | 비모수 대안 | 효과크기 |
+|------|-----------|-------------|----------|
+| 2집단 독립 비교 | 독립표본 t | Mann-Whitney U | Cohen's d |
+| 2집단 대응 비교 | 대응표본 t | Wilcoxon signed-rank | Cohen's d |
+| 3집단+ 비교 | 일원분산분석(ANOVA) | Kruskal-Wallis | η² |
+| 사후검정 | Tukey HSD(등분산)/Games-Howell | Dunn | — |
+| 범주 연관 | 카이제곱 | Fisher 정확검정(기대빈도<5) | Cramér's V |
+| 두 연속변수 관계 | Pearson r | Spearman ρ | r |
+| 예측·설명 | 다중회귀 | — | R², β |
+| 이분 결과 예측 | 로지스틱 회귀 | — | Odds Ratio |
+
+**회귀 진단(가정 점검)**: 선형성, 오차 독립성(Durbin-Watson≈2), 등분산성(잔차 산점도), 잔차 정규성(Q-Q), 다중공선성(VIF<10, 이상적으로 <5).
 
 \`\`\`
-연구질문: [예: 교육 전·후 점수 차이가 유의한가?]
-데이터 구조: [집단 수, 표본 크기, 변수 척도]
-적절한 통계 검정을 추천하고, 가정(정규성·등분산성) 확인 방법과 함께 설명해줘.
+연구질문: [예: 교수법(3종)에 따라 시험 점수 평균이 다른가?]
+데이터: 집단 3개, 집단당 n=30, 종속변수 연속형.
+1) 적절한 검정을 추천하고 이유를 설명해줘
+2) 충족해야 할 가정과 검정 방법(정규성·등분산성)
+3) 가정 위배 시 대안(비모수/보정)
+4) 유의하면 어떤 사후검정을 쓸지
+scipy/statsmodels/pingouin 코드까지 포함해줘.
 \`\`\`
 
-### 추천 도구
-- **ChatGPT(Advanced Data Analysis)/Claude**: CSV 업로드 → 분석·차트 자동
-- **전남대GPT**: 교내 실습 환경
+---
 
-### 주의사항
-**Do**: 통계 결과를 원자료로 재확인, 검정 가정 위배 여부 점검
-**Don't**: 개인정보·미공개 연구데이터 무단 업로드, 결과 맹신`,
-    contentEn: `## AI-Assisted Research Data Analysis
+## 7. 재현가능한 분석 워크플로
 
-### 1. Data Preprocessing
-Handle missing values (drop/impute), outliers (IQR), and scaling before analysis.
+- **코드 기반 분석**: GUI 클릭 대신 스크립트로 기록 → 재현·검증 가능
+- **난수 시드 고정**(random_state) → 동일 결과 재생산
+- **버전관리·데이터 사전(data dictionary)**: 원자료·전처리코드·결과를 분리 보관, 원자료는 읽기전용
 
-### 2. Descriptive Statistics
-Ask AI to summarize continuous (mean/SD/median) and categorical (frequency) variables in a table.
+---
 
-### 3. Hypothesis Testing
-Describe your research question and data structure; let AI recommend the right test (t-test/ANOVA/chi-square/regression) and how to check assumptions.
+## 추천 도구
 
-### Tools
-ChatGPT (Advanced Data Analysis), Claude, or JNU GPT for in-class practice.
+- **Python**: pandas, numpy, scipy.stats, statsmodels, pingouin(효과크기·검정 간편)
+- **R**: tidyverse, rstatix / **GUI**: JASP, jamovi(무료, 논문용 출력)
+- **표본설계**: G*Power
+- **AI**: 전남대GPT, ChatGPT(Advanced Data Analysis, CSV 업로드 분석), Claude
 
-### Do / Don't
-**Do**: verify results against raw data, check test assumptions. **Don't**: upload personal or unpublished data, trust results blindly.`,
+## 연구윤리·데이터 관리 (중요)
+
+- 개인정보 **비식별화** 후 분석, IRB 승인 범위 준수
+- 원자료(raw) 보존, 전처리는 사본에서 수행
+- **AI에 미공개 연구데이터·개인정보 업로드 금지** — 요약·구조만 공유
+- 분석 결과·수치는 AI 출력을 그대로 믿지 말고 원 도구로 재검증`,
+    contentEn: `## Complete Guide to Research Data Analysis
+
+A deep resource covering Day 1 (Data Analysis, 8h): from study design and sampling to preprocessing, descriptive/inferential statistics, test selection, and reproducibility, each with AI prompts.
+
+## 1. Variables & Measurement Scales
+Nominal / ordinal / interval / ratio determine which statistics are valid. Treating Likert (ordinal) as interval is acceptable for multi-item composite scales.
+
+## 2. Sampling & Sample Size
+Probability vs non-probability sampling; run a power analysis (effect size, α=.05, power=.80) to size your sample before collecting data.
+
+## 3. Preprocessing
+Diagnose missingness (MCAR/MAR/MNAR) before choosing deletion vs imputation (prefer multiple imputation/MICE). Detect outliers via IQR, z-score, Mahalanobis distance; investigate causes before removing. Transform skewed variables (log/Box-Cox), encode categoricals.
+
+## 4. Descriptive Statistics & Distribution
+Central tendency, dispersion (SD, IQR, CV), skewness/kurtosis, and normality (Shapiro-Wilk + Q-Q plots).
+
+## 5. Inference & Hypothesis Testing
+H0/H1, Type I/II errors, power. p-value is not effect size; avoid p-hacking. Always report effect sizes (Cohen's d, eta-squared, r) and 95% CIs; correct for multiple comparisons (Bonferroni/FDR).
+
+## 6. Choosing a Test
+Independent/paired t or Mann-Whitney/Wilcoxon; ANOVA or Kruskal-Wallis (with post-hoc); chi-square/Fisher; Pearson/Spearman; multiple/logistic regression. Check regression assumptions (linearity, independence, homoscedasticity, residual normality, VIF<10).
+
+## 7. Reproducibility
+Script-based analysis, fixed random seeds, version control, read-only raw data.
+
+## Tools
+Python (pandas, scipy, statsmodels, pingouin), R, JASP/jamovi, G*Power, ChatGPT ADA/Claude.
+
+## Ethics
+De-identify data, keep raw data read-only, never upload personal/unpublished data to AI, and re-verify AI outputs with real tools.`,
   },
   {
     id: 'data-visualization',
@@ -514,58 +630,118 @@ ChatGPT (Advanced Data Analysis), Claude, or JNU GPT for in-class practice.
     nameKo: '데이터 시각화 & 결과 해석 가이드',
     nameEn: 'Data Visualization & Interpretation Guide',
     type: 'guide',
-    contentKo: `## AI를 활용한 데이터 시각화와 결과 해석
+    contentKo: `## 데이터 시각화 & 결과 해석 완전 가이드
 
-분석 결과를 효과적으로 시각화하고, 논문에 쓸 수 있게 해석하는 방법입니다. (Day 1 커리큘럼 연계)
+Day 1 후반부(시각화·해석) 심화 자료입니다. 시각화 이론에서 출판용 그림 제작, 통계 결과의 학술적 서술(APA)까지 다룹니다.
 
-### 1. 목적별 차트 선택
-| 목적 | 권장 차트 |
-|------|-----------|
-| 집단 간 비교 | 막대그래프(오차막대) |
-| 두 변수 관계 | 산점도 + 추세선 |
-| 분포 확인 | 히스토그램·박스플롯 |
-| 시간 변화 | 선그래프 |
+---
 
-### 2. 시각화 생성 프롬프트
+## 1. 시각화의 원칙
+
+- **데이터-잉크 비율(Tufte)**: 정보를 나르지 않는 장식(3D, 그림자, 불필요한 격자)을 제거.
+- **정직성**: y축은 원칙적으로 0에서 시작(막대그래프). 축 절단(truncation)은 차이를 과장.
+- **비교 용이성**: 정렬·정돈, 색은 의미 있을 때만. **색맹 접근성**(viridis 등 컬러세이프 팔레트) 고려.
+- **적정 밀도**: 과밀 산점도는 투명도(alpha)·비닝·2D 밀도로 완화.
+
+---
+
+## 2. 목적별 차트 선택
+
+| 목적/데이터 | 권장 차트 | 피할 것 |
+|-------------|-----------|---------|
+| 단일 연속변수 분포 | 히스토그램, 밀도, 박스플롯, 바이올린 | 파이차트 |
+| 범주별 값 비교 | 막대그래프(정렬), 점그래프 | 3D 막대 |
+| 두 연속변수 관계 | 산점도 + 회귀선/신뢰밴드 | — |
+| 시간 추세 | 선그래프 | 막대 남용 |
+| 집단×연속 비교 | 박스플롯/바이올린 + 개별점(jitter) | 평균만 막대 |
+| 상관행렬·다변량 | 히트맵, 페어플롯 | — |
+| 비율(부분-전체) | 누적막대, 100%막대 | 파이(항목 다수 시) |
+
+**해석 포인트**: 박스플롯은 중앙값·사분위·이상치를, 바이올린은 분포 형태까지 보여줍니다. **오차막대는 반드시 무엇인지 명시**(표준편차 SD vs 표준오차 SE vs 95% CI) — 서로 크게 다릅니다.
+
+---
+
+## 3. 코드로 그리는 출판용 그림 (Python)
+
 \`\`\`
-첨부 데이터로 다음 시각화를 만들어줘.
-- 집단별 평균 비교: 막대그래프(오차막대 포함)
-- 두 변수 관계: 산점도 + 추세선
-- 분포: 히스토그램 또는 박스플롯
-각 그래프에 제목·축 라벨(한글)을 넣고, 해석 코멘트도 함께 작성해줘.
+아래 데이터로 집단별 종속변수를 비교하는 그림을 seaborn으로 그려줘.
+- 박스플롯 + 개별 관측치(stripplot, jitter, alpha=0.5)
+- 한글 폰트 설정 포함, 제목·축 라벨(단위 포함)
+- 색맹 안전 팔레트(colorblind), 300 dpi로 저장하는 코드까지
+- 각 줄에 한글 주석
+[데이터 붙여넣기]
 \`\`\`
 
-### 3. 결과를 논문 문장으로
 \`\`\`
-아래 분석 결과를 논문 '결과' 서술 문장으로 바꿔줘.
-- 수치: [예: t(38)=2.41, p=.021]
-- APA 스타일, 과장 없는 객관적 서술로
+두 변수의 관계를 산점도 + 회귀선 + 95% 신뢰밴드로 그리는 matplotlib/seaborn 코드를 작성하고,
+Pearson r과 p값을 그림 주석(annotate)으로 표시해줘.
 \`\`\`
 
-### 추천 도구
-- **ChatGPT/Claude**: 데이터 업로드 → 차트 생성·해석
-- **Datawrapper·Flourish**: 웹 기반 인터랙티브 시각화
-- **Excel·matplotlib**: 기본 정적 차트
+**출판 규격 체크리스트**: 벡터(PDF/SVG) 또는 300+ dpi, 흑백 인쇄 가독성, 폰트 크기(축 라벨 최소 8pt), 캡션(그림 번호 + 무엇을 보여주는지 + 표본 수 + 오차막대 정의).
 
-### 주의사항
-**Do**: 축 범위·표본 수를 명시해 오해 방지
-**Don't**: 축을 왜곡하거나 오해를 유발하는 그래프 사용 금지`,
-    contentEn: `## AI-Assisted Data Visualization & Interpretation
+---
 
-### 1. Choose the Right Chart
-Bar (group comparison), scatter+trendline (relationship), histogram/boxplot (distribution), line (time).
+## 4. 시각화 도구
 
-### 2. Generate Visuals
-Ask AI to create titled, labeled charts from your data with interpretation notes.
+- **Python**: matplotlib(정밀 제어), seaborn(통계그래프), plotly(인터랙티브)
+- **R**: ggplot2(문법적 그래픽), patchwork(패널 조합)
+- **노코드**: Datawrapper·Flourish(웹 퍼블리싱), Excel(빠른 탐색)
 
-### 3. Turn Results into Prose
-Provide statistics (e.g., t(38)=2.41, p=.021) and ask for APA-style objective result sentences.
+---
 
-### Tools
-ChatGPT/Claude, Datawrapper, Flourish, Excel, matplotlib.
+## 5. 결과 해석과 학술적 서술 (APA)
 
-### Do / Don't
-**Do**: state axis ranges and sample sizes. **Don't**: use distorted or misleading axes.`,
+통계 결과는 **수치 + 방향 + 크기 + 유의성**을 함께 서술합니다.
+
+- t-검정: t(자유도)=값, p=값, Cohen's d=값
+  - 예: "실험집단(M=82.4, SD=6.1)이 통제집단(M=76.2, SD=7.0)보다 유의하게 높았다, t(78)=4.21, p<.001, d=0.94(큰 효과)."
+- ANOVA: F(df1, df2)=값, p=값, 부분η²=값 + 사후검정 결과
+- 상관: r(df)=값, p=값
+- 회귀: β(표준화계수), t, p, R²(설명량), F검정
+
+\`\`\`
+아래 분석 결과를 논문 '결과' 절 문장으로 작성해줘.
+- APA 7판 통계 보고 형식(기호 이탤릭 규칙 설명 포함)
+- 방향·효과크기·신뢰구간을 함께 서술
+- 과장 없이 객관적으로
+결과: [예: 독립표본 t검정, t(78)=4.21, p<.001, d=0.94, 두 집단 평균/표준편차]
+\`\`\`
+
+\`\`\`
+아래 결과들을 APA 형식 표(Table)로 정리해줘.
+- 열: 변수, M, SD, 검정통계량, p, 효과크기
+- 표 제목과 주석(note) 규칙도 알려줘
+\`\`\`
+
+**해석 시 주의**: 통계적 유의성 ≠ 실질적 중요성. 상관 ≠ 인과. 표본이 크면 사소한 차이도 유의해지므로 효과크기로 실질성을 판단.
+
+---
+
+## 6. 자주 하는 실수 (Do / Don't)
+
+**Do**: 오차막대 종류 명시, 축 범위 정직, 표본 수 표기, 색맹 팔레트, 원자료 기반 재현
+**Don't**: y축 절단으로 과장, 파이차트 남용, "유의하므로 중요"라는 비약, 상관을 인과로 서술`,
+    contentEn: `## Complete Guide to Data Visualization & Interpretation
+
+Deep resource for the visualization/interpretation half of Day 1: from design principles to publication-ready figures and APA-style reporting.
+
+## 1. Principles
+Maximize data-ink (Tufte); start bar axes at zero; use colorblind-safe palettes (viridis); reduce overplotting with alpha/binning.
+
+## 2. Choosing Charts
+Histogram/box/violin (distribution), sorted bars/dot plots (comparison), scatter+regression (relationship), line (trend), heatmap/pairplot (multivariate). Always state what error bars mean (SD vs SE vs 95% CI).
+
+## 3. Publication Figures (Python)
+Use seaborn/matplotlib for boxplot+jittered points, scatter+regression+CI band; export at 300+ dpi or vector; include full captions (figure number, content, n, error-bar definition).
+
+## 4. Tools
+matplotlib, seaborn, plotly; ggplot2; Datawrapper, Flourish, Excel.
+
+## 5. Interpretation & APA Reporting
+Report value + direction + effect size + significance, e.g., t(78)=4.21, p<.001, d=0.94. Provide APA tables. Remember: significance is not importance; correlation is not causation.
+
+## 6. Do / Don't
+**Do**: label error bars, honest axes, report n, colorblind palettes. **Don't**: truncate axes to exaggerate, overuse pie charts, equate significance with importance.`,
   },
   {
     id: 'paper-writing',
@@ -573,62 +749,155 @@ ChatGPT/Claude, Datawrapper, Flourish, Excel, matplotlib.
     nameKo: 'AI 논문작성 가이드',
     nameEn: 'AI Academic Writing Guide',
     type: 'guide',
-    contentKo: `## AI를 활용한 학술 논문 작성
+    contentKo: `## AI 논문작성 완전 가이드
 
-문헌 검토부터 IMRaD 초안, 영문 교정, 초록·투고까지 논문 작성 전 과정을 지원합니다. (Day 2 커리큘럼 연계)
+Day 2(논문작성, 8시간) 전 과정 심화 자료입니다. 학술 글쓰기 구조(IMRaD), 체계적 문헌검토, 섹션별 집필법, 학술 영어, 투고·심사 대응, 연구윤리를 AI 활용과 함께 다룹니다.
 
-### 1. 문헌 검토 & 연구 위치잡기
+---
+
+## 1. 학술 논문의 구조 (IMRaD)
+
+- **Title/Abstract**: 논문의 얼굴. 구조화 초록(배경·목적·방법·결과·결론).
+- **Introduction**: 넓은 배경 → 선행연구 → 연구 공백(gap) → 목적/가설. **CARS 모델**(Create A Research Space): ①연구 영역 설정 ②틈새 확립 ③틈새 점유.
+- **Methods**: 재현 가능하도록 상세히(참여자, 설계, 측정도구·신뢰도, 절차, 분석). 과거시제·수동태 관례.
+- **Results**: 해석 없이 사실만. 표·그림 + 통계 보고(APA).
+- **Discussion**: 핵심 발견 요약 → 선행연구와 비교·해석 → 이론적·실무적 함의 → **한계** → 후속연구 → 결론.
+
+---
+
+## 2. 문헌 검토 (Literature Review)
+
+### 2.1 검색 전략
+- 핵심 개념을 키워드로 분해 → **불리언 연산자**(AND/OR/NOT), 절단(truncation, 예: educat*), 구문검색
+- DB: RISS·KCI(국내), Web of Science·Scopus·Google Scholar·PubMed(국제)
+- 포함/배제 기준 사전 정의. 체계적 고찰은 **PRISMA 흐름도**(식별→선별→적격성→포함)로 문서화.
+
+### 2.2 문헌 관리·종합
+- 인용관리 도구: **Zotero(무료)**·EndNote·Mendeley로 서지·인용 자동화
+- **문헌 매트릭스**(저자·연도·이론·표본·방법·주요결과·한계)로 종합 → 주제별로 통합 서술(단순 나열 금지)
+
 \`\`\`
-아래 논문 PDF들을 기반으로 선행연구를 정리해줘.
-- 연구질문·방법·주요결과·한계를 표로 비교
-- 연구 공백(gap)과 본 연구의 기여점을 제안
-[논문 PDF 2~3편 첨부]
+아래 첨부 논문들을 문헌 매트릭스로 정리해줘.
+- 열: 저자(연도), 이론적 틀, 표본, 연구방법, 주요 결과, 한계
+- 공통된 연구 공백(gap) 3가지와, 내 연구가 메울 지점을 제안
+- 국문/영문 추가 검색 키워드 조합도 제시
+[논문 PDF 여러 편 첨부]
 \`\`\`
 
-### 2. IMRaD 구조 초안
+---
+
+## 3. 섹션별 집필 전략
+
+### 3.1 Introduction
+funnel 구조(넓게→좁게). 마지막 문단에 연구목적·질문·가설을 명시.
 \`\`\`
-다음 연구를 IMRaD(서론·방법·결과·논의) 구조로 초안 작성해줘.
-- 주제/가설: ...
-- 방법: ...
-- 결과 요약: ...
-각 섹션은 핵심 문장 위주로, 근거 없는 서술은 넣지 마.
+아래 주제로 서론을 CARS 모델에 따라 구성해줘.
+- 1문단: 연구 영역의 중요성(근거·통계 포함)
+- 2문단: 선행연구 흐름 요약
+- 3문단: 연구 공백 확립
+- 4문단: 본 연구의 목적·질문·기여
+각 문단 첫 문장(topic sentence)을 제시하고, 근거 없는 단정은 피해줘.
+주제: [입력]
 \`\`\`
 
-### 3. 영문 교정 & 학술 문체
+### 3.2 Methods
 \`\`\`
-다음 문단을 학술 영어로 교정해줘.
-- 문법·관사·시제 교정
-- 적절한 hedging(단정 완화) 표현 사용
-- 변경 사항을 목록으로 요약
+아래 정보로 '연구방법' 절 초안을 작성해줘. 재현 가능하도록:
+- 참여자(모집·표본크기 근거·인구통계)
+- 측정도구(출처·신뢰도 Cronbach's alpha)
+- 절차(시간 순서)
+- 분석 계획(사용 검정·소프트웨어·유의수준)
+과거시제로 작성해줘.
+[연구 정보 입력]
+\`\`\`
+
+### 3.3 Results & Discussion
+\`\`\`
+결과 요약을 줄 테니 논의(Discussion)를 구성해줘.
+(1) 핵심 발견 재진술 (2) 선행연구와 일치/불일치 해석 (3) 이론적·실무적 함의
+(4) 연구의 한계(표본·설계·측정) (5) 후속연구 제언
+각 문단 topic sentence를 제시하고, 결과를 과대해석하지 마.
+\`\`\`
+
+---
+
+## 4. 학술 영어 문체
+
+- **Hedging(단정 완화)**: may, suggest, appear to, is likely to — 과학적 겸손. 반대로 근거 확실하면 명확히.
+- **명사화·수동태**: 방법·결과에서 관례적이나 과도하면 가독성 저하.
+- **응집성(cohesion)**: 접속표현(however, moreover, in contrast), 지시어로 문장 연결.
+- **자주 틀리는 것**: 관사(a/an/the), 시제(선행연구=현재/과거완료, 방법·결과=과거), 단복수, 콜로케이션.
+
+\`\`\`
+다음 문단을 국제 학술지 수준의 영어로 교정해줘.
+- 문법·관사·시제·단복수 교정
+- 적절한 hedging 적용, 과장 축소
+- 응집성(연결어) 개선
+- 무엇을 왜 고쳤는지 표(원문/수정/사유)로 정리
 [문단 붙여넣기]
 \`\`\`
 
-### 4. 초록·키워드·투고 준비
+---
+
+## 5. 초록·키워드·투고
+
 \`\`\`
-본문을 바탕으로 250단어 이내 영문 초록과 키워드 5개를 작성해줘.
-구조: 배경 · 목적 · 방법 · 결과 · 결론
+본문을 바탕으로 구조화 영문 초록을 작성해줘.
+- 250단어 이내, 배경·목적·방법·결과(수치 포함)·결론 순
+- 검색 최적화된 키워드 5개(본문에 안 나온 동의어 포함)
 \`\`\`
 
-### 연구윤리 주의 (중요)
-- AI 사용 사실을 **저널·학교 정책에 따라 명시**
-- **환각(허위 인용)** 방지 — 인용·수치는 반드시 원문과 대조 검증
-- 미공개 데이터·타인 저작물 무단 입력 금지`,
-    contentEn: `## AI-Assisted Academic Writing
+**투고 전략**: 목표 저널의 Aim & Scope 부합 확인, 영향력지표(JCR/SJR)와 게재 소요·오픈액세스 정책 고려, **약탈적 저널(predatory)** 주의. 저자 가이드라인(형식·인용 스타일 APA/IEEE 등) 준수.
 
-### 1. Literature Review
-Upload paper PDFs; ask AI to compare research questions, methods, results, and limitations, then identify the gap and your contribution.
+\`\`\`
+내 논문 초록/키워드/분야를 줄 테니 적합한 투고 저널 후보와 각 저널의 Scope 부합 이유,
+그리고 커버레터(cover letter) 초안을 작성해줘.
+\`\`\`
 
-### 2. IMRaD Draft
-Provide topic, method, and result summary; ask for an IMRaD draft with core sentences only (no unsupported claims).
+**심사 대응**: 리뷰어 지적에 point-by-point로 정중히 응답, 반영 사항은 수정본 위치 명시, 이견은 근거로 반박.
 
-### 3. English Proofreading
-Ask AI to correct grammar/articles/tense, apply appropriate hedging, and list the changes.
+---
 
-### 4. Abstract & Submission
-Generate a <=250-word abstract (background, purpose, method, results, conclusion) and 5 keywords.
+## 6. 인용·표절·연구윤리 (필수)
 
-### Research Ethics (Important)
-Disclose AI use per journal policy; verify all citations/numbers against sources (avoid hallucinations); never input unpublished or third-party data.`,
+- **인용/표절**: 직접인용은 따옴표+출처, 간접인용도 반드시 출처. 자기표절·중복게재 금지.
+- **저자됨(authorship)**: ICMJE 기준(기여·승인·책임). 유령/선물 저자 금지.
+- **AI 사용 명시**: COPE·ICMJE 지침상 **생성형 AI는 저자가 될 수 없으며**, 사용 사실(도구·범위)을 방법/사사에 밝혀야 합니다. 다수 저널이 요구.
+- **환각(hallucination) 검증**: AI가 만든 인용·수치·출처는 반드시 원문 대조. 존재하지 않는 참고문헌 삽입 사고 빈발.
+- **데이터**: 미공개 연구데이터·개인정보를 AI에 입력 금지.
+
+---
+
+## 추천 도구
+
+- **문헌**: RISS, Google Scholar, Web of Science, Zotero
+- **작성·교정**: 전남대GPT, ChatGPT, Claude, Grammarly, DeepL Write
+- **다논문 분석**: NotebookLM
+- **표절 검사**: Turnitin, ithenticate`,
+    contentEn: `## Complete Guide to AI-Assisted Academic Writing
+
+Deep resource for Day 2 (Academic Writing, 8h): IMRaD structure, systematic literature review, section-by-section drafting, academic English, submission/review, and research ethics.
+
+## 1. IMRaD Structure
+Title/Abstract, Introduction (CARS model: territory, niche, occupying), Methods (reproducible), Results (facts only), Discussion (findings, comparison, implications, limitations, conclusion).
+
+## 2. Literature Review
+Boolean search with truncation; databases (RISS, Web of Science, Scopus, Google Scholar); PRISMA flow for systematic reviews; manage with Zotero/EndNote; synthesize via a literature matrix (not a list).
+
+## 3. Section-by-Section Drafting
+Introduction as a funnel; Methods in past tense with reproducible detail (participants, instruments/reliability, procedure, analysis); Results with APA stats; Discussion linking findings to prior work with limitations.
+
+## 4. Academic English
+Use hedging (may, suggest), manage nominalization/passive, ensure cohesion; watch articles, tense, number, collocations.
+
+## 5. Abstract, Keywords & Submission
+Structured <=250-word abstract; SEO keywords; match journal scope; beware predatory journals; respond to reviewers point-by-point.
+
+## 6. Citation, Plagiarism & Ethics (Essential)
+Always cite; follow ICMJE authorship; per COPE/ICMJE, AI cannot be an author and its use must be disclosed; verify AI-generated citations (hallucination risk); never input unpublished/personal data.
+
+## Tools
+RISS, Google Scholar, Zotero, ChatGPT/Claude, Grammarly, DeepL Write, NotebookLM, Turnitin.`,
   },
   {
     id: 'excel-automation',

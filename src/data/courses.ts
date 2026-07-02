@@ -46,6 +46,7 @@ export interface Program {
   icon: string;
   color: string;
   highlights: string[];  // 핵심 키워드 태그
+  instructors?: { cohort?: string; session1: string; session2: string; name: string; padlet?: string }[]; // 담당교수(차시별 동일, 다기수는 배열) + 기수별 패들렛
   curriculum: CurriculumDay[];
 }
 
@@ -61,6 +62,7 @@ export const PROGRAMS: Program[] = [
      ════════════════════════════════════════════════════ */
   {
     id: 'foundation',
+    instructors: [{ session1: '7.6(월)', session2: '7.8(수)', name: '정동엽', padlet: 'https://padlet.com/aebon/jnu2601' }],
     order: 1,
     nameKo: '생성형 AI 기초·심화',
     nameEn: 'Generative AI — Foundations & Advanced',
@@ -188,6 +190,7 @@ export const PROGRAMS: Program[] = [
      ════════════════════════════════════════════════════ */
   {
     id: 'research-writing',
+    instructors: [{ session1: '7.6(월)', session2: '7.8(수)', name: '이애본', padlet: 'https://padlet.com/aebon/jnu2602' }],
     order: 2,
     nameKo: '데이터분석 & 논문작성',
     nameEn: 'Data Analysis & Academic Writing',
@@ -314,6 +317,7 @@ export const PROGRAMS: Program[] = [
      ════════════════════════════════════════════════════ */
   {
     id: 'data-budget',
+    instructors: [{ cohort: '7월', session1: '7.7(화)', session2: '7.9(목)', name: '이애본', padlet: 'https://padlet.com/aebon/jnu2604' }, { cohort: '8월', session1: '8.4(화)', session2: '8.6(목)', name: '정동엽', padlet: 'https://padlet.com/aebon/jnu2606' }],
     order: 3,
     nameKo: '데이터분석 & 예산회계',
     nameEn: 'Data Analysis & Budget Accounting',
@@ -440,6 +444,7 @@ export const PROGRAMS: Program[] = [
      ════════════════════════════════════════════════════ */
   {
     id: 'research-lab',
+    instructors: [{ session1: '8.3(월)', session2: '8.5(수)', name: '정동엽', padlet: 'https://padlet.com/aebon/jnu2605' }],
     order: 4,
     nameKo: '연구 & 실험지원',
     nameEn: 'Research & Experiment Support',

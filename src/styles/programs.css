@@ -359,61 +359,103 @@
 /* ── 과정 상세 헤더 ── */
 .program-hero {
   background: var(--bg-light-gray);
-  /* 고정 네비게이션 높이만큼 상단 여백 확보 */
-  padding: calc(var(--nav-height) + 36px) 0 40px;
+  /* 고정 네비게이션 높이만큼 상단 여백 확보 (컴팩트) */
+  padding: calc(var(--nav-height) + 16px) 0 20px;
 }
 .program-hero-inner {
   display: flex;
-  gap: 28px;
-  align-items: flex-start;
+  gap: 18px;
+  align-items: center;
 }
 .program-hero-icon {
   flex-shrink: 0;
-  width: 84px;
-  height: 84px;
-  border-radius: var(--radius-lg);
+  width: 54px;
+  height: 54px;
+  border-radius: var(--radius-md);
   display: grid;
   place-items: center;
   color: #fff;
-  font-size: 36px;
+  font-size: 24px;
   box-shadow: var(--shadow-md);
 }
-.program-hero-text h1 { font-size: 34px; margin-bottom: 8px; }
+/* 타이틀(좌) + 상세(우) 2열 배치로 높이 축소 */
+.program-hero-text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+.program-hero-head { flex: 0 0 38%; min-width: 0; }
+.program-hero-detail { flex: 1; min-width: 0; }
+.program-hero-text h1 { font-size: 24px; margin-bottom: 3px; }
 .program-hero-tagline {
-  font-size: 18px;
+  font-size: 14.5px;
   font-weight: 600;
   color: var(--primary-blue);
-  margin-bottom: 10px;
+  margin-bottom: 0;
 }
 .program-hero-desc {
-  font-size: 16px;
+  font-size: 13px;
   color: var(--text-secondary);
-  line-height: 1.75;
-  max-width: 760px;
-  margin-bottom: 18px;
+  line-height: 1.5;
+  margin-bottom: 10px;
 }
 .program-hero-meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 22px;
-  font-size: 14px;
+  gap: 8px 16px;
+  font-size: 12.5px;
   color: var(--text-secondary);
 }
+@media (max-width: 820px) {
+  .program-hero-text { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .program-hero-head { flex: none; }
+}
 .program-hero-meta i { margin-right: 6px; color: var(--accent-dark); }
+
+/* 타이틀 영역 패들렛 버튼 */
+.program-hero-padlets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+.padlet-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border-radius: 999px;
+  background: var(--primary-blue);
+  color: #fff;
+  font-size: 13.5px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: var(--transition-base);
+}
+.padlet-btn:hover {
+  background: var(--primary-blue-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+.padlet-btn .padlet-btn-ext { font-size: 11px; opacity: 0.8; }
+[data-theme="dark"] .padlet-btn { background: var(--primary-blue); color: #fff; }
 
 .program-platform-note {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-top: 28px;
-  padding: 16px 20px;
+  gap: 10px;
+  margin-top: 16px;
+  padding: 10px 16px;
   background: var(--accent-soft);
   border-left: 4px solid var(--accent);
   border-radius: var(--radius-sm);
-  font-size: 14px;
+  font-size: 12.5px;
   color: var(--text-primary);
 }
-.program-platform-note i { color: var(--accent-dark); font-size: 18px; }
+.program-platform-note i { color: var(--accent-dark); font-size: 15px; }
 
 /* ── 커리큘럼 타임라인 ── */
 .curriculum-day { margin-bottom: 56px; }
@@ -754,6 +796,57 @@
   border-bottom: 2px solid var(--primary-blue);
 }
 .course-sidebar-title i { font-size: 18px; flex-shrink: 0; }
+
+/* 담당교수 (과정명 아래) */
+.course-instructor {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: -2px 0 10px;
+  padding: 8px 10px;
+  background: var(--bg-light-gray);
+  border-radius: var(--radius-sm);
+}
+.course-instructor-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.course-instructor-label i { color: var(--accent-dark); font-size: 12px; }
+.course-instructor-row {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding-left: 18px;
+}
+.course-instructor-row .ci-name {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.course-instructor-row .ci-cohort {
+  display: inline-block;
+  font-style: normal;
+  font-size: 11px;
+  font-weight: 700;
+  color: #1a1a1a;            /* 골드 배지 위 어두운 글자 — 라이트/다크 모두 대비 확보 */
+  background: var(--accent-dark);
+  border-radius: 4px;
+  padding: 1px 6px;
+  margin-right: 6px;
+  vertical-align: 1px;
+}
+.course-instructor-row .ci-sessions {
+  font-size: 11.5px;
+  color: var(--text-light);
+  letter-spacing: -0.02em;
+}
+/* 다크모드: --bg-light-gray가 data-color 오버라이드로 밝게 남아 대비가 깨지므로 명시 지정 */
+[data-theme="dark"] .course-instructor { background: rgba(255, 255, 255, 0.06); }
 .course-sidebar-nav {
   display: flex;
   flex-direction: column;

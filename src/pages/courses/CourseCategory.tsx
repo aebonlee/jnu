@@ -54,14 +54,40 @@ export default function CourseCategory(): ReactElement {
               <i className={`fa-solid ${program.icon}`} />
             </div>
             <div className="program-hero-text">
-              <div className="eyebrow">Program {String(program.order).padStart(2, '0')} · {program.duration}</div>
-              <h1>{language === 'ko' ? program.nameKo : program.nameEn}</h1>
-              <p className="program-hero-tagline">{program.tagline}</p>
+              <div className="program-hero-head">
+                <div className="eyebrow">Program {String(program.order).padStart(2, '0')} · {program.duration}</div>
+                <h1>{language === 'ko' ? program.nameKo : program.nameEn}</h1>
+                <p className="program-hero-tagline">{program.tagline}</p>
+              </div>
+              <div className="program-hero-detail">
               <p className="program-hero-desc">{language === 'ko' ? program.descKo : program.descEn}</p>
               <div className="program-hero-meta">
                 <span><i className="fa-solid fa-user-check" /> {program.audience}</span>
                 <span><i className="fa-solid fa-layer-group" /> {totalSessions}{language === 'ko' ? '개 실습 교시' : ' sessions'}</span>
                 <span><i className="fa-solid fa-signal" /> {program.level}</span>
+              </div>
+
+              {program.instructors && program.instructors.some((ins) => ins.padlet) && (
+                <div className="program-hero-padlets">
+                  {program.instructors
+                    .filter((ins) => ins.padlet)
+                    .map((ins, i) => (
+                      <a
+                        key={i}
+                        href={ins.padlet}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="padlet-btn"
+                      >
+                        <i className="fa-solid fa-clipboard-list" />
+                        {language === 'ko'
+                          ? ins.cohort ? `패들렛 ${ins.cohort}` : '패들렛 실습보드'
+                          : ins.cohort ? `Padlet ${ins.cohort}` : 'Padlet Board'}
+                        <i className="fa-solid fa-arrow-up-right-from-square padlet-btn-ext" />
+                      </a>
+                    ))}
+                </div>
+              )}
               </div>
             </div>
           </div>
@@ -85,6 +111,27 @@ export default function CourseCategory(): ReactElement {
                 <i className={`fa-solid ${program.icon}`} style={{ color: program.color }} />
                 <span>{language === 'ko' ? program.nameKo : program.nameEn}</span>
               </div>
+
+              {program.instructors && program.instructors.length > 0 && (
+                <div className="course-instructor">
+                  <span className="course-instructor-label">
+                    <i className="fa-solid fa-chalkboard-user" /> {language === 'ko' ? '담당교수' : 'Instructor'}
+                  </span>
+                  {program.instructors.map((ins, i) => (
+                    <div className="course-instructor-row" key={i}>
+                      <span className="ci-name">
+                        {ins.cohort && <em className="ci-cohort">{ins.cohort}</em>}
+                        {ins.name}
+                      </span>
+                      <span className="ci-sessions">
+                        {language === 'ko'
+                          ? `1차시 ${ins.session1} · 2차시 ${ins.session2}`
+                          : `S1 ${ins.session1} · S2 ${ins.session2}`}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              )}
 
               <nav className="course-sidebar-nav">
                 <span className="course-sidebar-label">{language === 'ko' ? '과정 메뉴' : 'Course Menu'}</span>
