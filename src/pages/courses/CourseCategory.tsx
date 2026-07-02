@@ -58,16 +58,11 @@ export default function CourseCategory(): ReactElement {
                 <div className="eyebrow">Program {String(program.order).padStart(2, '0')} · {program.duration}</div>
                 <h1>{language === 'ko' ? program.nameKo : program.nameEn}</h1>
                 <p className="program-hero-tagline">{program.tagline}</p>
+                <p className="program-hero-desc">{language === 'ko' ? program.descKo : program.descEn}</p>
               </div>
             </div>
 
             <div className="program-hero-aside">
-              <div className="program-hero-meta">
-                <span className="meta-chip"><i className="fa-solid fa-user-check" /> {program.audience}</span>
-                <span className="meta-chip"><i className="fa-solid fa-layer-group" /> {totalSessions}{language === 'ko' ? '개 실습 교시' : ' sessions'}</span>
-                <span className="meta-chip"><i className="fa-solid fa-signal" /> {program.level}</span>
-              </div>
-
               {program.instructors && program.instructors.some((ins) => ins.padlet) && (
                 <div className="program-hero-padlets">
                   {program.instructors
@@ -90,6 +85,12 @@ export default function CourseCategory(): ReactElement {
                     ))}
                 </div>
               )}
+
+              <div className="program-hero-meta">
+                <span className="meta-chip"><i className="fa-solid fa-user-check" /> {program.audience}</span>
+                <span className="meta-chip"><i className="fa-solid fa-layer-group" /> {totalSessions}{language === 'ko' ? '개 실습 교시' : ' sessions'}</span>
+                <span className="meta-chip"><i className="fa-solid fa-signal" /> {program.level}</span>
+              </div>
             </div>
           </div>
 

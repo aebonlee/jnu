@@ -49,6 +49,12 @@
     --accent: #E0C078;
     --accent-dark: #C8A04A;
     --accent-light: #F0DCA8;
+    /* 배경·테두리 중립색을 다크로 재지정 (base의 html[data-color=jnu] 밝은 값이 특이도로 이기던 문제 해결) */
+    --bg-white: #0F1419;
+    --bg-light-gray: #161B24;
+    --bg-medium-gray: #222838;
+    --border-light: #2A3142;
+    --border-medium: #3A4253;
     --primary-gradient: linear-gradient(135deg, #2E8A6C 0%, #4FAE8E 100%);
     --highlight-gradient: linear-gradient(135deg, #F0DCA8 0%, #E0C078 50%, #FFF4DA 100%);
 }

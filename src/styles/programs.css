@@ -372,10 +372,11 @@
 }
 .program-hero-id {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 18px;
   min-width: 0;
 }
+.program-hero-icon { margin-top: 2px; }
 .program-hero-icon {
   flex-shrink: 0;
   width: 62px;
@@ -395,6 +396,13 @@
   font-weight: 600;
   color: var(--primary-blue);
   margin: 0;
+}
+.program-hero-desc {
+  margin: 8px 0 0;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  max-width: 640px;
 }
 
 /* 우측 정보 패널 */
