@@ -120,6 +120,16 @@ const SITES: SiteItem[] = [
     tags: ['사업계획', '전략기획', '예산관리'],
   },
   {
+    name: 'Study · 공부 잘하는 방법',
+    nameEn: 'Study · How to Study Well',
+    url: 'https://study.dreamitbiz.com',
+    icon: 'fa-user-graduate',
+    descKo: '효과적인 학습 노하우를 배우는 종합 학습 플랫폼입니다.',
+    descEn: 'A comprehensive platform for learning effective study know-how.',
+    category: 'research',
+    tags: ['학습법', '공부습관', '효율학습'],
+  },
+  {
     name: '논문 작성 자료 보드',
     nameEn: 'Paper Writing Board',
     url: 'https://padlet.com/aebon/paper25',
