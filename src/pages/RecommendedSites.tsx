@@ -293,7 +293,7 @@ export default function RecommendedSites(): ReactElement {
                   href={site.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="recommended-card"
+                  className={`recommended-card${site.url.includes('dreamitbiz.com') ? ' recommended-card--own' : ''}`}
                 >
                   <div className="recommended-card-icon">
                     <i className={`${site.iconStyle || 'fa-solid'} ${site.icon}`} />

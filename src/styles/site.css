@@ -69,6 +69,16 @@ html[data-color="vibe"] {
   border-color: var(--primary-blue);
 }
 
+/* 자사(드림아이티) 포털 구분 — 연한 연두빛 배경 */
+.recommended-card--own {
+  background: #f3fae7;
+  border-color: #d9edb5;
+}
+[data-theme="dark"] .recommended-card--own {
+  background: rgba(132, 204, 22, 0.10);
+  border-color: rgba(132, 204, 22, 0.28);
+}
+
 .recommended-card-icon {
   width: 48px;
   height: 48px;
