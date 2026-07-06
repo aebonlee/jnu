@@ -245,7 +245,7 @@ const SITES: SiteItem[] = [
   {
     name: '문서·인사행정 실습보드',
     nameEn: 'Docs & HR Admin Board',
-    url: 'https://padlet.com/aebon/jnu2603',
+    url: 'https://padlet.com/aebon/cnu2603',
     icon: 'fa-clipboard-list',
     descKo: '문서·인사행정 과정(별도 특강)의 실습 자료 패들렛입니다.',
     descEn: 'Padlet board for the Documents & HR Administration course.',
