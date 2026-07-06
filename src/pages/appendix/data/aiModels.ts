@@ -125,8 +125,10 @@ export default {
 > **Security**: 전남대GPT is campus-only, safer than public services — but still minimize sensitive data (IDs, unpublished research).`,
     },
     {
-      title: '제공사별 모델 (2026.07.07 기준)',
-      titleEn: 'Models by Provider (as of 2026-07-07)',
+      title: '제공사별 모델',
+      titleEn: 'Models by Provider',
+      subtitle: '2026.07.07 기준',
+      subtitleEn: 'as of 2026-07-07',
       content: `> 회사마다 **설계 철학과 강점**이 다릅니다. 아래는 아키텍처·용도 관점의 **상세 안내**입니다. (구체 수치·벤치마크는 자주 바뀌어 생략 — 잘 모르면 Auto)
 
 ### Upstage · Solar — 국산 파운데이션 (한국어·문서 특화)

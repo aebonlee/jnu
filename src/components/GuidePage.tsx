@@ -15,6 +15,8 @@ import TipBox from './TipBox';
 interface Section {
   title: string;
   titleEn: string;
+  subtitle?: string;
+  subtitleEn?: string;
   content: string;
   contentEn: string;
 }
@@ -153,7 +155,12 @@ export default function GuidePage({ seoTitle, seoTitleEn, seoDescription, path, 
         </aside>
         <div className="guide-content">
           <div className="guide-content-header">
-            <h1>{isKo ? active.section.title : active.section.titleEn}</h1>
+            <h1>
+              {isKo ? active.section.title : active.section.titleEn}
+              {(isKo ? active.section.subtitle : active.section.subtitleEn) && (
+                <span className="guide-title-note"> ({isKo ? active.section.subtitle : active.section.subtitleEn})</span>
+              )}
+            </h1>
           </div>
           <div className="guide-section">
             <div className="markdown-body">

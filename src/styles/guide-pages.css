@@ -282,6 +282,12 @@
     padding-bottom: 12px;
     border-bottom: 3px solid #81C784;
 }
+.guide-content-header h1 .guide-title-note {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    letter-spacing: 0;
+}
 .guide-content-header p {
     font-size: 15px;
     color: var(--text-secondary);
