@@ -567,10 +567,14 @@
     color: var(--text-primary);
 }
 .tip-box-content strong {
-    display: block;
-    margin-bottom: 4px;
     color: var(--text-primary);
     background: none;
+    font-weight: 700;
+}
+/* 맨 앞 라벨 볼드만 제목처럼 블록 — 문장 중간 볼드는 인라인 유지(문장 깨짐 방지) */
+.tip-box-content > p:first-child > strong:first-child {
+    display: block;
+    margin-bottom: 4px;
 }
 
 /* ── Prompt Practice CTA Banner (green) ── */

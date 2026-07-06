@@ -253,5 +253,61 @@ Documents/emails/minutes, summarizing rules & materials, tables & checklists, un
 
 > **One-line combo**: "Rewrite this as a formal official document (개조식·하십시오체), no translationese, within 500 characters incl. spaces."`,
     },
+    {
+      title: '자주 겪는 문제 (한글 깨짐·문서 기호)',
+      titleEn: 'Common Fixes',
+      content: `> AI로 파일·문서를 만들 때 자주 걸리는 두 가지와 해결법입니다.
+
+### 1) 한글이 깨질 때 — 인코딩 문제
+AI가 만든 CSV·txt를 엑셀에서 열면 한글이 □□□로 깨지는 건 **인코딩 불일치**(UTF-8 ↔ 엑셀 기본) 때문입니다.
+
+| 상황 | 이렇게 하세요 |
+| --- | --- |
+| 엑셀에서 CSV 한글 깨짐 | "엑셀에서 안 깨지게 <mark>UTF-8 BOM</mark> 포함해서 저장해줘" |
+| 그래도 깨지면 | 다운로드 대신 <mark>표를 복사 → 엑셀에 붙여넣기</mark> (탭 구분) |
+| 직접 열 때 | 엑셀 '데이터 → 텍스트/CSV 가져오기'에서 인코딩을 <mark>UTF-8</mark>로 지정 |
+| 메모장 저장 | 저장 시 인코딩을 <mark>UTF-8</mark>로 선택 |
+
+> 워드·한글(HWP)은 대개 UTF-8을 자동 인식해 잘 안 깨집니다. 문제는 주로 **엑셀 CSV**입니다.
+
+### 2) 제목·항목 앞에 이상한 기호(☐·○·#·-)가 붙을 때
+AI가 마크다운을 워드로 옮기면 제목·목록 앞에 **체크박스(☐)·글머리기호(•)·마크다운 잔여 기호(#, -, *, [ ])**가 남곤 합니다. (인쇄용처럼 보이는 네모칸·동그라미도 이 경우입니다.)
+
+| 상황 | 이렇게 하세요 |
+| --- | --- |
+| 만들기 전에 예방 | "<mark>체크박스·기호 없이</mark> 깔끔한 개요 번호(1. / 1.1)로만 작성해줘" |
+| 마크다운 기호가 남음 | "<mark>마크다운 기호(#, -, *, [ ]) 없이</mark> 워드용 서식으로 정리해줘" |
+| 이미 문서에 생김 | AI에게: "각 제목·항목 앞의 ☐·○·기호를 전부 제거해줘" |
+| 워드에서 직접 | <mark>찾기·바꾸기(Ctrl+H)</mark>로 해당 기호를 빈칸으로 일괄 치환 |
+| 개요 번호 정렬 | 워드 '다단계 목록'으로 번호를 다시 지정 |
+
+> **한 줄 요청 예시**: "이 내용을 워드에 바로 붙일 수 있게, **마크다운 기호와 체크박스 없이**, 제목은 '1. / 1.1' 개요 번호로만 정리해줘."`,
+      contentEn: `> Two common snags when generating files/docs with AI, and how to fix them.
+
+### 1) Broken Korean — encoding
+Korean shows as □□□ when an AI-made CSV/txt opens in Excel — an **encoding mismatch** (UTF-8 vs Excel's default).
+
+| Situation | Do this |
+| --- | --- |
+| Korean breaks in Excel CSV | "Save with <mark>UTF-8 BOM</mark> so Excel doesn't break it" |
+| Still broken | <mark>Copy the table → paste into Excel</mark> (tab-separated) instead of downloading |
+| Opening directly | Excel 'Data → From Text/CSV', set encoding to <mark>UTF-8</mark> |
+| Notepad save | Choose <mark>UTF-8</mark> when saving |
+
+> Word/HWP usually auto-detect UTF-8. The problem is mostly **Excel CSV**.
+
+### 2) Odd marks (☐·○·#·-) before headings
+Converting markdown to Word can leave **checkboxes (☐), bullets (•), or leftover markdown (#, -, *, [ ])** before titles/lists.
+
+| Situation | Do this |
+| --- | --- |
+| Prevent it | "Write with <mark>no checkboxes or symbols</mark>, clean outline numbers only (1. / 1.1)" |
+| Markdown leftover | "<mark>No markdown symbols (#, -, *, [ ])</mark>, format for Word" |
+| Already in the doc | Ask: "Remove all ☐·○·symbols before every heading/item" |
+| In Word directly | <mark>Find & Replace (Ctrl+H)</mark> to clear the symbols |
+| Fix numbering | Reset with Word's 'Multilevel List' |
+
+> **One-line request**: "Format this to paste straight into Word — **no markdown symbols or checkboxes**, headings as '1. / 1.1' outline numbers only."`,
+    },
   ],
 };

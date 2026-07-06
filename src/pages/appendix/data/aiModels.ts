@@ -69,6 +69,62 @@ export default {
 > **Tip**: pricier isn't always better. For simple tasks a light model is faster and enough — move up only if the result falls short.`,
     },
     {
+      title: '모델 선택 기준 (전문 관점)',
+      titleEn: 'Selection Criteria (Pro)',
+      content: `> 전문적으로 고를 땐 마케팅 문구가 아니라 **아키텍처 특성 6축**으로 판단합니다. 작업 성격을 축에 대입하면 후보가 좁혀집니다.
+
+### 판단하는 6가지 축
+| 축 | 무엇을 보나 | 이럴 때 |
+| --- | --- | --- |
+| <mark>문맥 길이</mark> (context) | 긴 문서·코드를 통째로 넣나 | 규정집·논문·대량 로그 → 장문 강한 계열 |
+| <mark>추론 깊이</mark> | 다단계 논리·수학·계획이 핵심인가 | 복잡한 의사결정·증명 → 추론형 |
+| <mark>멀티모달</mark> | 이미지·표·PDF·음성을 다루나 | 스캔 문서·도표 해석 → 멀티모달 |
+| <mark>지연·비용</mark> | 실시간·대량 처리인가 | 챗봇·배치 요약 → 경량(증류) |
+| <mark>에이전트·코딩</mark> | 파일 편집·툴 호출·자동화인가 | 스크립트·시스템 연동 → 코딩/에이전트형 |
+| <mark>언어</mark> | 한국어/다국어 정확도 | 교내 한글 문서 → 한국어 특화 |
+
+### 유형별 정리 (이름만 봐도 성격 파악)
+| 유형 | 해당 모델 | 기술적 성격 |
+| --- | --- | --- |
+| 프런티어 | Opus 4.8 · GPT-5.5 · Gemini 3.1 Pro · Mistral Large | 성능 상한이 가장 높음. 복잡·장문·에이전트에 강하나 비용·지연 큼 |
+| 균형·범용 | Sonnet 5 · GPT-5.4 · Gemini 2.5 Flash · Solar Pro | 품질/비용 균형점. 대부분 업무의 기본값 |
+| 경량(증류) | Haiku · GPT-5 mini/nano · Flash Lite · Small | 지식증류로 소형화 → 저지연·저비용·고처리량, 복잡도 상한은 낮음 |
+| 추론형 | o3 · o4-mini · Magistral · Qwen QWQ · Grok Reasoning | 추론에 연산(test-time compute)을 더 씀 → 논리·수학·다단계 계획에 강함 |
+| 코딩·에이전트 | GPT-5.x Codex · Codestral · Devstral · Grok Code | 코드 생성·리팩터링·파일 편집·툴 호출(에이전트형 개발) |
+| 심층 리서치 | O3 Deep Research | 다단계 웹 탐색 + 출처 종합. 장시간·고비용 |
+| 한국어·국산 | Upstage Solar (Pro/Mini/Open2) | 한국어 토크나이즈·문맥에 최적화, 교내 한글 문서 강점 |
+
+> **선택 요령**: '추론형'은 빠른 요약엔 과합니다(느리고 비쌈). 반대로 규정 충돌·복잡한 의사결정엔 범용보다 추론형이 낫습니다. **작업 난이도와 지연·비용을 함께** 저울질하세요. 또한 'Chat' 접미사는 대화·지시 튜닝, 숫자만 붙으면 표준 버전입니다.
+
+> **보안 관점**: 전남대GPT는 교내 전용 플랫폼이라 외부 일반 서비스보다 데이터 취급이 안전한 편이지만, **주민번호·미공개 연구데이터 등 민감정보 최소화** 원칙은 동일하게 적용하세요.`,
+      contentEn: `> Professionals choose by **6 architectural axes**, not marketing. Map your task to the axes to narrow candidates.
+
+### The 6 axes
+| Axis | What to check | When |
+| --- | --- | --- |
+| <mark>context length</mark> | Whole long doc/code at once? | rulebooks, papers, big logs → long-context models |
+| <mark>reasoning depth</mark> | Multi-step logic/math/planning? | complex decisions, proofs → reasoning models |
+| <mark>multimodal</mark> | Images, tables, PDFs, audio? | scanned docs, charts → multimodal |
+| <mark>latency·cost</mark> | Real-time or high volume? | chatbots, batch summaries → light (distilled) |
+| <mark>agent·coding</mark> | File edits, tool calls, automation? | scripts, integrations → code/agent models |
+| <mark>language</mark> | Korean/multilingual accuracy | campus Korean docs → Korean-specialized |
+
+### By type (the name tells the character)
+| Type | Models | Technical character |
+| --- | --- | --- |
+| Frontier | Opus 4.8 · GPT-5.5 · Gemini 3.1 Pro · Mistral Large | Highest ceiling; complex/long/agentic; costly & slower |
+| Balanced | Sonnet 5 · GPT-5.4 · Gemini 2.5 Flash · Solar Pro | Quality/cost sweet spot; default for most work |
+| Light (distilled) | Haiku · GPT-5 mini/nano · Flash Lite · Small | Distilled → low latency/cost, high throughput; lower ceiling |
+| Reasoning | o3 · o4-mini · Magistral · Qwen QWQ · Grok Reasoning | Extra test-time compute → logic, math, planning |
+| Coding·agent | GPT-5.x Codex · Codestral · Devstral · Grok Code | Code gen/refactor, file edits, tool calls |
+| Deep research | O3 Deep Research | Multi-step web search + synthesis; long, costly |
+| Korean | Upstage Solar (Pro/Mini/Open2) | Korean-optimized tokenizer/context; campus docs |
+
+> **Rule of thumb**: reasoning models are overkill for quick summaries (slow, costly) but win on complex decisions. Weigh **task difficulty vs latency/cost**. "Chat" = chat-tuned; plain numbers = standard.
+
+> **Security**: 전남대GPT is campus-only, safer than public services — but still minimize sensitive data (IDs, unpublished research).`,
+    },
+    {
       title: '제공사별 모델',
       titleEn: 'Models by Provider',
       content: `> 같은 회사도 세대·크기별로 여러 모델이 있습니다. 아래는 **큰 특징 위주** 안내이며, 실제 성능은 작업마다 다를 수 있습니다.
