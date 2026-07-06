@@ -10,6 +10,7 @@ import markdownComponents from '../../components/markdownComponents';
 import { getProgramById, PROGRAMS } from '../../data/courses';
 import { MATERIALS } from '../../data/materials';
 import { getHandsOn } from '../../data/handsOn';
+import { getWorkbook } from '../../data/workbook';
 import type { ReactElement } from 'react';
 
 export default function CourseCategory(): ReactElement {
@@ -17,7 +18,9 @@ export default function CourseCategory(): ReactElement {
   const { language } = useLanguage();
   const navigate = useNavigate();
   const [matOpen, setMatOpen] = useState(true);
+  const [wbOpen, setWbOpen] = useState(true);
   const [selectedMatId, setSelectedMatId] = useState<string | null>(null);
+  const [selectedWbId, setSelectedWbId] = useState<string | null>(null);
   const [showLab, setShowLab] = useState(false);
 
   const program = getProgramById(category || '');
@@ -36,10 +39,13 @@ export default function CourseCategory(): ReactElement {
   const totalSessions = program.curriculum.reduce((s, d) => s + d.sessions.length, 0);
   const materials = MATERIALS.filter((m) => m.categoryId === program.id);
   const labs = getHandsOn(program.id);
+  const workbook = getWorkbook(program.id);
   const selectedMat = selectedMatId ? materials.find((m) => m.id === selectedMatId) : null;
-  const openMaterial = (id: string) => { setSelectedMatId(id); setShowLab(false); window.scrollTo({ top: 0, behavior: 'smooth' }); };
-  const openLab = () => { setShowLab(true); setSelectedMatId(null); window.scrollTo({ top: 0, behavior: 'smooth' }); };
-  const showCurriculum = () => { setSelectedMatId(null); setShowLab(false); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+  const selectedWb = selectedWbId ? workbook.find((w) => w.id === selectedWbId) : null;
+  const openMaterial = (id: string) => { setSelectedMatId(id); setShowLab(false); setSelectedWbId(null); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+  const openLab = () => { setShowLab(true); setSelectedMatId(null); setSelectedWbId(null); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+  const openWorkbook = (id: string) => { setSelectedWbId(id); setShowLab(false); setSelectedMatId(null); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+  const showCurriculum = () => { setSelectedMatId(null); setShowLab(false); setSelectedWbId(null); window.scrollTo({ top: 0, behavior: 'smooth' }); };
 
   return (
     <>
@@ -141,20 +147,48 @@ export default function CourseCategory(): ReactElement {
                 <span className="course-sidebar-label">{language === 'ko' ? '과정 메뉴' : 'Course Menu'}</span>
                 <button
                   type="button"
-                  className={`course-sidebar-link${!selectedMat && !showLab ? ' active' : ''}`}
+                  className={`course-sidebar-link${!selectedMat && !showLab && !selectedWb ? ' active' : ''}`}
                   onClick={showCurriculum}
                 >
                   <i className="fa-solid fa-list-check" /> {language === 'ko' ? '커리큘럼' : 'Curriculum'}
                 </button>
 
-                {labs.length > 0 && (
-                  <button
-                    type="button"
-                    className={`course-sidebar-link${showLab ? ' active' : ''}`}
-                    onClick={openLab}
-                  >
-                    <i className="fa-solid fa-laptop-code" /> {language === 'ko' ? '실습 · 따라하기' : 'Hands-on Labs'}
-                  </button>
+                {/* 실습 워크북 — 드롭다운(실습·따라하기 + 과정별 실습 모듈) */}
+                {(workbook.length > 0 || labs.length > 0) && (
+                  <>
+                    <button
+                      type="button"
+                      className={`course-sidebar-link course-sidebar-toggle${wbOpen ? ' open' : ''}`}
+                      onClick={() => setWbOpen(!wbOpen)}
+                      aria-expanded={wbOpen}
+                    >
+                      <i className="fa-solid fa-flask-vial" /> {language === 'ko' ? '실습 워크북' : 'Practice Workbook'}
+                      <i className="fa-solid fa-chevron-down course-sidebar-chevron" />
+                    </button>
+                    {wbOpen && (
+                      <div className="course-sidebar-sublist">
+                        {labs.length > 0 && (
+                          <button
+                            type="button"
+                            className={`course-sidebar-link sub${showLab ? ' active' : ''}`}
+                            onClick={openLab}
+                          >
+                            <i className="fa-solid fa-laptop-code" /> {language === 'ko' ? '실습 · 따라하기' : 'Hands-on Labs'}
+                          </button>
+                        )}
+                        {workbook.map((w) => (
+                          <button
+                            key={w.id}
+                            type="button"
+                            className={`course-sidebar-link sub${selectedWbId === w.id ? ' active' : ''}`}
+                            onClick={() => openWorkbook(w.id)}
+                          >
+                            <i className="fa-regular fa-square-check" /> {language === 'ko' ? w.titleKo : w.titleEn}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </>
                 )}
 
                 {/* 학습자료 — 드롭다운으로 해당 과목 자료 연결(같은 페이지 내 표시) */}
@@ -190,7 +224,7 @@ export default function CourseCategory(): ReactElement {
                 </Link>
               </nav>
 
-              {!selectedMat && !showLab && (
+              {!selectedMat && !showLab && !selectedWb && (
               <nav className="course-sidebar-nav">
                 <span className="course-sidebar-label">{language === 'ko' ? '커리큘럼 바로가기' : 'Jump to'}</span>
                 {program.curriculum.map((day) => (
@@ -212,9 +246,24 @@ export default function CourseCategory(): ReactElement {
             </div>
           </aside>
 
-          {/* ── 오른쪽 본문: 따라하기 / 학습자료 / 커리큘럼 ── */}
+          {/* ── 오른쪽 본문: 워크북 / 따라하기 / 학습자료 / 커리큘럼 ── */}
           <div className="course-content">
-          {showLab ? (
+          {selectedWb ? (
+            <article className="material-inline">
+              <button type="button" className="material-inline-back" onClick={showCurriculum}>
+                <i className="fa-solid fa-arrow-left" /> {language === 'ko' ? '커리큘럼으로' : 'Back to curriculum'}
+              </button>
+              <div className="material-inline-eyebrow" style={{ color: program.color }}>
+                <i className="fa-solid fa-flask-vial" /> {language === 'ko' ? program.nameKo : program.nameEn} · {language === 'ko' ? '실습 워크북' : 'Practice Workbook'}
+              </div>
+              <h2 className="material-inline-title">{language === 'ko' ? selectedWb.titleKo : selectedWb.titleEn}</h2>
+              <div className="markdown-body">
+                <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents as any}>
+                  {language === 'ko' ? selectedWb.contentKo : selectedWb.contentEn}
+                </ReactMarkdown>
+              </div>
+            </article>
+          ) : showLab ? (
             <div className="handson">
               <button type="button" className="material-inline-back" onClick={showCurriculum}>
                 <i className="fa-solid fa-arrow-left" /> {language === 'ko' ? '커리큘럼으로' : 'Back to curriculum'}
