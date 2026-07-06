@@ -4,6 +4,7 @@ import tips from './data/tips';
 import resources from './data/resources';
 import claude100 from './data/claude100';
 import aiPractice from './data/chatgptGuide';
+import aiModels from './data/aiModels';
 import '../../styles/practice.css';
 import type { ReactElement } from 'react';
 
@@ -12,9 +13,9 @@ export default function Appendix(): ReactElement {
     <GuidePage
       seoTitle="부록"
       seoTitleEn="Appendix"
-      seoDescription="용어 해설, 실전 팁, AI 실전 사용법 — 교육과 더불어 공부할 부록 자료"
+      seoDescription="용어 해설, 실전 팁, AI 실전 사용법, AI 모델 안내 — 교육과 더불어 공부할 부록 자료"
       path="/appendix"
-      dataFiles={[glossary, tips, resources, claude100, aiPractice]}
+      dataFiles={[glossary, tips, resources, claude100, aiPractice, aiModels]}
     />
   );
 }
