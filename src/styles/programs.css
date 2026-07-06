@@ -537,6 +537,13 @@
 .session-period { font-family: var(--font-heading); font-size: 20px; font-weight: 700; }
 .session-clock { font-size: 13px; color: var(--text-light); font-weight: 500; }
 
+/* 다크모드 — 인라인 program.color(진한 색) 텍스트가 어두워 안 보이던 것 보정 */
+[data-theme="dark"] .session-period,
+[data-theme="dark"] .material-inline-eyebrow,
+[data-theme="dark"] .course-sidebar-title i {
+    color: var(--primary-blue) !important;
+}
+
 .session-title { font-size: 19px; margin-bottom: 10px; }
 .session-goal {
   font-size: 14px;
