@@ -39,6 +39,8 @@ interface GuidePageProps {
 }
 
 const markdownComponents = {
+  // CodeBlock 이중 래핑(마크다운 검은 pre 박스) 방지 — pre 언래핑
+  pre({ children }: any) { return <>{children}</>; },
   code({ inline, className, children, ...props }: any) {
     const match = /language-(\w+)/.exec(className || '');
     if (!inline && match) return <CodeBlock code={String(children).replace(/\n$/, '')} language={match[1]} />;
