@@ -633,11 +633,12 @@
     flex-wrap: nowrap;
 }
 .nav-link {
-    padding: 11px 13px;
+    padding: 11px 10px;
     font-size: 14.5px;
+    letter-spacing: -0.3px;
     white-space: nowrap;
 }
-.nav-link::after { left: 13px; right: 13px; }
+.nav-link::after { left: 10px; right: 10px; }
 
 /* 풍선도움말(tooltip) — 네비 우측 아이콘 공통 */
 .nav-tip {
