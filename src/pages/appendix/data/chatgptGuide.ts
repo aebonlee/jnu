@@ -130,6 +130,52 @@ Documents/emails/minutes, summarizing rules & materials, tables & checklists, un
 > Many other keywords circulate online (SELFREFINE, X10THINK…), but most overlap with the above or are unreliable. **Start with the highlighted ones.**`,
     },
     {
+      title: '설명 수준·대상 정하기',
+      titleEn: 'Depth & Audience',
+      content: `> "쉽게 설명해줘"는 너무 막연합니다. **누구에게 · 어느 수준으로** 설명할지 콕 집으면 결과가 완전히 달라집니다. (아래 예시 주제 = 2일차 실습의 **AHP 의사결정 기법**)
+
+### 난이도 사다리 — 같은 개념도 6단계로
+| 수준 지정 | 어떻게 나오나 | 예시 (그대로 복사) |
+| --- | --- | --- |
+| <mark>5살에게 (ELI5)</mark> | 비유 중심, 전문용어 0 | AHP를 5살한테 설명하듯 비유로 알려줘 |
+| <mark>중학생 수준</mark> | 배경지식 없이 쉬운 말 + 예 1개 | AHP를 중학생도 알 수 있게 전문용어 없이 예시 1개와 |
+| <mark>고등학생 수준</mark> | 핵심 개념 + 간단한 절차 | AHP의 개념과 적용 절차를 고등학생 수준으로 |
+| <mark>대학 교양 수준</mark> | 정의·맥락·장단점·한계 | 학부 교양 수준으로 정의·쓰임·한계까지 |
+| <mark>전공자·실무자 수준</mark> | 정확한 용어·계산 절차·주의점 | 실무자 대상으로 쌍대비교와 일관성비율(CR) 계산까지 정확히 |
+| <mark>전문가 수준</mark> | 수식·가정·비판·대안기법 | 전문가 수준으로 고유벡터법 수식, 가정·한계, 대안(ANP)까지 |
+
+### '예시 들어줘'도 콕 집어서
+| 막연함 → 구체 | 이렇게 지시하세요 |
+| --- | --- |
+| 그냥 "예시" → 도메인 맞춤 | 우리 학과 행정 상황에 맞는 사례 2개로 |
+| 좋은 예만 → 반례까지 | 잘 된 예 2개 + 흔한 실수(반례) 1개 |
+| 추상 → 수치·데이터 | 실제 숫자를 넣은 계산 예시로 |
+| 한 개 → 난이도별 | 쉬운 예 1개 + 심화 예 1개 |
+
+> **조합 예시**: "AHP를 **비전공 직원 대상**·**중학생 수준**의 쉬운 말로, **우리 학과 사례 1개**와 함께 **표로** 설명해줘."`,
+      contentEn: `> "Explain simply" is too vague. Pin down **who** and **at what level**, and the result changes entirely. (Example topic = **AHP**, used in the Day-2 lab.)
+
+### Difficulty ladder — one concept, six levels
+| Level | What you get | Example |
+| --- | --- | --- |
+| <mark>ELI5 (age 5)</mark> | Analogies, zero jargon | Explain AHP as if to a 5-year-old |
+| <mark>middle school</mark> | Plain words + 1 example | Explain AHP for a middle schooler, no jargon, one example |
+| <mark>high school</mark> | Core idea + simple steps | AHP's concept and steps at a high-school level |
+| <mark>undergrad survey</mark> | Definition, context, limits | Undergrad level: definition, use, limitations |
+| <mark>practitioner</mark> | Exact terms, calc steps | For practitioners: pairwise comparison and Consistency Ratio (CR) |
+| <mark>expert</mark> | Math, assumptions, alternatives | Expert level: eigenvector method, assumptions, limits, alternatives (ANP) |
+
+### Make "give examples" specific too
+| Vague → specific | Tell it like this |
+| --- | --- |
+| just "examples" → domain-fit | 2 cases from our department's admin work |
+| only good → counter-examples | 2 good examples + 1 common mistake |
+| abstract → numeric | a worked example with real numbers |
+| one → by difficulty | one easy + one advanced example |
+
+> **Combo**: "Explain AHP **for non-major staff** at a **middle-school level**, with **one example from our department**, **as a table**."`,
+    },
+    {
       title: '톤·스타일 바꾸기',
       titleEn: 'Tone & Style',
       content: `> 같은 내용도 **톤과 형식만 콕 집어** 지정하면 결과가 확 달라집니다. 뭉뚱그리지 말고 골라서 말하세요.
