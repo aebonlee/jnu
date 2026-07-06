@@ -129,5 +129,83 @@ Documents/emails/minutes, summarizing rules & materials, tables & checklists, un
 
 > Many other keywords circulate online (SELFREFINE, X10THINK…), but most overlap with the above or are unreliable. **Start with the highlighted ones.**`,
     },
+    {
+      title: '톤·스타일 바꾸기',
+      titleEn: 'Tone & Style',
+      content: `> 같은 내용도 **톤과 형식만 콕 집어** 지정하면 결과가 확 달라집니다. 뭉뚱그리지 말고 골라서 말하세요.
+
+### 말투(톤) — 상황에 맞게
+| 이렇게 말하면 | 어울리는 상황 | 예시 (그대로 복사) |
+| --- | --- | --- |
+| 정중하게 / 격식 있게 | 공문·대외 문서 | 이 안내문을 정중하고 격식 있는 톤으로 다시 써줘 |
+| 부드럽게 / 완곡하게 | 부탁·거절 | 거절 내용인데 상대가 상하지 않게 부드럽게 써줘 |
+| 단호하게 / 분명하게 | 공지·주의 | 마감 엄수를 단호하고 분명한 어조로 써줘 |
+| 친근하게 / 편하게 | 사내·동료 | 신입 조교에게 편하고 친근한 말투로 |
+| 따뜻하게 / 공감되게 | 격려·위로 | 고생한 팀원에게 따뜻하게 한마디 써줘 |
+| 담백하게 / 객관적으로 | 보고·분석 | 감정 표현 빼고 사실만 담백하게 정리해줘 |
+
+### 형식(스타일) — 원하는 모양으로
+| 이렇게 말하면 | 나오는 형식 | 예시 |
+| --- | --- | --- |
+| <mark>표로</mark> | 비교·정리표 | 3개 안을 항목별로 표로 비교해줘 |
+| <mark>개조식으로</mark> | 공문·보고(~함/~임) | 요점만 개조식으로 정리해줘 |
+| <mark>번호 단계로</mark> | 절차 안내 | 처리 절차를 1·2·3 단계로 알려줘 |
+| <mark>불릿으로</mark> | 목록 | 핵심을 불릿 5개로 정리해줘 |
+| <mark>Q&A로</mark> | 안내·FAQ | 예상 문의를 Q&A 형식으로 만들어줘 |
+| <mark>세 줄로 / 한 문단으로</mark> | 요약 | 이 보고서를 세 줄로 요약해줘 |`,
+      contentEn: `> The same content changes completely once you pin down **tone and format.** Pick, don't leave it vague.
+
+### Tone — match the situation
+| Say this | Fits | Example |
+| --- | --- | --- |
+| polite / formal | official docs | Rewrite this notice in a polite, formal tone |
+| soft / indirect | requests, refusals | It's a refusal — keep it soft so they aren't hurt |
+| firm / clear | notices, warnings | State the deadline firmly and clearly |
+| friendly / casual | internal, peers | Friendly, casual tone for a new TA |
+| warm / empathetic | encouragement | A warm note for a hard-working teammate |
+| plain / objective | reports | Just the facts, no emotion |
+
+### Format — the shape you want
+| Say this | Output | Example |
+| --- | --- | --- |
+| <mark>as a table</mark> | comparison table | Compare the 3 options in a table |
+| <mark>bullet-style (개조식)</mark> | official/report | Summarize key points in 개조식 |
+| <mark>numbered steps</mark> | procedures | Give the process as steps 1·2·3 |
+| <mark>as bullets</mark> | list | Key points as 5 bullets |
+| <mark>as Q&A</mark> | FAQ | Turn likely questions into Q&A |
+| <mark>in 3 lines</mark> | summary | Summarize this report in 3 lines |`,
+    },
+    {
+      title: '한국어로 잘 쓰는 법',
+      titleEn: 'Writing Well in Korean',
+      content: `> AI의 한국어는 그냥 두면 **번역투이거나 존댓말이 들쭉날쭉**합니다. 아래를 콕 집어 지시하면 훨씬 자연스럽고 실무에 바로 쓸 수 있습니다.
+
+| 콕 짚을 것 | 왜 필요한가 | 이렇게 지시하세요 |
+| --- | --- | --- |
+| 존댓말 수준 | AI가 존댓말·반말을 섞기도 함 | <mark>"하십시오체(격식)로"</mark> · "해요체로 부드럽게" · "반말로" |
+| 번역투 제거 | "~에 대하여 / ~를 통하여", 과한 피동("되어집니다")은 어색 | <mark>"번역투 없이 자연스러운 한국어로, 능동형으로"</mark> |
+| 공문서 문체 | 공문·보고서는 명사형 종결(~함·~임·~할 것) | <mark>"개조식(~함, ~임)으로 작성해줘"</mark> |
+| 글자 수 기준 | 한국어는 '단어'보다 '자(글자)'가 정확 | <mark>"공백 포함 300자 이내로"</mark> |
+| 호칭·경어 대상 | 받는 사람에 따라 높임이 달라짐 | "받는 사람은 학과장님, 보내는 사람은 조교로 맞춰줘" |
+| 쉬운 말 vs 전문 용어 | 읽는 대상에 맞게 | "한자어·전문용어 대신 쉬운 우리말로" (또는 "공식 용어 그대로") |
+| 맞춤법·띄어쓰기 | 마지막 점검 | <mark>"한글 맞춤법과 띄어쓰기 검토해서 고쳐줘"</mark> |
+| 직함 표기 | 일관성 | "직함 뒤 '님'을 일관되게 붙여줘" |
+
+> **한 줄 조합 예시**: "이 내용을 격식 있는 **공문체(개조식·하십시오체)**로, **번역투 없이**, **공백 포함 500자 이내**로 정리해줘."`,
+      contentEn: `> Left alone, AI's Korean often reads like a translation or mixes honorific levels. Pin down the points below for natural, ready-to-use Korean.
+
+| Pin this down | Why | Tell it like this |
+| --- | --- | --- |
+| Honorific level | AI mixes formal/informal | <mark>"하십시오체 (formal)"</mark> · "해요체 (soft)" · "반말 (casual)" |
+| Kill translationese | "~에 대하여/~를 통하여" & heavy passive sound off | <mark>"자연스러운 한국어로, 능동형으로"</mark> |
+| Official style | Docs use noun-ending style (~함/~임) | <mark>"개조식(~함, ~임)으로"</mark> |
+| Length by characters | Korean counts 자 (chars), not words | <mark>"공백 포함 300자 이내로"</mark> |
+| Who is honored | Honorifics depend on the recipient | "Recipient = dept. head, sender = TA" |
+| Plain vs technical | Match the reader | "Plain Korean instead of hanja/jargon" |
+| Spelling & spacing | Final check | <mark>"한글 맞춤법·띄어쓰기 검토해서 고쳐줘"</mark> |
+| Titles | Consistency | "Add '님' after titles consistently" |
+
+> **One-line combo**: "Rewrite this as a formal official document (개조식·하십시오체), no translationese, within 500 characters incl. spaces."`,
+    },
   ],
 };
