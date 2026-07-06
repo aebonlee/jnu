@@ -69,14 +69,16 @@ html[data-color="vibe"] {
   border-color: var(--primary-blue);
 }
 
-/* 자사(드림아이티) 포털 구분 — 연한 연두빛 배경 */
+/* 자사(드림아이티) 포털 구분 — 연한 연두빛 배경 + 좌측 컬러 바 */
 .recommended-card--own {
   background: #f3fae7;
   border-color: #d9edb5;
+  border-left: 4px solid #84cc16;
 }
 [data-theme="dark"] .recommended-card--own {
-  background: rgba(132, 204, 22, 0.10);
+  background: rgba(132, 204, 22, 0.16);
   border-color: rgba(132, 204, 22, 0.28);
+  border-left-color: #84cc16;
 }
 
 .recommended-card-icon {
