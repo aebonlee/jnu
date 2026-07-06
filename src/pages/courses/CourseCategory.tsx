@@ -6,6 +6,7 @@ import rehypeRaw from 'rehype-raw';
 import { useLanguage } from '../../contexts/LanguageContext';
 import SEOHead from '../../components/SEOHead';
 import PromptBlock from '../../components/PromptBlock';
+import markdownComponents from '../../components/markdownComponents';
 import { getProgramById, PROGRAMS } from '../../data/courses';
 import { MATERIALS } from '../../data/materials';
 import { getHandsOn } from '../../data/handsOn';
@@ -265,7 +266,7 @@ export default function CourseCategory(): ReactElement {
               </div>
               <h2 className="material-inline-title">{language === 'ko' ? selectedMat.nameKo : selectedMat.nameEn}</h2>
               <div className="markdown-body">
-                <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
+                <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents as any}>
                   {language === 'ko' ? selectedMat.contentKo : selectedMat.contentEn}
                 </ReactMarkdown>
               </div>

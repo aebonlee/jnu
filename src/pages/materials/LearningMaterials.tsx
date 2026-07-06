@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
+import markdownComponents from '../../components/markdownComponents';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import { useLanguage } from '../../contexts/LanguageContext';
@@ -142,7 +143,7 @@ export default function LearningMaterials(): ReactElement {
                   <h2>{isKo ? selectedItem.nameKo : selectedItem.nameEn}</h2>
                   <span className="material-type">{selectedItem.type}</span>
                   <div className="markdown-body">
-                    <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
+                    <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents as any}>
                       {isKo ? selectedItem.contentKo : selectedItem.contentEn}
                     </ReactMarkdown>
                   </div>
