@@ -68,11 +68,11 @@
     font-family: inherit;
 }
 .guide-nav-link:hover {
-    background: #E8F5E9;
+    background: rgba(76, 175, 80, 0.14);
     color: var(--primary-blue);
 }
 .guide-nav-link.active {
-    background: #E8F5E9;
+    background: rgba(76, 175, 80, 0.14);
     color: var(--primary-blue);
     font-weight: 600;
     border-left: 3px solid #4CAF50;
@@ -235,8 +235,8 @@
     margin-top: 2px;
 }
 .guide-sidebar-cta.workshop {
-    background: #E8F5E9;
-    border-color: #C8E6C9;
+    background: rgba(76, 175, 80, 0.12);
+    border-color: rgba(76, 175, 80, 0.35);
     color: var(--text-primary);
 }
 .guide-sidebar-cta.workshop i {
@@ -246,12 +246,12 @@
     color: var(--text-light);
 }
 .guide-sidebar-cta.workshop:hover {
-    background: #C8E6C9;
+    background: rgba(76, 175, 80, 0.2);
     border-color: #4CAF50;
 }
 .guide-sidebar-cta.practice {
-    background: #E8F5E9;
-    border-color: #C8E6C9;
+    background: rgba(76, 175, 80, 0.12);
+    border-color: rgba(76, 175, 80, 0.35);
     color: var(--text-primary);
 }
 .guide-sidebar-cta.practice i {
@@ -261,7 +261,7 @@
     color: var(--text-light);
 }
 .guide-sidebar-cta.practice:hover {
-    background: #C8E6C9;
+    background: rgba(76, 175, 80, 0.2);
     border-color: #4CAF50;
 }
 
@@ -329,12 +329,21 @@
 }
 .guide-section h3 {
     font-size: 15px;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--primary-blue);
     margin-top: 24px;
     margin-bottom: 10px;
-    background: linear-gradient(to right, #E8F5E9, transparent);
-    padding: 4px 10px;
+    background: linear-gradient(to right, rgba(76, 175, 80, 0.16), transparent);
+    padding: 5px 10px;
+    border-left: 3px solid var(--primary-blue);
+    border-radius: 4px;
+}
+/* 마크다운 h3 색이 guide-section h3를 덮어써 밝은 배경에 묻히던 문제 방지 */
+.guide-section .markdown-body h3 {
+    color: var(--primary-blue);
+    background: linear-gradient(to right, rgba(76, 175, 80, 0.16), transparent);
+    padding: 5px 10px;
+    border-left: 3px solid var(--primary-blue);
     border-radius: 4px;
 }
 .guide-section p {
@@ -369,7 +378,7 @@
     min-width: 400px;
 }
 .guide-section .table-responsive th {
-    background: #E8F5E9;
+    background: rgba(76, 175, 80, 0.14);
     font-weight: 600;
     color: #1B5E20;
     text-align: left;
@@ -407,7 +416,7 @@
     font-size: 13px;
     font-weight: 600;
     color: var(--primary-blue);
-    background: #E8F5E9;
+    background: rgba(76, 175, 80, 0.14);
     border: 1px solid #C8E6C9;
     border-radius: var(--radius-sm);
     cursor: pointer;
@@ -426,7 +435,7 @@
 
 /* ── Inline Code / Code Block (green theme) ── */
 .inline-code {
-    background: #E8F5E9;
+    background: rgba(76, 175, 80, 0.14);
     padding: 2px 6px;
     border-radius: 4px;
     font-family: 'Fira Code', 'Consolas', monospace;
@@ -559,7 +568,7 @@
     gap: 24px;
     padding: 20px 24px;
     margin-bottom: 16px;
-    background: #E8F5E9;
+    background: rgba(76, 175, 80, 0.14);
     border: 1px solid #C8E6C9;
     border-left: 4px solid #4CAF50;
     border-radius: var(--radius-md);
@@ -671,7 +680,7 @@
     width: 40px;
     height: 40px;
     border-radius: 10px;
-    background: #E8F5E9;
+    background: rgba(76, 175, 80, 0.14);
     color: #2E7D32;
     display: flex;
     align-items: center;
@@ -711,7 +720,7 @@
     font-size: 13px;
     font-weight: 600;
     color: #1B5E20;
-    background: #E8F5E9;
+    background: rgba(76, 175, 80, 0.14);
     padding: 3px 10px;
     border-radius: 20px;
 }
@@ -784,7 +793,7 @@
     transition: var(--transition-base);
 }
 .tool-tip-step:hover {
-    background: #E8F5E9;
+    background: rgba(76, 175, 80, 0.14);
 }
 .step-num {
     width: 28px;
