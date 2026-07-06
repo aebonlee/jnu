@@ -127,128 +127,162 @@ export default {
     {
       title: '제공사별 모델',
       titleEn: 'Models by Provider',
-      content: `> 같은 회사도 세대·크기별로 여러 모델이 있습니다. 아래는 **큰 특징 위주** 안내이며, 실제 성능은 작업마다 다를 수 있습니다.
+      content: `> 회사마다 **설계 철학과 강점**이 다릅니다. 아래는 아키텍처·용도 관점의 **상세 안내**입니다. (구체 수치·벤치마크는 자주 바뀌어 생략 — 잘 모르면 Auto)
 
-### Upstage · Solar — 국산 파운데이션, 한국어 강점
-| 모델 | 특징 |
-| --- | --- |
-| Solar Pro3 | Solar 최상위, 복잡한 한국어 업무 |
-| Solar Pro2 | 상위 성능·균형 |
-| Solar Mini | 경량·빠름, 간단한 작업 |
-| Solar Open2 | 국가대표 독자 파운데이션 2차 모델(공개형) |
+### Upstage · Solar — 국산 파운데이션 (한국어·문서 특화)
+한국 스타트업 Upstage의 자체 개발 모델. **한국어 토크나이징·문맥**에 최적화돼 교내 한글 문서·공문에 강하고, **Document AI**(OCR·표/정보 추출) 계열이 강점. 국내 데이터 주권 관점에서도 선호됩니다.
 
-### OpenAI · ChatGPT — 범용 최강 라인업
-| 모델 | 특징 |
-| --- | --- |
-| GPT-5.5 (고비용) | 최상위 성능 |
-| GPT-5.4 · 5.4 Mini · 5.4 Nano | 범용 · 경량 · 초경량 |
-| GPT-5.3 Chat · 5.2 · 5.2 Chat · 5.1 · 5.1 Chat · 5 | 세대별 범용 (Chat=대화 최적) |
-| GPT-5 mini · 5 nano | 빠르고 저렴 |
-| GPT-4.1 · 4.1 mini · 4o · 4o mini | 이전 세대 범용·경량 |
-| o3 (고비용) · o4-mini | 추론 특화(단계적 사고) |
-| GPT-5.3/5.2/5.1 Codex · 5.1 Codex Mini · 5 Codex | 코딩 특화 |
-| O3 Deep Research (고비용) | 자료 심층 조사·리서치 |
+| 모델 | 유형 | 강점·추천 용도 | 비고 |
+| --- | --- | --- | --- |
+| Solar Pro3 | 프런티어(한국어) | 복잡한 한국어 보고서·요약·분석 | Solar 최상위 |
+| Solar Pro2 | 상위·균형 | 일반 한국어 문서 업무 전반 | |
+| Solar Mini | 경량 | 짧은 질의·빠른 요약, 대량 처리 | 저지연·저비용 |
+| Solar Open2 | 오픈웨이트 | 자체 구축·커스터마이즈 | 국가대표 독자 파운데이션 2차(공개형) |
 
-### Google · Gemini — 검색 연동·멀티모달
-| 모델 | 특징 |
-| --- | --- |
-| Gemini 3.1 Pro | 최상위, 정교한 작업 |
-| Gemini 3 Flash · 3.1 Flash Lite | 빠름·경량 |
-| Gemini 2.5 Pro · 2.5 Flash · 2.5 Flash Lite | 이전 세대 고성능·경량 |
+### OpenAI · ChatGPT — 범용 표준, 툴·에이전트 생태계
+가장 범용적이고 **함수 호출(tool use)·멀티모달(음성·이미지)·에이전트** 생태계가 넓습니다. 세대(5.x)·크기(mini/nano)로 나뉘고, 별도로 **추론형(o-시리즈)·코딩형(Codex)·리서치형(Deep Research)** 라인이 있습니다.
 
-### Anthropic · Claude — 긴 문맥·학술·문서 강점
-| 모델 | 특징 |
-| --- | --- |
-| Claude Opus 4.8 · 4.7 · 4.6 (고비용) | 최고 성능, 긴 문서·복잡한 분석·코딩 |
-| Claude Sonnet 5 (New) · 4.6 · 4.5 | 균형·범용 강자, 일상 업무 |
-| Claude Haiku 4.5 | 빠르고 경제적, 요약·간단 작업 |
-| Claude Fable 5 (New·고비용) | 최신 고성능 특화 모델 |
+| 모델 | 유형 | 강점·추천 용도 | 비고 |
+| --- | --- | --- | --- |
+| GPT-5.5 | 프런티어 | 최고난도 추론·장문·복합 작업 | (고비용) |
+| GPT-5.4 | 범용 주력 | 대부분의 문서·분석·대화 | 기본 프리셋 |
+| GPT-5.4 Mini · Nano | 경량·초경량 | 빠른 응답, 대량·실시간 | 저비용 |
+| GPT-5.3~5 (+Chat) | 세대별 범용 | 표준 작업 (Chat=대화 튜닝) | |
+| GPT-5 mini · nano | 경량 | 간단 작업·챗봇 | |
+| GPT-4.1 · 4o (+mini) | 이전 세대 | 멀티모달(4o=음성·이미지)·범용 | |
+| o3 · o4-mini | 추론형 | 수학·논리·다단계 계획, 복잡한 판단 | o3 (고비용)·느림 |
+| GPT-5.x Codex (+Mini) | 코딩·에이전트 | 코드 작성·리팩터·파일 편집·자동화 | |
+| O3 Deep Research | 리서치 | 다단계 웹 조사 + 출처 종합 보고 | (고비용)·장시간 |
 
-### Meta · Llama
-| 모델 | 특징 |
-| --- | --- |
-| Llama 4 Scout 17B | 가볍고 빠른 오픈 모델 |
+### Google · Gemini — 멀티모달·검색 그라운딩·초장문
+**이미지·오디오·비디오·PDF를 네이티브로** 처리하고, **구글 검색 그라운딩**으로 최신 정보에 강합니다. 컨텍스트가 매우 길어 대용량 문서·자료 묶음 처리에 유리. Flash=저지연, Pro=고성능.
 
-### Mistral — 유럽, 코딩·추론 라인업
-| 모델 | 특징 |
-| --- | --- |
-| Mistral Large | 고성능 범용 |
-| Mistral Medium · Small | 균형 · 경량 |
-| Magistral Medium · Small | 추론 특화 |
-| Devstral Medium · Codestral | 코딩 특화 |
+| 모델 | 유형 | 강점·추천 용도 | 비고 |
+| --- | --- | --- | --- |
+| Gemini 3.1 Pro | 프런티어 | 대용량 문서·멀티모달·정교한 분석 | |
+| Gemini 3 Flash | 균형·빠름 | 일반 업무·요약, 최신 정보 | |
+| Gemini 3.1 Flash Lite | 경량 | 대량·실시간·간단 요약 | 저비용·기본 프리셋 |
+| Gemini 2.5 Pro·Flash·Flash Lite | 이전 세대 | 고성능~경량 범용 | |
 
-### Qwen — 다국어·중국어 강점
-| 모델 | 특징 |
-| --- | --- |
-| Qwen QWQ 32B | 추론·다국어(중국어 문서) |
+### Anthropic · Claude — 장문 문맥·지시 준수·안전, 문서/코드
+**긴 문맥과 정확한 지시 준수, 안전성**이 강점. 학술·행정 문서, 코드, 컴퓨터·툴을 쓰는 **에이전트 작업**에 특히 강합니다. Opus=프런티어, Sonnet=균형 주력, Haiku=경량 저지연.
 
-### Grok · xAI
-| 모델 | 특징 |
-| --- | --- |
-| Grok 4.3 | 상위 성능 |
-| Grok 4.20 Fast Reasoning · Non Reasoning | 빠른 추론 / 일반 |
-| Grok Code Fast | 코딩 특화 |`,
-      contentEn: `> Each company has several models by generation and size. Below is a **broad-strokes** guide; real performance varies by task.
+| 모델 | 유형 | 강점·추천 용도 | 비고 |
+| --- | --- | --- | --- |
+| Claude Opus 4.8·4.7·4.6 | 프런티어 | 최고난도 분석·장문·에이전트 코딩 | (고비용) |
+| Claude Sonnet 5 | 균형 주력 | 일상 문서·분석·코딩의 기본값 | (New) |
+| Claude Sonnet 4.6·4.5 | 균형 | 범용 업무 | |
+| Claude Haiku 4.5 | 경량 | 요약·간단 작업·대량 처리, 저지연 | 경제적·기본 프리셋 |
+| Claude Fable 5 | 최신 특화 | 최신 고성능 모델 | (New·고비용) |
 
-### Upstage · Solar — Korean-built foundation, strong Korean
-| Model | Notes |
-| --- | --- |
-| Solar Pro3 | Solar's top tier, complex Korean work |
-| Solar Pro2 | High performance, balanced |
-| Solar Mini | Light·fast, simple tasks |
-| Solar Open2 | Korea's flagship open foundation (2nd gen) |
+### Meta · Llama — 오픈웨이트(자체 구축·커스터마이즈)
+가중치가 공개돼 **온프레미스·파인튜닝·비용 통제**에 유리합니다. Scout는 경량·롱컨텍스트·빠른 응답 계열.
 
-### OpenAI · ChatGPT — strongest general lineup
-| Model | Notes |
-| --- | --- |
-| GPT-5.5 (costly) | Top performance |
-| GPT-5.4 · 5.4 Mini · 5.4 Nano | general · light · ultra-light |
-| GPT-5.3 Chat · 5.2 · 5.1 · 5 | generational general models (Chat=chat-tuned) |
-| GPT-5 mini · 5 nano | fast and cheap |
-| GPT-4.1 · 4o (+ mini) | previous-gen general·light |
-| o3 (costly) · o4-mini | reasoning-tuned (step-by-step) |
-| GPT-5.x Codex | coding-specialized |
-| O3 Deep Research (costly) | deep research |
+| 모델 | 유형 | 강점·추천 용도 | 비고 |
+| --- | --- | --- | --- |
+| Llama 4 Scout 17B | 경량·오픈 | 가볍고 빠른 응답, 자체 구축 | 오픈웨이트 |
 
-### Google · Gemini — search-connected, multimodal
-| Model | Notes |
-| --- | --- |
-| Gemini 3.1 Pro | top tier, precise work |
-| Gemini 3 Flash · 3.1 Flash Lite | fast·light |
-| Gemini 2.5 Pro · Flash · Flash Lite | previous gen |
+### Mistral — 유럽(효율·오픈), 코딩·추론 라인업
+프랑스 Mistral. **효율(크기 대비 성능)·오픈** 지향이며, 코드(Codestral·Devstral)·추론(Magistral) 특화 라인이 뚜렷합니다.
 
-### Anthropic · Claude — long context, academic & docs
-| Model | Notes |
-| --- | --- |
-| Claude Opus 4.8 · 4.7 · 4.6 (costly) | top performance, long docs, analysis, coding |
-| Claude Sonnet 5 (New) · 4.6 · 4.5 | balanced all-rounder, daily work |
-| Claude Haiku 4.5 | fast·economical, summaries, simple tasks |
-| Claude Fable 5 (New·costly) | newest high-capability model |
+| 모델 | 유형 | 강점·추천 용도 | 비고 |
+| --- | --- | --- | --- |
+| Mistral Large | 프런티어 | 고난도 범용 | |
+| Mistral Medium · Small | 균형·경량 | 일반~간단 업무 | Small=기본 프리셋 |
+| Magistral Medium · Small | 추론형 | 논리·수학·계획 | |
+| Codestral | 코딩 | 코드 생성·자동완성 | |
+| Devstral Medium | 에이전트 코딩 | 개발 자동화·툴 사용 | |
 
-### Meta · Llama
-| Model | Notes |
-| --- | --- |
-| Llama 4 Scout 17B | light, fast open model |
+### Qwen · Alibaba — 다국어·중국어·오픈
+알리바바. **중국어·다국어**와 오픈웨이트가 강점. QwQ는 추론 특화 계열.
 
-### Mistral — Europe, coding·reasoning
-| Model | Notes |
-| --- | --- |
-| Mistral Large | high-performance general |
-| Mistral Medium · Small | balanced · light |
-| Magistral Medium · Small | reasoning-tuned |
-| Devstral · Codestral | coding-specialized |
+| 모델 | 유형 | 강점·추천 용도 | 비고 |
+| --- | --- | --- | --- |
+| Qwen QWQ 32B | 추론·다국어 | 중국어 문서, 다국어 업무, 논리 문제 | 오픈·기본 프리셋 |
 
-### Qwen — multilingual, strong Chinese
-| Model | Notes |
-| --- | --- |
-| Qwen QWQ 32B | reasoning, multilingual (Chinese docs) |
+### Grok · xAI — 실시간·추론
+xAI. **실시간(X 연동) 정보**와 추론(Reasoning) 라인이 특징. Code Fast는 코딩 특화.
 
-### Grok · xAI
-| Model | Notes |
-| --- | --- |
-| Grok 4.3 | upper tier |
-| Grok 4.20 Fast Reasoning · Non Reasoning | fast reasoning / general |
-| Grok Code Fast | coding-specialized |`,
+| 모델 | 유형 | 강점·추천 용도 | 비고 |
+| --- | --- | --- | --- |
+| Grok 4.3 | 상위 | 고성능 범용 | |
+| Grok 4.20 Fast Reasoning | 추론(빠름) | 복잡한 텍스트에서 핵심 추출·추론 | 기본 프리셋 |
+| Grok 4.20 Non Reasoning | 범용 | 일반 대화·작업 | |
+| Grok Code Fast | 코딩 | 빠른 코드 작업 | |`,
+      contentEn: `> Each company has a **distinct design philosophy**. Below is a **detailed** architecture/use guide. (Exact specs/benchmarks change often and are omitted — use Auto if unsure.)
+
+### Upstage · Solar — Korean-built foundation (Korean & documents)
+Korea's Upstage. Optimized **Korean tokenization/context** — strong on campus Korean docs; notable **Document AI** (OCR, table/info extraction). Also favored for domestic data sovereignty.
+| Model | Type | Strengths·use | Notes |
+| --- | --- | --- | --- |
+| Solar Pro3 | frontier (Korean) | complex Korean reports/analysis | Solar top |
+| Solar Pro2 | upper·balanced | general Korean docs | |
+| Solar Mini | light | short Q, quick summary, bulk | low latency/cost |
+| Solar Open2 | open-weight | self-host, customize | flagship open (2nd gen) |
+
+### OpenAI · ChatGPT — general standard, tool/agent ecosystem
+Broadest **tool use, multimodal (voice/image), agent** ecosystem. Split by generation (5.x) and size (mini/nano), plus **reasoning (o-series), coding (Codex), research (Deep Research)** lines.
+| Model | Type | Strengths·use | Notes |
+| --- | --- | --- | --- |
+| GPT-5.5 | frontier | hardest reasoning, long, complex | (costly) |
+| GPT-5.4 | flagship general | most docs/analysis/chat | preset |
+| GPT-5.4 Mini · Nano | light·ultra-light | fast, bulk, real-time | cheap |
+| GPT-5.3~5 (+Chat) | generational | standard work (Chat=chat-tuned) | |
+| GPT-5 mini · nano | light | simple tasks, chatbots | |
+| GPT-4.1 · 4o (+mini) | prev gen | multimodal (4o=voice/image) | |
+| o3 · o4-mini | reasoning | math, logic, planning | o3 (costly), slow |
+| GPT-5.x Codex (+Mini) | coding·agent | code, refactor, file edits | |
+| O3 Deep Research | research | multi-step web + synthesis | (costly), long |
+
+### Google · Gemini — multimodal, search grounding, huge context
+Native **image/audio/video/PDF** + **Google Search grounding** for fresh info. Very long context for big document sets. Flash=low latency, Pro=top.
+| Model | Type | Strengths·use | Notes |
+| --- | --- | --- | --- |
+| Gemini 3.1 Pro | frontier | big docs, multimodal, precise | |
+| Gemini 3 Flash | balanced·fast | general work, fresh info | |
+| Gemini 3.1 Flash Lite | light | bulk, real-time, quick summary | cheap·preset |
+| Gemini 2.5 Pro·Flash·Flash Lite | prev gen | top→light general | |
+
+### Anthropic · Claude — long context, instruction-following, safety
+Strong **long context, precise instruction-following, safety**. Great for academic/admin docs, code, and **agentic** work with computer/tools. Opus=frontier, Sonnet=balanced flagship, Haiku=light.
+| Model | Type | Strengths·use | Notes |
+| --- | --- | --- | --- |
+| Claude Opus 4.8·4.7·4.6 | frontier | hardest analysis, long, agent coding | (costly) |
+| Claude Sonnet 5 | balanced flagship | daily docs/analysis/coding | (New) |
+| Claude Sonnet 4.6·4.5 | balanced | general work | |
+| Claude Haiku 4.5 | light | summaries, simple tasks, bulk | economical·preset |
+| Claude Fable 5 | newest | latest high-capability | (New·costly) |
+
+### Meta · Llama — open-weight (self-host, customize)
+Open weights → **on-prem, fine-tuning, cost control**. Scout = light, long-context, fast.
+| Model | Type | Strengths·use | Notes |
+| --- | --- | --- | --- |
+| Llama 4 Scout 17B | light·open | light, fast, self-host | open-weight |
+
+### Mistral — Europe (efficient, open), coding·reasoning
+France's Mistral. **Efficiency & open**; clear code (Codestral/Devstral) and reasoning (Magistral) lines.
+| Model | Type | Strengths·use | Notes |
+| --- | --- | --- | --- |
+| Mistral Large | frontier | high-end general | |
+| Mistral Medium · Small | balanced·light | general→simple | Small=preset |
+| Magistral Medium · Small | reasoning | logic, math, planning | |
+| Codestral | coding | code gen/complete | |
+| Devstral Medium | agent coding | dev automation, tools | |
+
+### Qwen · Alibaba — multilingual, Chinese, open
+Alibaba. Strong **Chinese/multilingual** and open weights. QwQ = reasoning.
+| Model | Type | Strengths·use | Notes |
+| --- | --- | --- | --- |
+| Qwen QWQ 32B | reasoning·multilingual | Chinese docs, multilingual, logic | open·preset |
+
+### Grok · xAI — real-time, reasoning
+xAI. **Real-time (X-connected)** info and reasoning lines; Code Fast for coding.
+| Model | Type | Strengths·use | Notes |
+| --- | --- | --- | --- |
+| Grok 4.3 | upper | high-end general | |
+| Grok 4.20 Fast Reasoning | reasoning (fast) | extract key points, reason | preset |
+| Grok 4.20 Non Reasoning | general | general chat/work | |
+| Grok Code Fast | coding | fast code tasks | |`,
     },
   ],
 };

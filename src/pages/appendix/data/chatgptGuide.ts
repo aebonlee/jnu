@@ -55,14 +55,14 @@ Documents/emails/minutes, summarizing rules & materials, tables & checklists, un
 ### 이해하기 쉽게
 | 키워드 | 시키는 일 | 예시 (그대로 복사해 보세요) |
 | --- | --- | --- |
-| <mark>ELI5</mark> | 아주 쉽게 설명 | 전자결재가 뭐야? ELI5 |
+| <mark>ELI5</mark> | 아주 쉽게 설명 · 원어: Explain Like I'm 5(다섯 살에게 설명하듯) | 전자결재가 뭐야? ELI5 |
 | <mark>쉽게 풀어줘</mark> | 어려운 문서를 쉬운 말로 | 이 규정 조항 쉽게 풀어줘 |
 | <mark>예시 들어줘</mark> | 예로 이해 돕기 | 이 개념, 예시 2개 들어서 설명해줘 |
 
 ### 요약·정리
 | 키워드 | 시키는 일 | 예시 |
 | --- | --- | --- |
-| <mark>TL;DR</mark> | 핵심만 짧게 요약 | 이 회의록 TL;DR |
+| <mark>TL;DR</mark> | 핵심만 짧게 요약 · 원어: Too Long; Didn't Read(너무 길어 안 읽음 → 요약) | 이 회의록 TL;DR |
 | <mark>표로 정리</mark> | 표 형식으로 | 이 3개 업체 견적을 표로 비교해줘 |
 | <mark>단계별로</mark> | 순서대로 안내 | 신규 계정 발급 절차를 단계별로 알려줘 |
 | <mark>체크리스트</mark> | 실행 목록으로 | 행사 준비를 체크리스트로 만들어줘 |
@@ -79,7 +79,7 @@ Documents/emails/minutes, summarizing rules & materials, tables & checklists, un
 | --- | --- | --- |
 | <mark>장단점</mark> | 찬반 정리 | 유연근무 확대의 장단점을 정리해줘 |
 | <mark>비교표</mark> | 여러 안 비교 | A안·B안을 비용·기간·리스크 기준으로 비교해줘 |
-| <mark>SWOT</mark> | 강점·약점·기회·위협 | 우리 부서 업무를 SWOT으로 정리해줘 |
+| <mark>SWOT</mark> | 강점·약점·기회·위협 · 원어: Strengths·Weaknesses·Opportunities·Threats | 우리 부서 업무를 SWOT으로 정리해줘 |
 
 ### 확인·학습 (직원·조교)
 | 키워드 | 시키는 일 | 예시 |
@@ -132,7 +132,7 @@ Documents/emails/minutes, summarizing rules & materials, tables & checklists, un
     {
       title: '설명 수준·대상 정하기',
       titleEn: 'Depth & Audience',
-      content: `> "쉽게 설명해줘"는 너무 막연합니다. **누구에게 · 어느 수준으로** 설명할지 콕 집으면 결과가 완전히 달라집니다. (아래 예시 주제 = 2일차 실습의 **AHP 의사결정 기법**)
+      content: `> "쉽게 설명해줘"는 너무 막연합니다. **누구에게 · 어느 수준으로** 설명할지 콕 집으면 결과가 완전히 달라집니다. (아래 예시 주제 = 2일차 실습의 **AHP** — Analytic Hierarchy Process · 계층분석법)
 
 ### 난이도 사다리 — 같은 개념도 6단계로
 | 수준 지정 | 어떻게 나오나 | 예시 (그대로 복사) |
