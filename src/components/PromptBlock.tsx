@@ -35,15 +35,20 @@ export default function PromptBlock({ text }: { text: string }): ReactElement {
 
   return (
     <div className="prompt-block">
-      <button
-        type="button"
-        className={`prompt-copy-btn${copied ? ' copied' : ''}`}
-        onClick={handleCopy}
-        aria-label={language === 'ko' ? '프롬프트 복사' : 'Copy prompt'}
-      >
-        <i className={`fa-solid ${copied ? 'fa-check' : 'fa-copy'}`} />
-        {copied ? (language === 'ko' ? '복사됨' : 'Copied') : (language === 'ko' ? '복사' : 'Copy')}
-      </button>
+      <div className="prompt-block-header">
+        <span className="prompt-block-lang">
+          <i className="fa-solid fa-terminal" /> {language === 'ko' ? '프롬프트' : 'PROMPT'}
+        </span>
+        <button
+          type="button"
+          className={`prompt-copy-btn${copied ? ' copied' : ''}`}
+          onClick={handleCopy}
+          aria-label={language === 'ko' ? '프롬프트 복사' : 'Copy prompt'}
+        >
+          <i className={`fa-solid ${copied ? 'fa-check' : 'fa-copy'}`} />
+          {copied ? (language === 'ko' ? '복사됨' : 'Copied!') : (language === 'ko' ? '복사' : 'Copy')}
+        </button>
+      </div>
       <pre className="practice-prompt"><code>{text}</code></pre>
     </div>
   );
