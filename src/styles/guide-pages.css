@@ -401,14 +401,9 @@
     padding: 0;
     border: none;
 }
-.code-block-content .token.comment { color: #6B8E6F; font-style: italic; }
-.code-block-content .token.string { color: #81C784; }
-.code-block-content .token.keyword { color: #80CBC4; font-weight: 600; }
-.code-block-content .token.builtin { color: #FFD54F; }
-.code-block-content .token.function { color: #CE93D8; }
-.code-block-content .token.number { color: #EF9A9A; }
-.code-block-content .token.operator { color: #C8E6C9; }
-.code-block-content .token.decorator { color: #FFAB91; }
+/* 프롬프트블록과 동일한 단색 평문 — 구문강조(무지개색) 제거로 복잡함 제거 */
+.code-block-content .token { color: inherit; font-weight: inherit; font-style: normal; }
+.code-block-content .token.comment { color: #8FB0E0; font-style: italic; }
 .code-block-content .code-line-highlight { background: rgba(96,140,210,0.16); display: block; }
 
 /* ── TipBox ── */
