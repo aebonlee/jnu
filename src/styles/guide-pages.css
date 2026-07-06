@@ -512,24 +512,25 @@
     border-left: 4px solid;
     font-size: 14px;
 }
-.tip-box.tip { background: #E8F5E9; border-color: #4CAF50; }
-.tip-box.warning { background: #FFF8E1; border-color: #FF8F00; }
-.tip-box.important { background: #E3F2FD; border-color: #1976D2; }
-.tip-box.danger { background: #FFEBEE; border-color: #D32F2F; }
+/* 반투명 틴트 배경 — 라이트/다크 모두 대비 확보 */
+.tip-box.tip { background: rgba(76, 175, 80, 0.12); border-color: #4CAF50; }
+.tip-box.warning { background: rgba(255, 143, 0, 0.13); border-color: #FF8F00; }
+.tip-box.important { background: rgba(25, 118, 210, 0.13); border-color: #2E8BEF; }
+.tip-box.danger { background: rgba(211, 47, 47, 0.13); border-color: #EF5350; }
 .tip-box-icon {
     font-size: 16px;
     flex-shrink: 0;
     margin-top: 2px;
 }
-.tip-box.tip .tip-box-icon { color: #2E7D32; }
-.tip-box.warning .tip-box-icon { color: #FF8F00; }
-.tip-box.important .tip-box-icon { color: #1976D2; }
-.tip-box.danger .tip-box-icon { color: #D32F2F; }
+.tip-box.tip .tip-box-icon { color: #4CAF50; }
+.tip-box.warning .tip-box-icon { color: #FFA726; }
+.tip-box.important .tip-box-icon { color: #42A5F5; }
+.tip-box.danger .tip-box-icon { color: #EF5350; }
 .tip-box-content {
     flex: 1;
     font-size: 14px;
     line-height: 1.7;
-    color: var(--text-secondary);
+    color: var(--text-primary);
 }
 .tip-box-content strong {
     display: block;
