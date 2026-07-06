@@ -388,10 +388,18 @@
     padding: 16px 20px;
     overflow-x: auto;
 }
-.code-block-content pre {
+/* 마크다운 일반 pre/code 스타일이 CodeBlock 안쪽에 이중 박스를 만드는 것 방지(단일 박스로) */
+.code-block-wrapper .code-block-content pre {
     margin: 0;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    overflow-x: visible;
 }
-.code-block-content code {
+.code-block-wrapper .code-block-content code,
+.code-block-wrapper .code-block-content pre code {
+    display: block;
     color: #E8EEF8;
     font-family: 'D2Coding', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
     font-size: 13px;
@@ -400,6 +408,7 @@
     background: transparent;
     padding: 0;
     border: none;
+    border-radius: 0;
 }
 /* 프롬프트블록과 동일한 단색 평문 — 구문강조(무지개색) 제거로 복잡함 제거 */
 .code-block-content .token { color: inherit; font-weight: inherit; font-style: normal; }
