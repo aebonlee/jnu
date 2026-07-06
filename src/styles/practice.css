@@ -242,16 +242,20 @@
   padding: 28px 32px;
   margin-bottom: 24px;
 }
+/* 프롬프트 복사 블록과 동일한 톤(남색 본문) — 복사 대상은 아니라 헤더·버튼은 없음 */
 .eval-prompt-box {
-  padding: 20px;
-  background: var(--bg-light-gray);
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border-light);
+  padding: 16px 20px;
+  background: #14233E;
+  border-radius: var(--radius-md);
+  border: 1px solid #2E4468;
   margin-bottom: 20px;
-  font-size: 15px;
-  line-height: 1.7;
-  color: var(--text-primary);
+  font-size: 13px;
+  line-height: 1.65;
+  color: #E8EEF8;
+  font-family: 'D2Coding', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
   white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 .eval-grade-options {
   display: flex;
