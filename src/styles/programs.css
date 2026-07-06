@@ -79,6 +79,16 @@
   gap: 14px;
   flex-wrap: wrap;
 }
+/* '교육과정 보기' 버튼 — 오른쪽 사이드 박스(--hero-bg)와 동일 색 */
+.hero-ed-actions .btn-primary {
+  background: var(--hero-bg);
+  border-color: transparent;
+  color: #fff;
+}
+.hero-ed-actions .btn-primary:hover {
+  filter: brightness(1.14);
+  border-color: transparent;
+}
 
 /* Hero side panel (dark navy) */
 .hero-ed-side {

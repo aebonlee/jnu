@@ -2,7 +2,6 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { useNavigate } from 'react-router-dom';
 import SEOHead from '../components/SEOHead';
 import { COURSE_CATEGORIES } from '../data/courses';
-import useCountUp from '../hooks/useCountUp';
 import useAOS from '../hooks/useAOS';
 import type { ReactElement } from 'react';
 
@@ -10,18 +9,6 @@ export default function Home(): ReactElement {
   const { language, t } = useLanguage();
   const navigate = useNavigate();
   useAOS();
-
-  const stat0 = useCountUp(4);
-  const stat1 = useCountUp(16);
-  const stat2 = useCountUp(32);
-  const stat3 = useCountUp(70);
-
-  const stats = [
-    { value: stat0.count, label: language === 'ko' ? '전문 과정' : 'Programs', suffix: '' },
-    { value: stat1.count, label: language === 'ko' ? '과정당 시간' : 'Hours / Program', suffix: 'h' },
-    { value: stat2.count, label: language === 'ko' ? '실습 교시' : 'Practice Sessions', suffix: '' },
-    { value: stat3.count, label: language === 'ko' ? '실습 사례' : 'Practice Cases', suffix: '+' },
-  ];
 
   const isKo = language === 'ko';
   const marqueeWords = (isKo
@@ -261,23 +248,6 @@ export default function Home(): ReactElement {
             <button className="btn btn-accent btn-lg" onClick={() => navigate('/courses')}>
               <i className="fa-solid fa-graduation-cap" /> {isKo ? '과정 살펴보기' : 'Explore programs'}
             </button>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats */}
-      <section className="section stats-section">
-        <div className="container">
-          <div className="section-header" data-aos="fade-up">
-            <h2>{t('site.home.statsTitle')}</h2>
-          </div>
-          <div className="stats-grid">
-            {stats.map((stat, i) => (
-              <div key={i} className="stat-card" data-aos="zoom-in" data-aos-delay={i * 100}>
-                <div className="stat-value">{stat.value}{stat.suffix}</div>
-                <div className="stat-label">{stat.label}</div>
-              </div>
-            ))}
           </div>
         </div>
       </section>

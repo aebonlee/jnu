@@ -7,7 +7,7 @@ import { useLanguage } from '../../contexts/LanguageContext';
 import SEOHead from '../../components/SEOHead';
 import PromptBlock from '../../components/PromptBlock';
 import markdownComponents from '../../components/markdownComponents';
-import { getProgramById, PROGRAMS } from '../../data/courses';
+import { getProgramById } from '../../data/courses';
 import { MATERIALS } from '../../data/materials';
 import { getHandsOn } from '../../data/handsOn';
 import { getWorkbook } from '../../data/workbook';
@@ -17,8 +17,11 @@ export default function CourseCategory(): ReactElement {
   const { category } = useParams<{ category: string }>();
   const { language } = useLanguage();
   const navigate = useNavigate();
-  const [matOpen, setMatOpen] = useState(true);
-  const [wbOpen, setWbOpen] = useState(true);
+  // 사이드바 아코디언 — 한 번에 하나의 그룹만 열림
+  const [openGroup, setOpenGroup] = useState<'workbook' | 'materials' | null>('workbook');
+  const matOpen = openGroup === 'materials';
+  const wbOpen = openGroup === 'workbook';
+  const toggleGroup = (g: 'workbook' | 'materials') => setOpenGroup((prev) => (prev === g ? null : g));
   const [selectedMatId, setSelectedMatId] = useState<string | null>(null);
   const [selectedWbId, setSelectedWbId] = useState<string | null>(null);
   const [showLab, setShowLab] = useState(false);
@@ -159,7 +162,7 @@ export default function CourseCategory(): ReactElement {
                     <button
                       type="button"
                       className={`course-sidebar-link course-sidebar-toggle${wbOpen ? ' open' : ''}`}
-                      onClick={() => setWbOpen(!wbOpen)}
+                      onClick={() => toggleGroup('workbook')}
                       aria-expanded={wbOpen}
                     >
                       <i className="fa-solid fa-flask-vial" /> {language === 'ko' ? '실습 워크북' : 'Practice Workbook'}
@@ -195,7 +198,7 @@ export default function CourseCategory(): ReactElement {
                 <button
                   type="button"
                   className={`course-sidebar-link course-sidebar-toggle${matOpen ? ' open' : ''}`}
-                  onClick={() => setMatOpen(!matOpen)}
+                  onClick={() => toggleGroup('materials')}
                   aria-expanded={matOpen}
                 >
                   <i className="fa-solid fa-folder-open" /> {language === 'ko' ? '학습자료' : 'Materials'}
@@ -235,14 +238,6 @@ export default function CourseCategory(): ReactElement {
               </nav>
               )}
 
-              <nav className="course-sidebar-nav">
-                <span className="course-sidebar-label">{language === 'ko' ? '다른 과정' : 'Other Programs'}</span>
-                {PROGRAMS.filter((p) => p.id !== program.id).map((p) => (
-                  <Link key={p.id} to={`/courses/${p.id}`} className="course-sidebar-link sub">
-                    <i className={`fa-solid ${p.icon}`} /> {language === 'ko' ? p.nameKo : p.nameEn}
-                  </Link>
-                ))}
-              </nav>
             </div>
           </aside>
 

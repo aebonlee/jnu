@@ -21,7 +21,7 @@ const site: SiteConfig = {
 
   brand: {
     parts: [
-      { text: 'JNU', className: 'brand-dream' },
+      { text: 'CNU', className: 'brand-dream' },
       { text: ' AI', className: 'brand-it' },
       { text: ' -Edu', className: 'brand-biz' }
     ]
