@@ -6,8 +6,8 @@ export default {
   titleEn: 'ChatGPT Secret Codes',
   sections: [
     {
-      title: '⭐ 핵심 비밀코드 5선',
-      titleEn: '⭐ Top 5 Secret Codes',
+      title: '핵심 비밀코드 5선',
+      titleEn: 'Top 5 Secret Codes',
       content: `> 먼저 이 5개만 외워도 절반은 끝납니다. 질문이나 내용 뒤에 코드를 붙이기만 하면 됩니다.
 
 | 코드 | 설명 |
@@ -18,7 +18,7 @@ export default {
 | REDTEAM | 약점을 드러내기 위해 공격적으로 비판 |
 | ALT3 | 3가지 다른 대안을 제시 |
 
-> 📌 사용법: "기후변화에 대해 설명해줘. ELI5"처럼 뒤에 붙이면 됩니다.`,
+> 사용법: "기후변화에 대해 설명해줘. ELI5"처럼 뒤에 붙이면 됩니다.`,
       contentEn: `> Memorize just these 5 and you're halfway there. Just append the code after your question or text.
 
 | Code | Description |
@@ -29,11 +29,11 @@ export default {
 | REDTEAM | Attack critically to expose weaknesses |
 | ALT3 | Provide 3 different alternatives |
 
-> 📌 Usage: append it, e.g. "Explain climate change. ELI5".`,
+> Usage: append it, e.g. "Explain climate change. ELI5".`,
     },
     {
-      title: '✍️ 글쓰기 · 스타일',
-      titleEn: '✍️ Writing & Style',
+      title: '글쓰기 · 스타일',
+      titleEn: 'Writing & Style',
       content: `| 코드 | 설명 |
 | --- | --- |
 | /human | 로봇 같지 않고 자연스러운 말투로 다시 쓰기 |
@@ -56,8 +56,8 @@ export default {
 | /casual | Switch to a relaxed, conversational tone |`,
     },
     {
-      title: '🎓 설명 난이도',
-      titleEn: '🎓 Explanation Levels',
+      title: '설명 난이도',
+      titleEn: 'Explanation Levels',
       content: `| 코드 | 설명 |
 | --- | --- |
 | ELI5 | 5살 아이도 알아들을 수 있게 설명 |
@@ -82,8 +82,8 @@ export default {
 | /firstprinciples | Break down from fundamental principles |`,
     },
     {
-      title: '📋 형식 · 출력',
-      titleEn: '📋 Formatting & Output',
+      title: '형식 · 출력',
+      titleEn: 'Formatting & Output',
       content: `| 코드 | 설명 |
 | --- | --- |
 | TLDR | 가장 짧고 핵심적인 요약 |
@@ -106,8 +106,8 @@ export default {
 | /keypoints | Extract only the most important points |`,
     },
     {
-      title: '📚 학습 · 공부',
-      titleEn: '📚 Learning & Study',
+      title: '학습 · 공부',
+      titleEn: 'Learning & Study',
       content: `| 코드 | 설명 |
 | --- | --- |
 | QUIZME | 내용으로 퀴즈 문제 생성 |
@@ -132,8 +132,8 @@ export default {
 | /teachme | Respond as if teaching a class |`,
     },
     {
-      title: '💡 브레인스토밍 · 아이디어',
-      titleEn: '💡 Brainstorming & Ideas',
+      title: '브레인스토밍 · 아이디어',
+      titleEn: 'Brainstorming & Ideas',
       content: `| 코드 | 설명 |
 | --- | --- |
 | IDEAS10 | 주제와 관련된 아이디어 10개 생성 |
@@ -158,8 +158,8 @@ export default {
 | /viralhooks | Generate attention-grabbing viral hooks |`,
     },
     {
-      title: '🧠 분석 · 의사결정',
-      titleEn: '🧠 Analysis & Decision Making',
+      title: '분석 · 의사결정',
+      titleEn: 'Analysis & Decision Making',
       content: `| 코드 | 설명 |
 | --- | --- |
 | PROSCONS | 장점과 단점 목록 |
@@ -192,8 +192,8 @@ export default {
 | PARETO | Find the few actions that drive the biggest results |`,
     },
     {
-      title: '🔬 고급 사고 시스템',
-      titleEn: '🔬 Advanced Thinking Systems',
+      title: '고급 사고 시스템',
+      titleEn: 'Advanced Thinking Systems',
       content: `| 코드 | 설명 |
 | --- | --- |
 | DELTR | 분해·평가·한계 설정·변환·재구성 |
@@ -228,8 +228,8 @@ export default {
 | META | Examine the framing of the question itself |`,
     },
     {
-      title: '🎨 창작 · 콘텐츠',
-      titleEn: '🎨 Creative & Content',
+      title: '창작 · 콘텐츠',
+      titleEn: 'Creative & Content',
       content: `| 코드 | 설명 |
 | --- | --- |
 | /simulate | 시나리오·대화·롤플레이 시뮬레이션 |
@@ -250,8 +250,8 @@ export default {
 | /storymode | Switch to narrative, story-centered mode |`,
     },
     {
-      title: '💻 코딩',
-      titleEn: '💻 Coding',
+      title: '코딩',
+      titleEn: 'Coding',
       content: `| 코드 | 설명 |
 | --- | --- |
 | DEBUG | 코드의 버그·오류 찾기 |
@@ -264,8 +264,8 @@ export default {
 | OPTIMIZE | Improve speed, efficiency, readability |`,
     },
     {
-      title: '⚡ 실용 · 파워 명령어',
-      titleEn: '⚡ Utility & Power Commands',
+      title: '실용 · 파워 명령어',
+      titleEn: 'Utility & Power Commands',
       content: `| 코드 | 설명 |
 | --- | --- |
 | /convert | 콘텐츠를 다른 형식으로 변환 |

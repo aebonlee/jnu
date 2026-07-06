@@ -78,9 +78,18 @@
     border-left: 3px solid #4CAF50;
 }
 
-/* ── Sidebar Groups (collapsible accordion) ── */
+/* ── Sidebar Groups (boxed, per-category like courses) ── */
 .guide-nav-group {
-    margin-bottom: 4px;
+    margin: 0 12px 8px;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--bg-white);
+    transition: var(--transition-base);
+}
+.guide-nav-group.expanded {
+    border-color: #A5D6A7;
+    box-shadow: 0 2px 10px rgba(76, 175, 80, 0.08);
 }
 .guide-nav-group-toggle {
     display: flex;
@@ -88,37 +97,88 @@
     justify-content: space-between;
     gap: 8px;
     width: 100%;
-    padding: 12px 20px 6px;
-    font-size: 11px;
+    padding: 12px 14px;
+    font-size: 13px;
     font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: #2E7D32;
-    background: transparent;
+    color: var(--text-primary);
+    background: var(--bg-alt);
     border: none;
     cursor: pointer;
     transition: var(--transition-base);
     font-family: inherit;
     text-align: left;
 }
+.guide-nav-group-toggle .group-label {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    min-width: 0;
+}
+.guide-nav-group-toggle .group-icon {
+    font-size: 13px;
+    color: #2E7D32;
+    width: 18px;
+    text-align: center;
+    flex-shrink: 0;
+}
 .guide-nav-group-toggle:hover {
+    background: #E8F5E9;
     color: var(--primary-blue);
 }
 .guide-nav-group-toggle.active {
+    background: #E8F5E9;
+    color: var(--primary-blue);
+}
+.guide-nav-group-toggle.active .group-icon {
     color: var(--primary-blue);
 }
 .guide-nav-group-toggle .group-chevron {
     font-size: 9px;
-    opacity: 0.4;
+    opacity: 0.5;
     flex-shrink: 0;
 }
 .guide-nav-sub-list {
     list-style: none;
-    margin-bottom: 4px;
+    padding: 4px 0 6px;
+    background: var(--bg-white);
 }
 .guide-nav-link.guide-nav-sub {
-    padding-left: 24px;
+    padding: 8px 14px 8px 41px;
     font-size: 12.5px;
+}
+.guide-nav-link.guide-nav-sub.active {
+    border-left-width: 4px;
+}
+
+/* ── 부록 콘텐츠: 번호 팁(#### NN. 제목 + 설명)을 카드형 리스트로 ── */
+.guide-section .markdown-body h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary-blue);
+    margin: 18px 0 0;
+    padding: 12px 16px 8px;
+    background: var(--bg-alt);
+    border: 1px solid var(--border-light);
+    border-bottom: none;
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+    border-left: 3px solid #4CAF50;
+    line-height: 1.45;
+}
+.guide-section .markdown-body h4 + p {
+    margin: 0 0 2px;
+    padding: 10px 16px 14px;
+    background: var(--bg-white);
+    border: 1px solid var(--border-light);
+    border-top: none;
+    border-left: 3px solid #4CAF50;
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+    color: var(--text-secondary);
+    font-size: 13.5px;
+    line-height: 1.75;
+}
+/* 인트로 안내(블록쿼트=TipBox)와 첫 팁 사이 간격 */
+.guide-section .markdown-body .tip-box + h4 {
+    margin-top: 8px;
 }
 
 /* ── Sidebar Footer (CTA Links) ── */

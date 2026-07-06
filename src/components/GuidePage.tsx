@@ -106,7 +106,10 @@ export default function GuidePage({ seoTitle, seoTitleEn, seoDescription, path, 
                       className={`guide-nav-group-toggle${isExpanded ? ' active' : ''}`}
                       onClick={() => handleSelect(startIdx)}
                     >
-                      {isKo ? df.title : df.titleEn}
+                      <span className="group-label">
+                        {df.icon && <i className={`fa-solid ${df.icon} group-icon`} />}
+                        {isKo ? df.title : df.titleEn}
+                      </span>
                       <i className={`fa-solid fa-chevron-${isExpanded ? 'down' : 'right'} group-chevron`} />
                     </button>
                     {isExpanded && (
