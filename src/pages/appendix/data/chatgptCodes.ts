@@ -8,7 +8,12 @@ export default {
     {
       title: '핵심 비밀코드 5선',
       titleEn: 'Top 5 Secret Codes',
-      content: `> 먼저 이 5개만 외워도 절반은 끝납니다. 질문이나 내용 뒤에 코드를 붙이기만 하면 됩니다.
+      content: `> **먼저 알아두세요.** 이 코드들은 ChatGPT·클로드의 **공식 명령어가 아닙니다.** 자주 쓰는 프롬프트를 짧게 부르는 '관용 표기'라, AI가 문맥으로 해석해 동작합니다.
+> - **슬래시(/) 유무는 기능 차이가 아니라 표기 습관 차이**입니다. \`/human\`이든 \`HUMAN\`이든 AI에겐 똑같은 텍스트예요.
+> - ELI5·TL;DR·"단계별로"처럼 **널리 알려진 건 잘 통하고**, 만들어낸 코드(SELFREFINE·X10THINK 등)는 **그때그때 다를 수 있습니다.** 안 통하면 뜻을 풀어서 쓰면 됩니다.
+> - **클로드도 동일**합니다. 두 AI 모두 특수 명령이 아니라 '자연어 지시'로 받아들입니다.
+
+먼저 이 5개만 알아둬도 절반은 끝납니다. 질문이나 내용 뒤에 붙여 쓰세요.
 
 | 코드 | 설명 |
 | --- | --- |
@@ -19,7 +24,12 @@ export default {
 | ALT3 | 3가지 다른 대안을 제시 |
 
 > 사용법: "기후변화에 대해 설명해줘. ELI5"처럼 뒤에 붙이면 됩니다.`,
-      contentEn: `> Memorize just these 5 and you're halfway there. Just append the code after your question or text.
+      contentEn: `> **Read this first.** These codes are **not official commands** in ChatGPT or Claude. They're shorthand for common prompts, interpreted from context.
+> - **The slash (/) is a style habit, not a function.** \`/human\` and \`HUMAN\` are the same text to the AI.
+> - Well-known ones (ELI5, TL;DR, "step by step") work reliably; made-up codes (SELFREFINE, X10THINK…) may vary. If one doesn't work, just spell out what you mean.
+> - **Claude behaves the same way** — both treat these as natural-language instructions, not special commands.
+
+Learn just these 5 and you're halfway there. Append them after your question.
 
 | Code | Description |
 | --- | --- |
