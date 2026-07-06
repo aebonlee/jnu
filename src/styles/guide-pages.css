@@ -335,10 +335,11 @@
     color: #1B5E20;
     border: 1px solid #C8E6C9;
 }
+/* 마크다운 코드 복사 블록 — 프롬프트 복사 블록(PromptBlock)과 동일한 남색 헤더형 디자인 */
 .code-block-wrapper {
     margin: 16px 0;
     border-radius: var(--radius-md);
-    border: 1px solid #2E7D32;
+    border: 1px solid #2E4468;
     overflow: hidden;
 }
 .code-block-header {
@@ -346,39 +347,44 @@
     justify-content: space-between;
     align-items: center;
     padding: 8px 16px;
-    background: #1B3A1E;
-    border-bottom: 1px solid #2E7D32;
+    background: #1B2E4E;
+    border-bottom: 1px solid #2E4468;
 }
 .code-block-lang {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     font-size: 12px;
     font-weight: 600;
-    color: #81C784;
+    color: #8FB0E0;
     text-transform: uppercase;
+    letter-spacing: 0.04em;
 }
 .code-copy-btn {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 4px;
     padding: 4px 10px;
     font-size: 12px;
-    color: #A5D6A7;
+    font-weight: 600;
+    color: #B9CCE8;
     background: transparent;
-    border: 1px solid #2E7D32;
+    border: 1px solid #2E4468;
     border-radius: 4px;
     cursor: pointer;
     transition: var(--transition-base);
     font-family: inherit;
 }
 .code-copy-btn:hover {
-    color: #C8E6C9;
-    border-color: #4CAF50;
+    color: #E8EEF8;
+    border-color: #4A6DA5;
 }
 .code-copy-btn.copied {
-    color: #81C784;
-    border-color: #4CAF50;
+    color: #7FE0AE;
+    border-color: #4A9D74;
 }
 .code-block-content {
-    background: #1B3A1E;
+    background: #14233E;
     padding: 16px 20px;
     overflow-x: auto;
 }
@@ -386,8 +392,8 @@
     margin: 0;
 }
 .code-block-content code {
-    color: #A5D6A7;
-    font-family: 'Fira Code', 'Consolas', monospace;
+    color: #E8EEF8;
+    font-family: 'D2Coding', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
     font-size: 13px;
     line-height: 1.7;
     white-space: pre;
@@ -403,7 +409,7 @@
 .code-block-content .token.number { color: #EF9A9A; }
 .code-block-content .token.operator { color: #C8E6C9; }
 .code-block-content .token.decorator { color: #FFAB91; }
-.code-block-content .code-line-highlight { background: rgba(76,175,80,0.15); display: block; }
+.code-block-content .code-line-highlight { background: rgba(96,140,210,0.16); display: block; }
 
 /* ── TipBox ── */
 .tip-box {

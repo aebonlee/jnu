@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const HIGHLIGHT_COMMENT = /←|highlight|주목|중요|important/i;
 
@@ -102,6 +103,7 @@ function highlightCode(code: string, language: string) {
 }
 
 export default function CodeBlock({ code, language = '' }: { code: string; language?: string }) {
+  const { language: uiLang } = useLanguage();
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
@@ -126,10 +128,12 @@ export default function CodeBlock({ code, language = '' }: { code: string; langu
   return (
     <div className="code-block-wrapper">
       <div className="code-block-header">
-        <span className="code-block-lang">{language}</span>
+        <span className="code-block-lang">
+          <i className="fa-solid fa-code" /> {language || (uiLang === 'ko' ? '코드' : 'CODE')}
+        </span>
         <button className={`code-copy-btn ${copied ? 'copied' : ''}`} onClick={handleCopy}>
           <i className={`fa-solid ${copied ? 'fa-check' : 'fa-copy'}`} />
-          {copied ? 'Copied!' : 'Copy'}
+          {copied ? (uiLang === 'ko' ? '복사됨' : 'Copied!') : (uiLang === 'ko' ? '복사' : 'Copy')}
         </button>
       </div>
       <div className="code-block-content">
