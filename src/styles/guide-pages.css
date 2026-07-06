@@ -166,15 +166,27 @@
 }
 .guide-section .markdown-body h4 + p {
     margin: 0 0 2px;
-    padding: 10px 16px 14px;
+    padding: 11px 16px 15px;
     background: var(--bg-white);
     border: 1px solid var(--border-light);
     border-top: none;
     border-left: 3px solid var(--primary-blue);
     border-radius: 0 0 var(--radius-md) var(--radius-md);
     color: var(--text-secondary);
-    font-size: 13.5px;
-    line-height: 1.75;
+    font-size: 14.5px;
+    line-height: 1.8;
+}
+/* 카드 본문 내 강조(굵은 글씨)·예시 프롬프트 — 액센트색 + 약간 큰 글씨 */
+.guide-section .markdown-body h4 + p strong {
+    color: var(--primary-blue);
+    font-weight: 700;
+    font-size: 15px;
+}
+/* '예시' 프롬프트 줄(줄바꿈 후 강조) 살짝 띄우기 */
+.guide-section .markdown-body h4 + p br + strong,
+.guide-section .markdown-body h4 + p strong:first-child {
+    display: inline-block;
+    margin-top: 6px;
 }
 /* 인트로 안내(블록쿼트=TipBox)와 첫 팁 사이 간격 */
 .guide-section .markdown-body .tip-box + h4 {
