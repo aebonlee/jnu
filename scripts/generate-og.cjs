@@ -97,7 +97,7 @@ async function main() {
   ctx.textAlign = 'right';
   ctx.fillStyle = 'rgba(255,255,255,0.78)';
   ctx.font = `500 26px "${FONT}"`;
-  ctx.fillText('jnu.dreamitbiz.com', W - PAD, H - 56);
+  ctx.fillText('cnu.dreamitbiz.com', W - PAD, H - 56);
   ctx.textAlign = 'left';
 
   const out = path.join(__dirname, '../public/og-cnu.png');

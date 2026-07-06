@@ -8,10 +8,10 @@ import type { SiteConfig } from '../types';
 
 const site: SiteConfig = {
   id: 'jnu',
-  name: 'JNU AI Education',
+  name: 'CNU AI Education',
   nameKo: '전남대학교 생성형 AI 교육',
   description: '전남대GPT(타임리GPT 기반)로 배우는 전남대학교 실습 중심 생성형 AI 교육 — 기초·심화, 데이터분석&논문작성, 데이터분석&예산회계, 연구&실험지원 4개 과정',
-  url: 'https://jnu.dreamitbiz.com',
+  url: 'https://cnu.dreamitbiz.com',
   dbPrefix: 'jnu_',
 
   parentSite: {

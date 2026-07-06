@@ -252,7 +252,7 @@ export const translations: Record<string, Record<string, unknown>> = {
         recommended: '추천사이트',
       },
       home: {
-        title: 'JNU AI Education',
+        title: 'CNU AI Education',
         subtitle: '전남대학교 생성형 AI 교육 플랫폼',
         welcome: '전남대학교 교수자·직원·조교를 위한 AI 교육',
         description: '생성형 AI를 활용한 교수학습 혁신을 위한 맞춤형 교육 프로그램',
@@ -525,8 +525,8 @@ export const translations: Record<string, Record<string, unknown>> = {
         recommended: 'Recommended',
       },
       home: {
-        title: 'JNU AI Education',
-        subtitle: 'JNU Generative AI Education Platform',
+        title: 'CNU AI Education',
+        subtitle: 'CNU Generative AI Education Platform',
         welcome: 'AI Education for JNU Faculty, Staff & TAs',
         description: 'Customized AI education programs for teaching innovation',
         heroTitle: 'JNU · Chonnam National University GPT',
