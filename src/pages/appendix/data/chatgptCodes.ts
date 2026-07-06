@@ -1,16 +1,17 @@
-/** 부록 — ChatGPT 비밀코드 모음 (카테고리별) */
+/** 부록 — ChatGPT 활용 키워드 (카테고리별) */
 export default {
   id: 'chatgpt-codes',
   icon: 'fa-key',
-  title: 'ChatGPT 비밀코드',
-  titleEn: 'ChatGPT Secret Codes',
+  title: 'ChatGPT 활용 키워드',
+  titleEn: 'ChatGPT Prompt Keywords',
   sections: [
     {
-      title: '핵심 비밀코드 5선',
-      titleEn: 'Top 5 Secret Codes',
-      content: `> **먼저 알아두세요.** 이 코드들은 ChatGPT·클로드의 **공식 명령어가 아닙니다.** 자주 쓰는 프롬프트를 짧게 부르는 '관용 표기'라, AI가 문맥으로 해석해 동작합니다.
-> - **슬래시(/) 유무는 기능 차이가 아니라 표기 습관 차이**입니다. \`/human\`이든 \`HUMAN\`이든 AI에겐 똑같은 텍스트예요.
-> - ELI5·TL;DR·"단계별로"처럼 **널리 알려진 건 잘 통하고**, 만들어낸 코드(SELFREFINE·X10THINK 등)는 **그때그때 다를 수 있습니다.** 안 통하면 뜻을 풀어서 쓰면 됩니다.
+      title: '핵심 키워드 5선',
+      titleEn: 'Top 5 Keywords',
+      content: `> **먼저 알아두세요.** 여기 정리한 키워드는 ChatGPT·클로드의 **공식 명령어가 아닙니다.** ELI5·TL;DR처럼 널리 쓰이는 몇 개를 빼면, **대부분은 "이런 식으로 요청해줘"를 짧게 부르려고 임의로 붙인 별칭 — 즉 구분용 키워드**입니다. AI가 그 단어를 특별히 알아듣는 게 아니라, **쓰는 사람이 기억·분류하기 쉽게** 만든 이름에 가깝습니다.
+> - **슬래시(/) 유무는 기능이 아니라 표기 습관 차이**입니다. \`/human\`이든 \`HUMAN\`이든 AI에겐 똑같은 텍스트예요.
+> - **널리 알려진 것**(ELI5, TL;DR, "단계별로 생각해")은 잘 통하고, **임의로 만든 키워드**(SELFREFINE, X10THINK 등)는 **그때그때 다를 수 있습니다.**
+> - **확실히 통하게 하려면 뜻을 함께 풀어 쓰세요.** 예: \`SELFREFINE\` → "답변한 뒤 스스로 한 번 검토해서 개선해줘"
 > - **클로드도 동일**합니다. 두 AI 모두 특수 명령이 아니라 '자연어 지시'로 받아들입니다.
 
 먼저 이 5개만 알아둬도 절반은 끝납니다. 질문이나 내용 뒤에 붙여 쓰세요.
@@ -24,9 +25,10 @@ export default {
 | ALT3 | 3가지 다른 대안을 제시 |
 
 > 사용법: "기후변화에 대해 설명해줘. ELI5"처럼 뒤에 붙이면 됩니다.`,
-      contentEn: `> **Read this first.** These codes are **not official commands** in ChatGPT or Claude. They're shorthand for common prompts, interpreted from context.
+      contentEn: `> **Read this first.** These keywords are **not official commands** in ChatGPT or Claude. Apart from a few well-known ones (ELI5, TL;DR), **most are just labels someone coined to nickname a prompt — i.e. mnemonic keywords.** The AI doesn't specially recognize the word; it's really a name to help *you* remember and organize prompts.
 > - **The slash (/) is a style habit, not a function.** \`/human\` and \`HUMAN\` are the same text to the AI.
-> - Well-known ones (ELI5, TL;DR, "step by step") work reliably; made-up codes (SELFREFINE, X10THINK…) may vary. If one doesn't work, just spell out what you mean.
+> - Well-known ones (ELI5, TL;DR, "step by step") work reliably; **made-up keywords** (SELFREFINE, X10THINK…) may vary.
+> - **To be sure it works, spell out the meaning.** e.g. \`SELFREFINE\` → "after answering, review and improve it yourself."
 > - **Claude behaves the same way** — both treat these as natural-language instructions, not special commands.
 
 Learn just these 5 and you're halfway there. Append them after your question.

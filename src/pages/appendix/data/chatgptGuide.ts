@@ -1,4 +1,4 @@
-/** 부록 — ChatGPT 실전 사용법 & 비밀코드 100 */
+/** 부록 — ChatGPT 실전 사용법 & 활용 키워드 100 */
 export default {
   id: 'chatgpt-guide',
   icon: 'fa-comment-dots',
@@ -64,7 +64,7 @@ They don't finish in one shot: **draft → "punchier / shorter / add a CTA" → 
 Content planning (Reels/YouTube/Shorts), writing (email/ads/scripts), idea expansion, automation design, problem-solving.`,
     },
     {
-      title: '비밀코드 01–20',
+      title: '활용 키워드 01–20',
       titleEn: 'Codes 01–20',
       content: `> 사용법: 질문이나 내용 뒤(또는 앞)에 코드를 붙이면 됩니다. 예) "이 문장 자연스럽게 바꿔줘 /human"
 
@@ -116,7 +116,7 @@ Content planning (Reels/YouTube/Shorts), writing (email/ads/scripts), idea expan
 | /cta | Call to action (clicks/comments) | add a CTA line |`,
     },
     {
-      title: '비밀코드 21–40',
+      title: '활용 키워드 21–40',
       titleEn: 'Codes 21–40',
       content: `| 코드 | 용도 (효과) | 예시 |
 | --- | --- | --- |
@@ -164,7 +164,7 @@ Content planning (Reels/YouTube/Shorts), writing (email/ads/scripts), idea expan
 | /workflow | Organize workflow (whole process) | organize the video-production flow |`,
     },
     {
-      title: '비밀코드 41–60',
+      title: '활용 키워드 41–60',
       titleEn: 'Codes 41–60',
       content: `| 코드 | 용도 (효과) | 예시 |
 | --- | --- | --- |
@@ -212,7 +212,7 @@ Content planning (Reels/YouTube/Shorts), writing (email/ads/scripts), idea expan
 | /engagement | Engagement focus (comments/likes↑) | make an engagement line |`,
     },
     {
-      title: '비밀코드 61–80',
+      title: '활용 키워드 61–80',
       titleEn: 'Codes 61–80',
       content: `| 코드 | 용도 (효과) | 예시 |
 | --- | --- | --- |
@@ -260,7 +260,7 @@ Content planning (Reels/YouTube/Shorts), writing (email/ads/scripts), idea expan
 | /rank | Rank (prioritize) | rank these |`,
     },
     {
-      title: '비밀코드 81–100',
+      title: '활용 키워드 81–100',
       titleEn: 'Codes 81–100',
       content: `| 코드 | 용도 (효과) | 예시 |
 | --- | --- | --- |
