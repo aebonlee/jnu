@@ -11,7 +11,7 @@ export const translations: Record<string, Record<string, unknown>> = {
       portfolio: '포트폴리오',
       community: '커뮤니티',
       consulting: '컨설팅',
-      about: '소개',
+      about: 'About',
       contact: '연락처',
       rnd: '연구개발',
       services: 'IT서비스',
