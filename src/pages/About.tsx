@@ -73,12 +73,17 @@ export default function About(): ReactElement {
               <h2><i className="fa-solid fa-user-tie" /> {language === 'ko' ? '강사 정보' : 'Instructor'}</h2>
               <div className="instructor-info">
                 <h4>{language === 'ko' ? '이애본 박사 (Ph.D Aebon Lee)' : 'Dr. Aebon Lee (Ph.D)'}</h4>
-                <p>{language === 'ko' ? 'DreamIT Biz 대표' : 'CEO of DreamIT Biz'}</p>
+                <p>{language === 'ko' ? '드림아이티비즈(DreamIT Biz) 대표 · 정보관리박사(Ph.D)' : 'CEO, DreamIT Biz · Ph.D in Information Management'}</p>
                 <ul>
-                  <li>{language === 'ko' ? '경기대학교 경영정보학과 겸임교수' : 'Adjunct Professor at Kyonggi University'}</li>
-                  <li>{language === 'ko' ? 'AI·디지털 교육 전문가' : 'AI & Digital Education Expert'}</li>
-                  <li>{language === 'ko' ? '84개 교육 사이트 운영' : 'Operating 84 education sites'}</li>
+                  <li>{language === 'ko' ? '한신대학교 AI·SW대학 겸임교수 · 한국기술교육대학교 외래교수' : 'Adjunct Professor, Hanshin Univ. AI·SW College · KOREATECH'}</li>
+                  <li>{language === 'ko' ? '경기대학교 겸임교수(2018~2023) · 고용노동부 직업능력개발훈련교사' : 'Adjunct Professor, Kyonggi Univ. (2018–2023) · Certified Vocational Training Instructor'}</li>
+                  <li>{language === 'ko' ? '생성형 AI 교육·프롬프트 엔지니어링·에듀테크 플랫폼 전문' : 'Generative AI education, prompt engineering, edtech platforms'}</li>
+                  <li>{language === 'ko' ? '대학(경기대·한신대·한기대·전남대·서울대·한국외대 등)·기업(KDN·KOMIPO) AI 교육' : 'AI training for universities (Kyonggi, Hanshin, KOREATECH, JNU, SNU, HUFS, etc.) and firms (KDN, KOMIPO)'}</li>
+                  <li>{language === 'ko' ? '122개 교육 사이트 직접 설계·개발·운영' : 'Designed, developed and operates 122 education sites'}</li>
                 </ul>
+                <p style={{ fontStyle: 'italic', color: 'var(--primary-blue)', fontWeight: 600, margin: '12px 0 4px' }}>
+                  {language === 'ko' ? '“AI는 도구이고, 진짜 혁신은 사람이 만듭니다.” — 이론 30 · 실습 70' : '"AI is a tool; real innovation is made by people." — 30% theory · 70% practice'}
+                </p>
                 <div className="instructor-contact">
                   <p><i className="fa-solid fa-envelope" /> aebon@dreamitbiz.com</p>
                   <p><i className="fa-solid fa-globe" /> www.dreamitbiz.com</p>

@@ -60,6 +60,7 @@ const site: SiteConfig = {
 
   // 4개 과정명을 각각 상단 메뉴(링크)로 — 과정 내부는 좌측 사이드바로 이동
   menuItems: [
+    { path: '/about', activePath: '/about', labelKey: 'nav.about' },
     { path: '/courses/foundation', activePath: '/courses/foundation', labelKey: 'site.nav.progFoundation' },
     { path: '/courses/research-writing', activePath: '/courses/research-writing', labelKey: 'site.nav.progResearchWriting' },
     { path: '/courses/data-budget', activePath: '/courses/data-budget', labelKey: 'site.nav.progDataBudget' },
